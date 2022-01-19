@@ -17,6 +17,10 @@ public class PlayerMovementScript : MonoBehaviour
     public float jumpSpeed = 5;
     public float airSpeed = 3;
 
+    //local vars
+    float x;
+    float y;
+
     enum STATE
     {
         WALKING = 0,
@@ -31,39 +35,42 @@ public class PlayerMovementScript : MonoBehaviour
 
     private void Update()
     {
-        
-    }
-
-    private void FixedUpdate()
-    {
-        float x = Input.GetAxis("Horizontal");
-        float y;
-
-        //horizontal movement
-        if (OnGround())
-        {
-            print("gruonded");
-            x *= moveSpeed;
-        } else
-        {
-            x *= airSpeed;
-        }//end if/else
-
         //jump
         if (Input.GetButton("Jump") && OnGround())
         {
             print("wee");
             y = jumpSpeed;
-        } else if(Input.GetButtonUp("Jump"))
+        }
+        else if (Input.GetButtonUp("Jump") && _rBody.velocity.y > 0)
         {
             y = 0;
-        } else
+        }
+        else
         {
             y = _rBody.velocity.y;
         }//end if/elseif/else
 
         //update velocity
         _rBody.velocity = new Vector2(x, y);
+    }
+
+    private void FixedUpdate()
+    {
+        x = Input.GetAxis("Horizontal");
+
+        //horizontal movement
+        if (OnGround())
+        {
+            print("gruonded");
+            x *= moveSpeed;
+        }
+        else
+        {
+            x *= airSpeed;
+        }//end if/else
+
+        //update velocity
+        //_rBody.velocity = new Vector2(x, y);
     }//end FixedUpdate
 
     private bool OnGround()
