@@ -135,6 +135,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 3228907728093322357, guid: 3ccf805a2d48c764bb9b68df5f330681,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a860d45c316ce30408c530d426673c87,
+        type: 3}
     - target: {fileID: 4454823668414445524, guid: 3ccf805a2d48c764bb9b68df5f330681,
         type: 3}
       propertyPath: m_Constraints
@@ -195,6 +201,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7544102714521641175, guid: 3ccf805a2d48c764bb9b68df5f330681,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.5491853
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544102714521641175, guid: 3ccf805a2d48c764bb9b68df5f330681,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544102714521641175, guid: 3ccf805a2d48c764bb9b68df5f330681,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -0.00000023841858
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544102714521641175, guid: 3ccf805a2d48c764bb9b68df5f330681,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ccf805a2d48c764bb9b68df5f330681, type: 3}
 --- !u!1 &805381425
@@ -233,7 +259,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.39711642, g: 0.5802084, b: 0.8679245, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
