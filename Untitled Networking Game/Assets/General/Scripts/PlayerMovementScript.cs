@@ -8,6 +8,7 @@ public class PlayerMovementScript : MonoBehaviour
 {
     //adopted vars
     Rigidbody2D _rBody;
+    SpriteRenderer _spriteRenderer;
 
     //check vars
     public Transform _groundCheck;
@@ -31,6 +32,7 @@ public class PlayerMovementScript : MonoBehaviour
     private void Start()
     {
         _rBody = GetComponent<Rigidbody2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }//end Start
 
     private void Update()
@@ -69,8 +71,14 @@ public class PlayerMovementScript : MonoBehaviour
             x *= airSpeed;
         }//end if/else
 
-        //update velocity
-        //_rBody.velocity = new Vector2(x, y);
+        if(_spriteRenderer.flipX && x > 0)
+        {
+            _spriteRenderer.flipX = false;
+        } else if(!_spriteRenderer.flipX && x < 0)
+        {
+            _spriteRenderer.flipX = true;
+        }
+
     }//end FixedUpdate
 
     private bool OnGround()
