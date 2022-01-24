@@ -9,6 +9,7 @@ public class PlayerMovementScript : MonoBehaviour
     //adopted vars
     Rigidbody2D _rBody;
     SpriteRenderer _spriteRenderer;
+    Animator _anim;
 
     //check vars
     public Transform _groundCheck;
@@ -33,6 +34,7 @@ public class PlayerMovementScript : MonoBehaviour
     {
         _rBody = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _anim = GetComponent<Animator>();
     }//end Start
 
     private void Update()
@@ -54,6 +56,10 @@ public class PlayerMovementScript : MonoBehaviour
 
         //update velocity
         _rBody.velocity = new Vector2(x, y);
+
+        //update animation
+        _anim.SetBool("Running", (x != 0));
+        _anim.SetBool("Falling", (y < 0));
     }
 
     private void FixedUpdate()
