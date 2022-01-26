@@ -17,7 +17,6 @@ public class PlayerMovementScript : MonoBehaviour
     //control vars
     public float moveSpeed = 10;
     public float jumpSpeed = 5;
-    public float airSpeed = 3;
 
     //local vars
     float x;
@@ -64,18 +63,7 @@ public class PlayerMovementScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        x = Input.GetAxis("Horizontal");
-
-        //horizontal movement
-        if (OnGround())
-        {
-            print("gruonded");
-            x *= moveSpeed;
-        }
-        else
-        {
-            x *= airSpeed;
-        }//end if/else
+        x = Input.GetAxis("Horizontal") * moveSpeed;
 
         if(_spriteRenderer.flipX && x > 0)
         {
