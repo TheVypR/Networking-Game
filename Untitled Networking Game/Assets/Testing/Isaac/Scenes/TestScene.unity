@@ -227,8 +227,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerTrans: {fileID: 119547638}
-  moveSpeed: 0.1
-  autoSpeed: 0
+  moveSpeed: 0.02
+  autoSpeed: 0.035
   followDistance: 3
 --- !u!50 &453859691
 Rigidbody2D:
