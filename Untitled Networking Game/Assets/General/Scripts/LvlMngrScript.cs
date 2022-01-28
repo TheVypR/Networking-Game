@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LvlOneMngScript : MonoBehaviour
+public class LvlMngrScript : MonoBehaviour
 {
     public GameObject _player;
     Transform _playerTrans;
@@ -27,7 +27,7 @@ public class LvlOneMngScript : MonoBehaviour
     {
         _player.SetActive(true);
         //Option 1 (Spawn Back)
-        spwn = new Vector2(_playerTrans.position.x - 10, 5);
+        spwn = new Vector2(_playerTrans.position.x - 25, 5);
 
         //raycast to see if there is a platform there
         StartCoroutine(FindRespawn());

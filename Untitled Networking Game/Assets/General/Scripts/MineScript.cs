@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class MineScript : MonoBehaviour
 {
-    public LvlOneMngScript _mngr;
+    LvlMngrScript _mngr;
     // Start is called before the first frame update
     void Start()
     {
-        
+        _mngr = FindObjectOfType<LvlMngrScript>();
     }
 
     // Update is called once per frame
