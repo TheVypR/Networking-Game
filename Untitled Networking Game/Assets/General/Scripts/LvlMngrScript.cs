@@ -53,12 +53,14 @@ public class LvlMngrScript : MonoBehaviour
         while (!hit)
         {
             hit = Physics2D.Raycast(spwn + retryOffset, Vector2.down);
+            if (spwn.x < -5)
+            {
+                spwn = new Vector2(-5, spwn.y);
+                break;
+            }
             yield return null;
         }
-        if (spwn.x < -5)
-        {
-            spwn = new Vector2(-5, spwn.y);
-        }
+        
         StopCoroutine(FindRespawn());
     }
 }
