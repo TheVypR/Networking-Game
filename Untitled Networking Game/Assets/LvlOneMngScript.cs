@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class LvlOneMngScript : MonoBehaviour
 {
-    public Transform _playerTrans;
-    public Rigidbody2D _playerRbody;
+    public GameObject _player;
+    Transform _playerTrans;
+    Rigidbody2D _playerRbody;
 
     Vector2 spwn;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        _playerRbody = _player.GetComponent<Rigidbody2D>();
+        _playerTrans = _player.GetComponent<Transform>();
     }
 
     // Update is called once per frame
@@ -21,8 +23,9 @@ public class LvlOneMngScript : MonoBehaviour
         
     }
 
-    public void PlayerDeath()
+    void Respawn()
     {
+        _player.SetActive(true);
         //Option 1 (Spawn Back)
         spwn = new Vector2(_playerTrans.position.x - 10, 5);
 
@@ -35,6 +38,12 @@ public class LvlOneMngScript : MonoBehaviour
         //Option 2 (Spawn At Previous Checkpoint)
 
 
+    }
+
+    public void PlayerDeath()
+    {
+        _player.SetActive(false);
+        Invoke("Respawn", 2);
     }
 
     IEnumerator FindRespawn()
