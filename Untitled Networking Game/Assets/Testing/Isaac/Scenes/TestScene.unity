@@ -221,6 +221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerTrans: {fileID: 937353696}
+  debug: 1
   moveSpeed: 0.02
   autoSpeed: 0
   followDistance: 3
