@@ -10,6 +10,7 @@ public class PlayerMovementScript : MonoBehaviour
     Rigidbody2D _rBody;
     SpriteRenderer _spriteRenderer;
     Animator _anim;
+    AudioSource _audioS;
 
     //check vars
     public Transform _groundCheck;
@@ -18,10 +19,16 @@ public class PlayerMovementScript : MonoBehaviour
     //control vars
     public float moveSpeed = 10;
     public float jumpSpeed = 5;
+    private float waitTime = 0.4f;
+    private float startTime = 0;
 
     //local vars
     float x;
     float y;
+
+    //audio vars
+    public AudioClip footstep;
+    public AudioClip jump;
 
     enum STATE
     {
@@ -35,7 +42,10 @@ public class PlayerMovementScript : MonoBehaviour
         _rBody = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _anim = GetComponent<Animator>();
+        _audioS = GetComponent<AudioSource>();
+        startTime = Time.deltaTime;
     }//end Start
+
 
     private void Update()
     {
@@ -44,6 +54,7 @@ public class PlayerMovementScript : MonoBehaviour
         {
             print("wee");
             y = jumpSpeed;
+            _audioS.PlayOneShot(jump);
         }
         else if (Input.GetButtonUp("Jump") && _rBody.velocity.y > 0)
         {
@@ -56,6 +67,14 @@ public class PlayerMovementScript : MonoBehaviour
 
         //update velocity
         _rBody.velocity = new Vector2(x, y);
+
+        if (_rBody.velocity.x > 0 && OnGround())
+        {
+            if (startTime - Time.deltaTime > waitTime)
+            {
+                _audioS.PlayOneShot(footstep);
+            }
+        }
 
         //update animation
         _anim.SetBool("Running", (x != 0));
