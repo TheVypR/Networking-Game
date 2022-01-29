@@ -5,6 +5,7 @@ using UnityEngine;
 public class LvlMngrScript : MonoBehaviour
 {
     public GameObject _player;
+    public GameObject _airStrike;
     Transform _playerTrans;
     Rigidbody2D _playerRbody;
 
@@ -20,7 +21,10 @@ public class LvlMngrScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            Instantiate(_airStrike);
+        }
     }
 
     void Respawn()
@@ -33,6 +37,7 @@ public class LvlMngrScript : MonoBehaviour
         StartCoroutine(FindRespawn());
        
         _playerTrans.position = spwn;
+        Camera.main.transform.position = spwn;
         _playerRbody.velocity = Vector3.zero;
 
         //Option 2 (Spawn At Previous Checkpoint)

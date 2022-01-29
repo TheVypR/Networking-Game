@@ -104,4 +104,12 @@ public class PlayerMovementScript : MonoBehaviour
     {
         return Physics2D.Raycast(_groundCheck.position, Vector2.down, 0.2f);
     }//end OnGround
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Trap"))
+        {
+            _mngr.PlayerDeath();
+        }
+    }
 }
