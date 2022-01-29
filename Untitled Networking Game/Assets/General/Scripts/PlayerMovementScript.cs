@@ -13,6 +13,7 @@ public class PlayerMovementScript : MonoBehaviour
 
     //check vars
     public Transform _groundCheck;
+    public LvlMngrScript _mngr;
 
     //control vars
     public float moveSpeed = 10;
@@ -71,6 +72,11 @@ public class PlayerMovementScript : MonoBehaviour
         } else if(!_spriteRenderer.flipX && x < 0)
         {
             _spriteRenderer.flipX = true;
+        }
+
+        if(transform.position.y < -10)
+        {
+            _mngr.PlayerDeath();
         }
 
     }//end FixedUpdate
