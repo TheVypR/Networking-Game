@@ -37,7 +37,7 @@ public class LvlMngrScript : MonoBehaviour
         StartCoroutine(FindRespawn());
        
         _playerTrans.position = spwn;
-        Camera.main.transform.position = spwn;
+        Camera.main.transform.position = new Vector3(spwn.x, spwn.y, -10);
         _playerRbody.velocity = Vector3.zero;
 
         //Option 2 (Spawn At Previous Checkpoint)
