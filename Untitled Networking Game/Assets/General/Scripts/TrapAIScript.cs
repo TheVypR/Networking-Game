@@ -11,7 +11,7 @@ public class TrapAIScript : MonoBehaviour
     BombStrikeScript bombScript;
     LavaScript lavaScript;
     EconomyScript econScript;
-    private int MAX_TRAP_COST = 75;
+    private readonly int MAX_TRAP_COST = 75;
     public GameObject bombSPrefab;
     public GameObject lavaPrefab;
 
