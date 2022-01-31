@@ -112,4 +112,12 @@ public class PlayerMovementScript : MonoBehaviour
             _mngr.PlayerDeath();
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Trap"))
+        {
+            _mngr.PlayerDeath();
+        }
+    }
 }

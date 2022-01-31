@@ -6,6 +6,8 @@ public class LvlMngrScript : MonoBehaviour
 {
     public GameObject _player;
     public GameObject _airStrike;
+    public GameObject _lavaFlood;
+
     Transform _playerTrans;
     Rigidbody2D _playerRbody;
 
@@ -24,6 +26,11 @@ public class LvlMngrScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K))
         {
             Instantiate(_airStrike);
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Instantiate(_lavaFlood, new Vector3(35, -8, 0), Quaternion.identity);
         }
     }
 
