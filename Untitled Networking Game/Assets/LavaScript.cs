@@ -5,7 +5,7 @@ using UnityEngine;
 public class LavaScript : MonoBehaviour
 {
     //cost var
-    public int cost = 75;
+    public int _cost = 75;
     int first = 0;
 
     // Start is called before the first frame update

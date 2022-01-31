@@ -5,6 +5,8 @@ using UnityEngine;
 public class BlindScript : MonoBehaviour
 {
     // Start is called before the first frame update
+
+    public int _cost = 100;
     void Start()
     {
         StartCoroutine(Lifetime());

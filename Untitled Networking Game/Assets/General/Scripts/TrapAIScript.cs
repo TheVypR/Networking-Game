@@ -1,26 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class TrapAIScript : MonoBehaviour
 {
 
+    System.Random rando = new System.Random();
+
     public GameObject spawners;
     public GameObject mine;
-    System.Random rando = new System.Random();
-    BombStrikeScript bombScript;
-    LavaScript lavaScript;
-    EconomyScript econScript;
-    private readonly int MAX_TRAP_COST = 75;
     public GameObject bombSPrefab;
     public GameObject lavaPrefab;
+    public GameObject blindPrefab;
+
+    BombStrikeScript bombStrikeScript;
+    LavaScript lavaScript;
+    BlindScript blindScript;
+    EconomyScript econScript;
+
+    private int MAX_TRAP_COST;
+
 
 
 
     // Start is called before the first frame update
     void Start()
     {
-
+        int[] prices = { bombStrikeScript._cost, lavaScript._cost, blindScript._cost };
+        MAX_TRAP_COST = prices[prices.Max()];
+        print("Max Trap Cost: " + MAX_TRAP_COST);
     }
 
     // Update is called once per frame
@@ -30,16 +39,22 @@ public class TrapAIScript : MonoBehaviour
         {
             int num = rando.Next(0, 5000);
 
-            if (num < 50)
+            if (num < 5)
             {
-                Instantiate(bombSPrefab);
-                econScript.SpendCoin(bombScript._cost);
+                Instantiate(blindPrefab);
+                econScript.SpendCoin(blindScript._cost);
             }
-            else if (num < 10)
+            else if (num < 20)
             {
                 Instantiate(lavaPrefab);
-                econScript.SpendCoin(lavaScript.cost);
+                econScript.SpendCoin(lavaScript._cost);
             }
+            else if (num < 50)
+            {
+                Instantiate(bombSPrefab);
+                econScript.SpendCoin(bombStrikeScript._cost);
+            }
+
         }
     }
 }
