@@ -14,7 +14,7 @@ public class BombStrikeScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(Camera.main.transform.position.x - 15, 5, 0);
+        transform.position = new Vector3(Camera.main.transform.position.x - 15, Camera.main.transform.position.y + 5, 0);
         StartCoroutine(SpawnBomb());
     }
 
