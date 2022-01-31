@@ -64,7 +64,8 @@ public class LvlMngrScript : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(spwn, Vector2.down);
         while (!hit)
         {
-            hit = Physics2D.Raycast(spwn + retryOffset, Vector2.down);
+            spwn += retryOffset;
+            hit = Physics2D.Raycast(spwn, Vector2.down);
             if (spwn.x < -5)
             {
                 spwn = new Vector2(-5, spwn.y);
