@@ -15,6 +15,7 @@ public class PlayerMovementScript : MonoBehaviour
     //check vars
     public Transform _groundCheck;
     public LvlMngrScript _mngr;
+    public LayerMask _groundLayer;
 
     //control vars
     public float moveSpeed = 10;
@@ -102,7 +103,7 @@ public class PlayerMovementScript : MonoBehaviour
 
     private bool OnGround()
     {
-        return Physics2D.Raycast(_groundCheck.position, Vector2.down, 0.2f);
+        return Physics2D.Raycast(_groundCheck.position, Vector2.down, 0.2f, _groundLayer);
     }//end OnGround
 
     private void OnTriggerEnter2D(Collider2D collision)

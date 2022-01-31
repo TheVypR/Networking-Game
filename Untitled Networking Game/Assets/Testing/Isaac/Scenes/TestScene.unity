@@ -582,9 +582,9 @@ GameObject:
   - component: {fileID: 621222648}
   - component: {fileID: 621222650}
   - component: {fileID: 621222649}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GroundTilemap
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25990,9 +25990,9 @@ GameObject:
   - component: {fileID: 1739604236}
   - component: {fileID: 1739604235}
   - component: {fileID: 1739604234}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Platform
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26243,6 +26243,11 @@ PrefabInstance:
       propertyPath: _mngr
       value: 
       objectReference: {fileID: 1273882957}
+    - target: {fileID: 6737881601269786680, guid: 3ccf805a2d48c764bb9b68df5f330681,
+        type: 3}
+      propertyPath: _groundLayer.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7178553796478119847, guid: 3ccf805a2d48c764bb9b68df5f330681,
         type: 3}
       propertyPath: m_RootOrder
@@ -26251,12 +26256,12 @@ PrefabInstance:
     - target: {fileID: 7178553796478119847, guid: 3ccf805a2d48c764bb9b68df5f330681,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 79.65
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 7178553796478119847, guid: 3ccf805a2d48c764bb9b68df5f330681,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.08664942
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7178553796478119847, guid: 3ccf805a2d48c764bb9b68df5f330681,
         type: 3}
