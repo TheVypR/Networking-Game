@@ -72,7 +72,7 @@ public class EconomyScript : MonoBehaviour
         print("broke");
         money = 0;
         _camScript.autoSpeed = 0.035f;
-        StopCoroutine(drainRoutine);
+        StopAllCoroutines();
         gainRoutine = StartCoroutine(GainMoney());
     }
 
