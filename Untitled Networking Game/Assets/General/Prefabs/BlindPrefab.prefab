@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4067264552331282012}
   - component: {fileID: 1583810025444975502}
   m_Layer: 0
-  m_Name: Blind
+  m_Name: BlindPrefab
   m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

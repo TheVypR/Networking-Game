@@ -55,7 +55,7 @@ public class PlayerMovementScript : MonoBehaviour
         {
             print("wee");
             y = jumpSpeed;
-            _audioS.PlayOneShot(jump);
+            _audioS.PlayOneShot(jump, (float)0.50);
         }
         else if (Input.GetButtonUp("Jump") && _rBody.velocity.y > 0)
         {
@@ -73,7 +73,7 @@ public class PlayerMovementScript : MonoBehaviour
         {
             if (startTime - Time.deltaTime > waitTime)
             {
-                _audioS.PlayOneShot(footstep);
+                _audioS.PlayOneShot(footstep, (float)1.5);
             }
         }
 
