@@ -14,47 +14,67 @@ public class TrapAIScript : MonoBehaviour
     public GameObject lavaPrefab;
     public GameObject blindPrefab;
 
+    public GameObject econManager;
+
     BombStrikeScript bombStrikeScript;
     LavaScript lavaScript;
     BlindScript blindScript;
     EconomyScript econScript;
 
-    private int MAX_TRAP_COST;
+    private int MAX_TRAP_COST = 100;
+    public int openingTrapNum;
 
-
+    public int _costBombStrike = 50;
+    public int _costLava = 75;
+    public int _costBlind = 100;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        int[] prices = { bombStrikeScript._cost, lavaScript._cost, blindScript._cost };
-        MAX_TRAP_COST = prices[prices.Max()];
-        print("Max Trap Cost: " + MAX_TRAP_COST);
+
+        for (int i = 0; i < openingTrapNum; i++)
+        {
+            int r = rando.Next(0, spawners.transform.childCount - 1);
+            Transform spawn = spawners.transform.GetChild(r);
+
+            Instantiate(mine, spawn);
+            spawn.parent = null;
+        }
+        /*int r = rando.Next(0, 3);
+        Transform spawn = spawners.transform.GetChild(r);
+        Instantiate(mine, spawn);
+        spawn.parent = null;*/
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (econScript.money > MAX_TRAP_COST)
+        if (econManager.GetComponent<EconomyScript>().money > _costBombStrike)
         {
-            int num = rando.Next(0, 5000);
-
-            if (num < 5)
-            {
-                Instantiate(blindPrefab);
-                econScript.SpendCoin(blindScript._cost);
-            }
-            else if (num < 20)
-            {
-                Instantiate(lavaPrefab);
-                econScript.SpendCoin(lavaScript._cost);
-            }
-            else if (num < 50)
+            if (rando.Next(0, 50000) == 1)
             {
                 Instantiate(bombSPrefab);
-                econScript.SpendCoin(bombStrikeScript._cost);
+                econManager.GetComponent<EconomyScript>().SpendCoin(_costBombStrike);
             }
-
         }
+
+        if (econManager.GetComponent<EconomyScript>().money > _costLava)
+        {
+            if (rando.Next(0, 5000) == 2)
+            {
+                Instantiate(lavaPrefab);
+                econManager.GetComponent<EconomyScript>().SpendCoin(_costLava);
+            }
+        }
+
+        if (econManager.GetComponent<EconomyScript>().money > _costBlind)
+        {
+            if (rando.Next(0, 5000) == 3)
+            {
+                Instantiate(blindPrefab);
+                econManager.GetComponent<EconomyScript>().SpendCoin(_costBlind);
+            }
+        }     
     }
 }

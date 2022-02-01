@@ -9,7 +9,7 @@ public class BombStrikeScript : MonoBehaviour
     
     //control vars
     public float _moveSpeed = 0.1f;
-    public int _cost = 50;
+
 
     // Start is called before the first frame update
     void Start()
