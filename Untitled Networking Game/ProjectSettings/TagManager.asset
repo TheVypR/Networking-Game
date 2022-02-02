@@ -49,3 +49,6 @@ TagManager:
   - name: Trap
     uniqueID: 4274806763
     locked: 0
+  - name: Trap_Foreground
+    uniqueID: 831169817
+    locked: 0

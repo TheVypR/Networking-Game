@@ -11,6 +11,7 @@ public class LvlMngrScript : MonoBehaviour
     Transform _playerTrans;
     Rigidbody2D _playerRbody;
 
+    bool foundSpwn = false;
     Vector2 spwn;
 
     // Start is called before the first frame update
@@ -43,6 +44,7 @@ public class LvlMngrScript : MonoBehaviour
         //raycast to see if there is a platform there
         StartCoroutine(FindRespawn());
        
+
         _playerTrans.position = spwn;
         Camera.main.transform.position = new Vector3(spwn.x, spwn.y, -10);
         _playerRbody.velocity = Vector3.zero;
@@ -60,10 +62,12 @@ public class LvlMngrScript : MonoBehaviour
 
     IEnumerator FindRespawn()
     {
+        foundSpwn = false;
         Vector2 retryOffset = new Vector2(-1, 0);
         RaycastHit2D hit = Physics2D.Raycast(spwn, Vector2.down);
         while (!hit)
         {
+            print("Find");
             spwn += retryOffset;
             hit = Physics2D.Raycast(spwn, Vector2.down);
             if (spwn.x < -5)
@@ -72,7 +76,9 @@ public class LvlMngrScript : MonoBehaviour
                 break;
             }
             yield return null;
+            
         }
+        foundSpwn = true;
         
         StopCoroutine(FindRespawn());
     }

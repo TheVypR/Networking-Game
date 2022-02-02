@@ -30,7 +30,6 @@ public class BombScript : MonoBehaviour
     {
         _bCol.enabled = true;
         _cCol.enabled = false;
-        _rend.enabled = false;
         _rBody.gravityScale = 0;
         _anim.Play("Explosion");
     }
