@@ -43,11 +43,11 @@ public class LvlMngrScript : MonoBehaviour
 
         //raycast to see if there is a platform there
         StartCoroutine(FindRespawn());
-       
 
         _playerTrans.position = spwn;
         Camera.main.transform.position = new Vector3(spwn.x, spwn.y, -10);
         _playerRbody.velocity = Vector3.zero;
+        _player.GetComponent<PlayerMovementScript>().moveSpeed = 10;
 
         //Option 2 (Spawn At Previous Checkpoint)
 

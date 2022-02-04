@@ -11,6 +11,7 @@ public class PlayerMovementScript : MonoBehaviour
     SpriteRenderer _spriteRenderer;
     Animator _anim;
     AudioSource _audioS;
+    public Sprite _glued;
 
     //check vars
     public Transform _groundCheck;
@@ -53,7 +54,6 @@ public class PlayerMovementScript : MonoBehaviour
         //jump
         if (Input.GetButton("Jump") && OnGround())
         {
-            print("wee");
             y = jumpSpeed;
             _audioS.PlayOneShot(jump, (float)0.50);
         }
@@ -112,6 +112,12 @@ public class PlayerMovementScript : MonoBehaviour
         {
             _mngr.PlayerDeath();
         }
+        else if (collision.gameObject.tag.Equals("Glue"))
+        {
+            moveSpeed = 5;
+            _anim.SetBool("Glued", true);
+            StartCoroutine(GlueTime());
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -119,6 +125,14 @@ public class PlayerMovementScript : MonoBehaviour
         if (collision.gameObject.tag.Equals("Trap"))
         {
             _mngr.PlayerDeath();
-        }
+        } 
+    }
+
+    IEnumerator GlueTime()
+    {
+        yield return new WaitForSeconds(1);
+        moveSpeed = 10;
+        _anim.SetBool("Glued", false);
+        StopCoroutine(GlueTime());
     }
 }
