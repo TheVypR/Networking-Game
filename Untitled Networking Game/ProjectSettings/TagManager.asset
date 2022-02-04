@@ -3,15 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Trap
+  - Ground
+  - Glue
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - 
+  - Glue
   - 
   - 
   - 
@@ -43,4 +46,10 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Trap
+    uniqueID: 4274806763
+    locked: 0
+  - name: Trap_Foreground
+    uniqueID: 831169817
     locked: 0
