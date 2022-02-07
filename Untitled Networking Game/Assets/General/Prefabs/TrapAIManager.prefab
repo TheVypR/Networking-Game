@@ -52,4 +52,8 @@ MonoBehaviour:
     type: 3}
   blindPrefab: {fileID: 4788606568754076873, guid: 95f07c0246103aa43aad0b6167ff9e7e,
     type: 3}
+  econManager: {fileID: 0}
   openingTrapNum: 24
+  _costBombStrike: 50
+  _costLava: 75
+  _costBlind: 100

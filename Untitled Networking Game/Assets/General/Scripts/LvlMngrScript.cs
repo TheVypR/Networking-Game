@@ -40,7 +40,7 @@ public class LvlMngrScript : MonoBehaviour
     {
         _player.SetActive(true);
         //Option 1 (Spawn Back)
-        spwn = new Vector2(_playerTrans.position.x - 25, 5);
+        spwn = new Vector2(_playerTrans.position.x - 25, 10);
 
         //raycast to see if there is a platform there
         StartCoroutine(FindRespawn());
