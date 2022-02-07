@@ -10,8 +10,8 @@ public class CameraMotor : MonoBehaviour
     public bool debug;
 
     //control vars
-    public float moveSpeed = 0.1f;
-    public float autoSpeed = 0f;
+    public float moveSpeed = 0.02f;
+    public float autoSpeed = 0.035f;
     public float followDistance = 3f;
     Vector3 Yoffset = new Vector3(0, 5, 0);
     Vector3 Xoffset = new Vector3(5, 0, 0);
