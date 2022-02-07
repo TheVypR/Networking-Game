@@ -24,17 +24,12 @@ public class LavaScript : MonoBehaviour
 
     IEnumerator TriggerLava()
     {
-        transform.position = new Vector3(35, -8, 0);
         for (int i = 0; i < 40; i++)
         {
-            print("rise");
             transform.position += new Vector3(0, 0.1f, 0);
             yield return new WaitForSeconds(0.05f);
         }
-        print("Risen");
         yield return new WaitForSeconds(5);
-        print("die");
         Destroy(gameObject);
-
     }
 }

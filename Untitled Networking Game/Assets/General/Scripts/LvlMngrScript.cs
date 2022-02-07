@@ -7,6 +7,7 @@ public class LvlMngrScript : MonoBehaviour
     public GameObject _player;
     public GameObject _airStrike;
     public GameObject _lavaFlood;
+    GameObject lava;
 
     Transform _playerTrans;
     Rigidbody2D _playerRbody;
@@ -31,7 +32,7 @@ public class LvlMngrScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.L))
         {
-            Instantiate(_lavaFlood, new Vector3(35, -8, 0), Quaternion.identity);
+            lava = Instantiate(_lavaFlood, new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y - 8, 0), Quaternion.identity);
         }
     }
 
@@ -39,7 +40,7 @@ public class LvlMngrScript : MonoBehaviour
     {
         _player.SetActive(true);
         //Option 1 (Spawn Back)
-        spwn = new Vector2(_playerTrans.position.x - 25, 5);
+        spwn = new Vector2(_playerTrans.position.x - 25, 10);
 
         //raycast to see if there is a platform there
         StartCoroutine(FindRespawn());
@@ -48,10 +49,8 @@ public class LvlMngrScript : MonoBehaviour
         Camera.main.transform.position = new Vector3(spwn.x, spwn.y, -10);
         _playerRbody.velocity = Vector3.zero;
         _player.GetComponent<PlayerMovementScript>().moveSpeed = 10;
-
+        Destroy(lava);
         //Option 2 (Spawn At Previous Checkpoint)
-
-
     }
 
     public void PlayerDeath()
