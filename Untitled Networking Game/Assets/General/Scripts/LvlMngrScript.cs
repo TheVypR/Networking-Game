@@ -40,8 +40,8 @@ public class LvlMngrScript : MonoBehaviour
         if(timeLeft <= 0)
         {
             //game over
-            Destroy(_player);
-            Invoke("EndGame", 2);
+            //Destroy(_player);
+            //Invoke("EndGame", 2);
         }
 
         if (Input.GetKeyDown(KeyCode.K))
