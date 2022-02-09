@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LvlMngrScript : MonoBehaviour
 {
@@ -9,10 +10,14 @@ public class LvlMngrScript : MonoBehaviour
     public GameObject _lavaFlood;
     GameObject lava;
 
+    public float levelTime;
+    float startTime;
+    int timeLeft;
+    public Text _timer;
+
     Transform _playerTrans;
     Rigidbody2D _playerRbody;
 
-    bool foundSpwn = false;
     Vector2 spwn;
 
     // Start is called before the first frame update
@@ -20,11 +25,23 @@ public class LvlMngrScript : MonoBehaviour
     {
         _playerRbody = _player.GetComponent<Rigidbody2D>();
         _playerTrans = _player.GetComponent<Transform>();
+        startTime = Time.time;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //update timer
+        timeLeft = (int) (levelTime - (Time.time - startTime));
+
+        //update timer text
+        _timer.text = "Time: " + timeLeft;
+
+        if(timeLeft <= 0)
+        {
+            //game over
+        }
+
         if (Input.GetKeyDown(KeyCode.K))
         {
             Instantiate(_airStrike);
@@ -34,6 +51,8 @@ public class LvlMngrScript : MonoBehaviour
         {
             lava = Instantiate(_lavaFlood, new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y - 8, 0), Quaternion.identity);
         }
+
+
     }
 
     void Respawn()
@@ -61,7 +80,6 @@ public class LvlMngrScript : MonoBehaviour
 
     IEnumerator FindRespawn()
     {
-        foundSpwn = false;
         Vector2 retryOffset = new Vector2(-1, 0);
         RaycastHit2D hit = Physics2D.Raycast(spwn, Vector2.down);
         while (!hit)
@@ -77,7 +95,6 @@ public class LvlMngrScript : MonoBehaviour
             yield return null;
             
         }
-        foundSpwn = true;
         
         StopCoroutine(FindRespawn());
     }
