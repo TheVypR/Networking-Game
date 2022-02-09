@@ -40,21 +40,21 @@ public class LvlMngrScript : MonoBehaviour
     {
         _player.SetActive(true);
         //Option 1 (Spawn Back)
-        spwn = new Vector2(_playerTrans.position.x - 25, 10);
+        //spwn = new Vector2(_playerTrans.position.x - 25, 10);
 
         //raycast to see if there is a platform there
-        StartCoroutine(FindRespawn());
+        //StartCoroutine(FindRespawn());
 
         _playerTrans.position = spwn;
         Camera.main.transform.position = new Vector3(spwn.x, spwn.y, -10);
         _playerRbody.velocity = Vector3.zero;
         _player.GetComponent<PlayerMovementScript>().moveSpeed = 10;
         Destroy(lava);
-        //Option 2 (Spawn At Previous Checkpoint)
     }
 
-    public void PlayerDeath()
+    public void PlayerDeath(Vector2 spwn)
     {
+        this.spwn = spwn;
         _player.SetActive(false);
         Invoke("Respawn", 2);
     }

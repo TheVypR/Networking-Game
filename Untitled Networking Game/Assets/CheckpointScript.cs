@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MineScript : MonoBehaviour
+public class CheckpointScript : MonoBehaviour
 {
-    LvlMngrScript _mngr;
+    Animator _anim;
     // Start is called before the first frame update
     void Start()
     {
-        _mngr = FindObjectOfType<LvlMngrScript>();
+        _anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -20,6 +20,8 @@ public class MineScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag.Equals("Player"))
-            _mngr.PlayerDeath();
+        {
+            _anim.SetBool("PlayerReached", true);
+        }
     }
 }

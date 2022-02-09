@@ -17,6 +17,7 @@ public class PlayerMovementScript : MonoBehaviour
     public Transform _groundCheck;
     public LvlMngrScript _mngr;
     public LayerMask _groundLayer;
+    Vector2 spwn = new Vector2(0, 5);
 
     //control vars
     public float moveSpeed = 10;
@@ -96,7 +97,7 @@ public class PlayerMovementScript : MonoBehaviour
 
         if(transform.position.y < -10)
         {
-            _mngr.PlayerDeath();
+            _mngr.PlayerDeath(spwn);
         }
 
     }//end FixedUpdate
@@ -110,13 +111,16 @@ public class PlayerMovementScript : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Trap"))
         {
-            _mngr.PlayerDeath();
+            _mngr.PlayerDeath(spwn);
         }
         else if (collision.gameObject.tag.Equals("Glue"))
         {
             moveSpeed = 5;
             _anim.SetBool("Glued", true);
             StartCoroutine(GlueTime());
+        } else if (collision.gameObject.tag.Equals("Checkpoint"))
+        {
+            spwn = collision.gameObject.transform.position;
         }
     }
 
@@ -124,7 +128,7 @@ public class PlayerMovementScript : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Trap"))
         {
-            _mngr.PlayerDeath();
+            _mngr.PlayerDeath(spwn);
         } 
     }
 
