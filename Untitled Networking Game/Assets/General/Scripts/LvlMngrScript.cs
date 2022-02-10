@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LvlMngrScript : MonoBehaviour
 {
@@ -11,38 +12,116 @@ public class LvlMngrScript : MonoBehaviour
     GameObject lava;
 
     public float levelTime;
-    float startTime;
-    int timeLeft;
-    public Text _timer;
 
     Transform _playerTrans;
     Rigidbody2D _playerRbody;
 
     Vector2 spwn;
 
+
+
+    //Timers
+    int timeLeft_lvl1;
+    int timeLeft_lvl2;
+    int timeLeft_lvl3;
+
+    public float _lvl1Timer;
+    public float _lvl2Timer;
+    public float _lvl3Timer;
+
+    public bool _lvl1 = false;
+    public bool _lvl2 = false;
+    public bool _lvl3 = false;
+
+    public Text _level1;
+    public Text _level2;
+    public Text _level3;
+
     // Start is called before the first frame update
     void Start()
     {
         _playerRbody = _player.GetComponent<Rigidbody2D>();
         _playerTrans = _player.GetComponent<Transform>();
-        startTime = Time.time;
+
+        _lvl1Timer = 151f;
+        _lvl2Timer = 211f;
+        _lvl3Timer = 301f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //update timer
-        timeLeft = (int) (levelTime - (Time.time - startTime));
-
-        //update timer text
-        _timer.text = "Time: " + timeLeft;
-
-        if(timeLeft <= 0)
+        //Level 1 Timer
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("TestScene"))
         {
-            //game over
-            //Destroy(_player);
-            //Invoke("EndGame", 2);
+            _lvl1 = true;
+            _lvl2 = false;
+            _lvl3 = false;
+            if (_lvl1)
+            {
+                //update timer
+                timeLeft_lvl1 = (int)(levelTime - (Time.time - _lvl1Timer));
+
+                //update timer text
+                _level1.text = "Time: " + timeLeft_lvl1;
+
+                if (timeLeft_lvl1 <= 0)
+                {
+                    //game over
+                    //Destroy(_player);
+                    //Invoke("EndGame", 2);
+                }
+            }
         }
+            
+
+        //Level 2 Timer
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level 2"))
+        {
+            _lvl1 = false;
+            _lvl2 = true;
+            _lvl3 = false;
+            if (_lvl2)
+            {
+                //update timer
+                timeLeft_lvl2 = (int)(levelTime - (Time.time - _lvl2Timer));
+
+                //update timer text
+                _level2.text = "Time: " + timeLeft_lvl2;
+
+                if (timeLeft_lvl2 <= 0)
+                {
+                    //game over
+                    //Destroy(_player);
+                    //Invoke("EndGame", 2);
+                }
+            }
+        }
+
+
+        //Level 3 Timer
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level 3"))
+        {
+            _lvl1 = false;
+            _lvl2 = false;
+            _lvl3 = true;
+            if (_lvl3)
+            {
+                //update timer
+                timeLeft_lvl3 = (int)(levelTime - (Time.time - _lvl3Timer));
+
+                //update timer text
+                _level3.text = "Time: " + timeLeft_lvl3;
+
+                if (timeLeft_lvl3 <= 0)
+                {
+                    //game over
+                    //Destroy(_player);
+                    //Invoke("EndGame", 2);
+                }
+            }
+        }
+            
 
         if (Input.GetKeyDown(KeyCode.K))
         {
