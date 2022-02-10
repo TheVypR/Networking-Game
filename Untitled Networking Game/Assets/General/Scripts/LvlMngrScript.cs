@@ -51,7 +51,7 @@ public class LvlMngrScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.L))
         {
-            lava = Instantiate(_lavaFlood, new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y - 8, 0), Quaternion.identity);
+            lava = Instantiate(_lavaFlood, new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y - 12), Quaternion.identity);
         }
 
 
