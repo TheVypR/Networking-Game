@@ -22,8 +22,8 @@ public class PlayerMovementScript : MonoBehaviour
     //control vars
     public float moveSpeed = 10;
     public float jumpSpeed = 5;
-    private float waitTime = 0.4f;
-    private float startTime = 0;
+    private float waitTime = 0.15f;
+    private bool playing = false;
 
     //local vars
     float x;
@@ -46,7 +46,6 @@ public class PlayerMovementScript : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _anim = GetComponent<Animator>();
         _audioS = GetComponent<AudioSource>();
-        startTime = Time.deltaTime;
     }//end Start
 
 
@@ -70,12 +69,16 @@ public class PlayerMovementScript : MonoBehaviour
         //update velocity
         _rBody.velocity = new Vector2(x, y);
 
-        if (_rBody.velocity.x > 0 && OnGround())
+
+
+
+        if ((_rBody.velocity.x > 0.2f || _rBody.velocity.x < -0.2f) && OnGround())
         {
-            if (startTime - Time.deltaTime > waitTime)
+            if (playing == false)
             {
-                _audioS.PlayOneShot(footstep, (float)1.5);
+                StartCoroutine("playFootStep");
             }
+
         }
 
         //update animation
@@ -87,15 +90,16 @@ public class PlayerMovementScript : MonoBehaviour
     {
         x = Input.GetAxis("Horizontal") * moveSpeed;
 
-        if(_spriteRenderer.flipX && x > 0)
+        if (_spriteRenderer.flipX && x > 0)
         {
             _spriteRenderer.flipX = false;
-        } else if(!_spriteRenderer.flipX && x < 0)
+        }
+        else if (!_spriteRenderer.flipX && x < 0)
         {
             _spriteRenderer.flipX = true;
         }
 
-        if(transform.position.y < -10)
+        if (transform.position.y < -10)
         {
             _mngr.PlayerDeath(spwn);
         }
@@ -105,7 +109,7 @@ public class PlayerMovementScript : MonoBehaviour
     private bool OnGround()
     {
 
-        return Physics2D.Raycast(new Vector2(_groundCheck.position.x - 0.3f, _groundCheck.position.y), Vector2.down, 0.2f, _groundLayer) 
+        return Physics2D.Raycast(new Vector2(_groundCheck.position.x - 0.3f, _groundCheck.position.y), Vector2.down, 0.2f, _groundLayer)
                 || Physics2D.Raycast(new Vector2(_groundCheck.position.x + 0.3f, _groundCheck.position.y), Vector2.down, 0.2f, _groundLayer);
     }//end OnGround
 
@@ -120,7 +124,8 @@ public class PlayerMovementScript : MonoBehaviour
             moveSpeed = 5;
             _anim.SetBool("Glued", true);
             StartCoroutine(GlueTime());
-        } else if (collision.gameObject.tag.Equals("Checkpoint"))
+        }
+        else if (collision.gameObject.tag.Equals("Checkpoint"))
         {
             spwn = collision.gameObject.transform.position;
         }
@@ -131,7 +136,7 @@ public class PlayerMovementScript : MonoBehaviour
         if (collision.gameObject.tag.Equals("Trap"))
         {
             _mngr.PlayerDeath(spwn);
-        } 
+        }
     }
 
     IEnumerator GlueTime()
@@ -140,5 +145,14 @@ public class PlayerMovementScript : MonoBehaviour
         moveSpeed = 10;
         _anim.SetBool("Glued", false);
         StopCoroutine(GlueTime());
+    }
+
+    IEnumerator playFootStep()
+    {
+        playing = true;
+        // Play the sound
+        _audioS.PlayOneShot(footstep, 0.25f);
+        yield return new WaitForSeconds(waitTime);
+        playing = false;
     }
 }
