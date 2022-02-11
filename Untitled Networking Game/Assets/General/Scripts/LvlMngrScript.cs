@@ -22,6 +22,10 @@ public class LvlMngrScript : MonoBehaviour
     int timeLeft;
     public Text _timer;
 
+    //Win Screen
+    public Text _winScreen;
+    public Text _loseScreen;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +47,7 @@ public class LvlMngrScript : MonoBehaviour
         if (timeLeft <= 0)
         {
             //game over
+            GameOver(2);
         }
 
         if (Input.GetKeyDown(KeyCode.K))
@@ -72,5 +77,25 @@ public class LvlMngrScript : MonoBehaviour
         this.spwn = spwn;
         _player.SetActive(false);
         Invoke("Respawn", 2);
+    }
+
+    public void GameOver(int player)
+    {
+        Destroy(_player);
+        if(player == 1)
+        {
+            _winScreen.enabled = true;
+            _loseScreen.enabled = false;
+        } else
+        {
+            _winScreen.enabled = false;
+            _loseScreen.enabled = true;
+        }
+        Invoke("EndGame", 2);
+    }
+
+    void EndGame()
+    {
+        SceneManager.LoadScene("LevelSelect");
     }
 }

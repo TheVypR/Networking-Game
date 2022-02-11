@@ -11,6 +11,7 @@ public class PlayerMovementScript : MonoBehaviour
     SpriteRenderer _spriteRenderer;
     Animator _anim;
     AudioSource _audioS;
+    Transform _cam;
     public Sprite _glued;
 
     //check vars
@@ -46,6 +47,7 @@ public class PlayerMovementScript : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _anim = GetComponent<Animator>();
         _audioS = GetComponent<AudioSource>();
+        _cam = Camera.main.transform;
     }//end Start
 
 
@@ -100,6 +102,9 @@ public class PlayerMovementScript : MonoBehaviour
         }
 
         if (transform.position.y < -10)
+        {
+            _mngr.PlayerDeath(spwn);
+        } else if(transform.position.x < _cam.position.x - 16)
         {
             _mngr.PlayerDeath(spwn);
         }

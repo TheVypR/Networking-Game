@@ -69,7 +69,6 @@ public class EconomyScript : MonoBehaviour
 
     void NoMoney()
     {
-        print("broke");
         money = 0;
         _camScript.autoSpeed = 0.035f;
         StopAllCoroutines();
@@ -86,7 +85,7 @@ public class EconomyScript : MonoBehaviour
         while (true)
         {
             money++;
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
         }
     }
 
