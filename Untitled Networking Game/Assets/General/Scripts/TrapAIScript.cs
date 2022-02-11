@@ -31,7 +31,8 @@ public class TrapAIScript : MonoBehaviour
     private float camSlowTime = 0f;
 
     public int _costBombStrike = 50;
-    public int _costLava = 75;
+    public int _costLava = 50;
+    public int _costCamSlow = 50;
 
     // Start is called before the first frame update
     void Start()
@@ -86,7 +87,7 @@ public class TrapAIScript : MonoBehaviour
             }
         } else
         {
-            if(econScript.money > 50)
+            if(econScript.money > 75)
             {
                 econScript.CameraSpeed(Random.Range(0, 2));
                 camSlowTime = Random.Range(10, 30);
