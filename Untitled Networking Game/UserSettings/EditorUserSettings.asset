@@ -21,6 +21,7 @@ EditorUserSettings:
       value: 55035651570c58025d5d5b7143730e444416497c7c2d76657a7a4e62b0b7356b
       flags: 0
     RecentlyUsedSceneGuid-5:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< HEAD
 <<<<<<< Updated upstream
@@ -35,6 +36,12 @@ EditorUserSettings:
       value: 5102050056565c595d0a5d74137608444f4f4d7d7e7122317a7e1830b7e23239
 =======
       value: 5102050056565c595d0a5d74137608444f4f4d7d7e7122317a7e1830b7e23239
+=======
+      value: 5102050056565c595d0a5d74137608444f4f4d7d7e7122317a7e1830b7e23239
+      flags: 0
+    RecentlyUsedSceneGuid-6:
+      value: 55035651570c58025d5d5b7143730e444416497c7c2d76657a7a4e62b0b7356b
+>>>>>>> parent of b62834d (Backgrounds and Finish Lines)
       flags: 0
     RecentlyUsedSceneGuid-6:
       value: 07050c545753085e5b5c0e23497b5b4440151a7d282d73612b784e64e3b5376d
