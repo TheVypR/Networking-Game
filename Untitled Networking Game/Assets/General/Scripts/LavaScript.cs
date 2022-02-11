@@ -27,7 +27,7 @@ public class LavaScript : MonoBehaviour
         transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y - 12);
         for (int i = 0; i < 80; i++)
         {
-            transform.position += new Vector3(0, 0.1f, 0);
+            transform.position += new Vector3(0, 0.05f, 0);
             yield return new WaitForSeconds(0.025f);
         }
         yield return new WaitForSeconds(2);
