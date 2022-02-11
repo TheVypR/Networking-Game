@@ -12,9 +12,12 @@ EditorBuildSettings:
     path: Assets/Testing/Max/Scenes/Main Menu.unity
     guid: f9e45f9199e3b0a47bb72c5207e39d30
   - enabled: 1
+    path: Assets/Testing/Isaac/Scenes/TestScene.unity
+    guid: 231f3c5b0d16c574985729da77ec5bfa
+  - enabled: 1
     path: Assets/Level 2/Scenes/Level 2.unity
     guid: d4822fae62ba98d46bb7de51f137a5c5
   - enabled: 1
-    path: Assets/Testing/Isaac/Scenes/TestScene.unity
-    guid: 231f3c5b0d16c574985729da77ec5bfa
+    path: Assets/Level 3/Scenes/Level 3.unity
+    guid: 62b72919037330142a160e05733127a3
   m_configObjects: {}

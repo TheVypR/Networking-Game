@@ -30272,6 +30272,11 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 937353690}
+    - target: {fileID: 795280971617034766, guid: 3a4df08bbcb541a4b844bcfe2d1866b9,
+        type: 3}
+      propertyPath: levelTime
+      value: 120
+      objectReference: {fileID: 0}
     - target: {fileID: 795280971617034767, guid: 3a4df08bbcb541a4b844bcfe2d1866b9,
         type: 3}
       propertyPath: m_Name
