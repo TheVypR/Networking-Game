@@ -604,6 +604,12 @@ Transform:
   m_Father: {fileID: 8683858}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &223460571 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 498593892647564585, guid: 3ccf805a2d48c764bb9b68df5f330681,
+    type: 3}
+  m_PrefabInstance: {fileID: 108727735}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &227138693
 GameObject:
   m_ObjectHideFlags: 0
@@ -5298,7 +5304,7 @@ Tilemap:
       - {fileID: -3687522134155505030, guid: 5da356080964538469772e061655198e, type: 3}
       - {fileID: 7197290295905485796, guid: 5da356080964538469772e061655198e, type: 3}
       - {fileID: -6709448686708286247, guid: 5da356080964538469772e061655198e, type: 3}
-      m_AnimationSpeed: 30.000002
+      m_AnimationSpeed: 30
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 393, y: 63, z: 0}
@@ -5808,7 +5814,7 @@ Tilemap:
       - {fileID: -3687522134155505030, guid: 5da356080964538469772e061655198e, type: 3}
       - {fileID: 7197290295905485796, guid: 5da356080964538469772e061655198e, type: 3}
       - {fileID: -6709448686708286247, guid: 5da356080964538469772e061655198e, type: 3}
-      m_AnimationSpeed: 30.000002
+      m_AnimationSpeed: 30
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 356, y: 69, z: 0}
@@ -5859,7 +5865,7 @@ Tilemap:
       - {fileID: -3687522134155505030, guid: 5da356080964538469772e061655198e, type: 3}
       - {fileID: 7197290295905485796, guid: 5da356080964538469772e061655198e, type: 3}
       - {fileID: -6709448686708286247, guid: 5da356080964538469772e061655198e, type: 3}
-      m_AnimationSpeed: 30.000002
+      m_AnimationSpeed: 30
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 389, y: 69, z: 0}
@@ -6369,7 +6375,7 @@ Tilemap:
       - {fileID: -3687522134155505030, guid: 5da356080964538469772e061655198e, type: 3}
       - {fileID: 7197290295905485796, guid: 5da356080964538469772e061655198e, type: 3}
       - {fileID: -6709448686708286247, guid: 5da356080964538469772e061655198e, type: 3}
-      m_AnimationSpeed: 30
+      m_AnimationSpeed: 30.000002
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 356, y: 71, z: 0}
@@ -135090,6 +135096,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 795280971617034766, guid: 3a4df08bbcb541a4b844bcfe2d1866b9,
+        type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 223460571}
     - target: {fileID: 795280971617034766, guid: 3a4df08bbcb541a4b844bcfe2d1866b9,
         type: 3}
       propertyPath: levelTime
