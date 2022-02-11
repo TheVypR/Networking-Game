@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 43.745857, y: 8.914465, z: -45.649406}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -50,10 +51,9 @@ MonoBehaviour:
     type: 3}
   lavaPrefab: {fileID: 5038713645339729874, guid: 0a7e95b938820dc498188c3816c29a0f,
     type: 3}
-  blindPrefab: {fileID: 4788606568754076873, guid: 95f07c0246103aa43aad0b6167ff9e7e,
-    type: 3}
+  blind: {fileID: 6438363114763634812, guid: 110e3151d55b4e047890d23aef05848e, type: 3}
+  glue: {fileID: 7963604077150690235, guid: 664996d325c095649b75a80470380698, type: 3}
   econManager: {fileID: 0}
   openingTrapNum: 24
   _costBombStrike: 50
   _costLava: 75
-  _costBlind: 100

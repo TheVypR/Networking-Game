@@ -9,10 +9,12 @@ public class BombScript : MonoBehaviour
     SpriteRenderer _rend;
     Rigidbody2D _rBody;
     Animator _anim;
+    Transform _trans;
 
     // Start is called before the first frame update
     void Start()
     {
+        _trans = GetComponent<Transform>();
         _bCol = GetComponent<BoxCollider2D>();
         _cCol = GetComponent<CircleCollider2D>();
         _rend = GetComponent<SpriteRenderer>();
@@ -23,7 +25,10 @@ public class BombScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(_trans.position.y < -100)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

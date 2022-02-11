@@ -35,42 +35,45 @@ public class CameraMotor : MonoBehaviour
     void Follow(bool isDebug)
     {
         Vector3 targetPos = transform.position;
-
-        if (isDebug)
+        if (_playerTrans)
         {
-            if (_playerTrans.position.y > transform.position.y + 2)
+            if (isDebug)
             {
-                targetPos = new Vector3(transform.position.x, _playerTrans.position.y, 0) + Yoffset;
-            }
-            else if (_playerTrans.position.y < transform.position.y - 2)
-            {
-                targetPos = new Vector3(transform.position.x, _playerTrans.position.y, -10) - Yoffset;
-            }
-            else if(_playerTrans.position.x > transform.position.x + 3)
-            {
-                targetPos = new Vector3(_playerTrans.position.x, transform.position.y, -10) + Xoffset;
-            }
-            else if(_playerTrans.position.x < transform.position.x - 3)
-            {
-                targetPos = new Vector3(_playerTrans.position.x, transform.position.y, -10) - Xoffset;
-            }
+                if (_playerTrans.position.y > transform.position.y + 2)
+                {
+                    targetPos = new Vector3(transform.position.x, _playerTrans.position.y, 0) + Yoffset;
+                }
+                else if (_playerTrans.position.y < transform.position.y - 2)
+                {
+                    targetPos = new Vector3(transform.position.x, _playerTrans.position.y, -10) - Yoffset;
+                }
+                else if (_playerTrans.position.x > transform.position.x + 3)
+                {
+                    targetPos = new Vector3(_playerTrans.position.x, transform.position.y, -10) + Xoffset;
+                }
+                else if (_playerTrans.position.x < transform.position.x - 3)
+                {
+                    targetPos = new Vector3(_playerTrans.position.x, transform.position.y, -10) - Xoffset;
+                }
 
-            Vector3 smoothPos = Vector3.Lerp(transform.position, targetPos, moveSpeed);
-            transform.position = smoothPos;
-        } else
-        {
-            if (_playerTrans.position.y > transform.position.y + 2)
-            {
-                targetPos = new Vector3(transform.position.x, _playerTrans.position.y, 0) + Yoffset;
+                Vector3 smoothPos = Vector3.Lerp(transform.position, targetPos, moveSpeed);
+                transform.position = smoothPos;
             }
-            else if (_playerTrans.position.y < transform.position.y - 2)
+            else
             {
-                targetPos = new Vector3(transform.position.x, _playerTrans.position.y, -10) - Yoffset;
-            }
+                if (_playerTrans.position.y > transform.position.y + 2)
+                {
+                    targetPos = new Vector3(transform.position.x, _playerTrans.position.y, 0) + Yoffset;
+                }
+                else if (_playerTrans.position.y < transform.position.y - 2)
+                {
+                    targetPos = new Vector3(transform.position.x, _playerTrans.position.y, -10) - Yoffset;
+                }
 
-            Vector3 smoothPos = Vector3.Lerp(transform.position, targetPos, moveSpeed);
-            transform.position = smoothPos;
-        }        
+                Vector3 smoothPos = Vector3.Lerp(transform.position, targetPos, moveSpeed);
+                transform.position = smoothPos;
+            }
+        }
     }
 
     void AutoMove()

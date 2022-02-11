@@ -30,25 +30,45 @@ public class EconomyScript : MonoBehaviour
     void Update()
     {
         _moneyCountTxt.text = money.ToString();
-        if (Input.GetKeyDown(KeyCode.RightArrow) && _camScript.autoSpeed < MAX_SPEED)
+        
+
+        if(money <= 0)
+        {
+            NoMoney();
+        }
+    }
+
+    void NoMoney()
+    {
+        money = 0;
+        _camScript.autoSpeed = 0.035f;
+        StopAllCoroutines();
+        gainRoutine = StartCoroutine(GainMoney());
+    }
+
+    public void CameraSpeed(int fastSlow)
+    {
+        if (fastSlow == 0)
         {
             _camScript.autoSpeed += 0.01f;
-            drainAmt = (int) (Mathf.Abs((_camScript.autoSpeed - 0.035f) * 100));
+            drainAmt = (int)(Mathf.Abs((_camScript.autoSpeed - 0.035f) * 100));
             print(drainAmt);
             if (drainAmt == 0 && drainRoutine != null)
             {
                 gainRoutine = StartCoroutine(GainMoney());
                 StopCoroutine(drainRoutine);
-            } else
+            }
+            else
             {
                 StopCoroutine(gainRoutine);
                 drainRoutine = StartCoroutine(DrainMoney(drainAmt));
             }
 
-        } else if(Input.GetKeyDown(KeyCode.LeftArrow) && _camScript.autoSpeed > MIN_SPEED)
+        }
+        else if (fastSlow == 1)
         {
             _camScript.autoSpeed -= 0.01f;
-            drainAmt = (int) (Mathf.Abs((_camScript.autoSpeed - 0.035f) * 100));
+            drainAmt = (int)(Mathf.Abs((_camScript.autoSpeed - 0.035f) * 100));
             if (drainAmt == 0 && drainRoutine != null)
             {
                 gainRoutine = StartCoroutine(GainMoney());
@@ -60,20 +80,6 @@ public class EconomyScript : MonoBehaviour
                 drainRoutine = StartCoroutine(DrainMoney(drainAmt));
             }
         }
-
-        if(money <= 0)
-        {
-            NoMoney();
-        }
-    }
-
-    void NoMoney()
-    {
-        print("broke");
-        money = 0;
-        _camScript.autoSpeed = 0.035f;
-        StopAllCoroutines();
-        gainRoutine = StartCoroutine(GainMoney());
     }
 
     public void SpendCoin(int amt)
@@ -86,7 +92,7 @@ public class EconomyScript : MonoBehaviour
         while (true)
         {
             money++;
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
         }
     }
 
