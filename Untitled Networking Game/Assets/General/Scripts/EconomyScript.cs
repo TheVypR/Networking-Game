@@ -46,6 +46,15 @@ public class EconomyScript : MonoBehaviour
         gainRoutine = StartCoroutine(GainMoney());
     }
 
+
+    public void stopCamSpeed()
+    {
+
+        _camScript.autoSpeed = 0.035f;
+        StopAllCoroutines();
+        gainRoutine = StartCoroutine(GainMoney());
+    }
+
     public void CameraSpeed(int fastSlow)
     {
         if (fastSlow == 0)

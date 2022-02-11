@@ -27,6 +27,9 @@ public class TrapAIScript : MonoBehaviour
     private int MAX_TRAP_COST = 100;
     public int openingTrapNum;
 
+    private bool camSlowed = false;
+    private float camSlowTime = 0f;
+
     public int _costBombStrike = 50;
     public int _costLava = 75;
 
@@ -63,6 +66,8 @@ public class TrapAIScript : MonoBehaviour
     void FixedUpdate()
     {
 
+
+
         int rand = Random.Range(1, 250);
         if (rand < 25)
         {
@@ -84,7 +89,16 @@ public class TrapAIScript : MonoBehaviour
             if(econScript.money > 50)
             {
                 econScript.CameraSpeed(Random.Range(0, 2));
+                camSlowTime = Random.Range(10, 30);
+                StartCoroutine(camSlowEnum());
             }
         }
+    }
+
+    IEnumerator camSlowEnum()
+    {
+        yield return new WaitForSeconds(camSlowTime);
+        econScript.stopCamSpeed();
+        camSlowTime = 0;
     }
 }
