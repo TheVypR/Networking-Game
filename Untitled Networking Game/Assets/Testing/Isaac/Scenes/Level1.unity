@@ -30784,7 +30784,7 @@ PrefabInstance:
     - target: {fileID: 2792531010389649940, guid: 1813e965e3ab49242b17e61f2e61d16d,
         type: 3}
       propertyPath: _costLava
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2792531010389649940, guid: 1813e965e3ab49242b17e61f2e61d16d,
         type: 3}
@@ -30804,7 +30804,7 @@ PrefabInstance:
     - target: {fileID: 2792531010389649940, guid: 1813e965e3ab49242b17e61f2e61d16d,
         type: 3}
       propertyPath: _costBombStrike
-      value: 75
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1813e965e3ab49242b17e61f2e61d16d, type: 3}
