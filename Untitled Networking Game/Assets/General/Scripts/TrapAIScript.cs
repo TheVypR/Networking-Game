@@ -33,6 +33,7 @@ public class TrapAIScript : MonoBehaviour
     public int _costBombStrike = 50;
     public int _costLava = 50;
     public int _costCamSlow = 50;
+    private int spendAt;
 
     // Start is called before the first frame update
     void Start()
@@ -61,37 +62,44 @@ public class TrapAIScript : MonoBehaviour
         Transform spawn = spawners.transform.GetChild(r);
         Instantiate(mine, spawn);
         spawn.parent = null;*/
+        spendAt = Random.Range(40, 120);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
 
-
-
-        int rand = Random.Range(1, 250);
-        if (rand < 25)
+        
+        if (econScript.money > spendAt)
         {
-            if (econManager.GetComponent<EconomyScript>().money > _costLava)
+            int rand = Random.Range(1, 250);
+            if (rand < 25)
             {
-                Instantiate(lavaPrefab);
-                econManager.GetComponent<EconomyScript>().SpendCoin(_costLava);
+                if (econManager.GetComponent<EconomyScript>().money > _costLava)
+                {
+                    Instantiate(lavaPrefab);
+                    econManager.GetComponent<EconomyScript>().SpendCoin(_costLava);
+                    spendAt = Random.Range(40, 120);
+                }
             }
-        }
-        else if (rand < 85)
-        {
-            if (econManager.GetComponent<EconomyScript>().money > _costBombStrike)
+            else if (rand < 85)
             {
-                Instantiate(bombSPrefab);
-                econManager.GetComponent<EconomyScript>().SpendCoin(_costBombStrike);
+                if (econManager.GetComponent<EconomyScript>().money > _costBombStrike)
+                {
+                    Instantiate(bombSPrefab);
+                    econManager.GetComponent<EconomyScript>().SpendCoin(_costBombStrike);
+                    spendAt = Random.Range(40, 120);
+                }
             }
-        } else
-        {
-            if(econScript.money > 75)
+            else
             {
-                econScript.CameraSpeed(Random.Range(0, 2));
-                camSlowTime = Random.Range(10, 30);
-                StartCoroutine(camSlowEnum());
+                if (econScript.money > 75)
+                {
+                    econScript.CameraSpeed(Random.Range(0, 2));
+                    camSlowTime = Random.Range(10, 30);
+                    StartCoroutine(camSlowEnum());
+                    spendAt = Random.Range(40, 120);
+                }
             }
         }
     }

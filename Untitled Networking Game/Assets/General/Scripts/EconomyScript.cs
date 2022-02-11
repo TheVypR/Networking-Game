@@ -101,7 +101,7 @@ public class EconomyScript : MonoBehaviour
         while (true)
         {
             money++;
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.25f);
         }
     }
 
