@@ -21,7 +21,8 @@ public class TrapAIScript : MonoBehaviour
     BombStrikeScript bombStrikeScript;
     LavaScript lavaScript;
     BlindScript blindScript;
-    EconomyScript econScript;
+    public EconomyScript econScript;
+    public CameraMotor _cam;
 
     private int MAX_TRAP_COST = 100;
     public int openingTrapNum;
@@ -62,32 +63,28 @@ public class TrapAIScript : MonoBehaviour
     void FixedUpdate()
     {
 
-
-        if (econManager.GetComponent<EconomyScript>().money > _costLava)
+        int rand = Random.Range(1, 250);
+        if (rand < 25)
         {
-            if (rando.Next(0, 5000) == 1)
+            if (econManager.GetComponent<EconomyScript>().money > _costLava)
             {
                 Instantiate(lavaPrefab);
                 econManager.GetComponent<EconomyScript>().SpendCoin(_costLava);
             }
         }
-
-        if (econManager.GetComponent<EconomyScript>().money > _costBombStrike)
+        else if (rand < 85)
         {
-            if (rando.Next(0, 50000) < 6)
+            if (econManager.GetComponent<EconomyScript>().money > _costBombStrike)
             {
                 Instantiate(bombSPrefab);
                 econManager.GetComponent<EconomyScript>().SpendCoin(_costBombStrike);
             }
+        } else
+        {
+            if(econScript.money > 50)
+            {
+                econScript.CameraSpeed(Random.Range(0, 2));
+            }
         }
-
-        //if (econManager.GetComponent<EconomyScript>().money > _costBlind)
-        //{
-        //    if (rando.Next(0, 5000) == 3)
-        //    {
-        //        Instantiate(blindPrefab);
-        //        econManager.GetComponent<EconomyScript>().SpendCoin(_costBlind);
-        //    }
-        //}     
     }
 }
