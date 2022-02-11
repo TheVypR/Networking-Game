@@ -19,7 +19,7 @@ public class LSMScript : MonoBehaviour
 
     public void PlayButton()
     {
-        SceneManager.LoadScene("TestScene");
+        SceneManager.LoadScene("LevelSelect");
     }
 
     public void QuitClicked()
