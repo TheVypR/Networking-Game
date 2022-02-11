@@ -51,6 +51,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -316,6 +317,16 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Mountain_7: 3273269306210320813
+      Mountain_5: 957950701148466181
+      Mountain_3: 7466519112198254181
+      Mountain_1: -5390007138980725549
+      Mountain_6: -4461801767617157280
+      Mountain_4: 2027243247341836488
+      Mountain_2: 6679328326721774694
+      Mountain_0: -1819830194433888264
+      Mountain_8: -1831149535980772623
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
