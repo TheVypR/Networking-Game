@@ -50,31 +50,33 @@ public class TrapAIScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (econManager.GetComponent<EconomyScript>().money > _costBombStrike)
-        {
-            if (rando.Next(0, 50000) == 1)
-            {
-                Instantiate(bombSPrefab);
-                econManager.GetComponent<EconomyScript>().SpendCoin(_costBombStrike);
-            }
-        }
+
 
         if (econManager.GetComponent<EconomyScript>().money > _costLava)
         {
-            if (rando.Next(0, 5000) == 2)
+            if (rando.Next(0, 5000) == 1)
             {
                 Instantiate(lavaPrefab);
                 econManager.GetComponent<EconomyScript>().SpendCoin(_costLava);
             }
         }
 
-        if (econManager.GetComponent<EconomyScript>().money > _costBlind)
+        if (econManager.GetComponent<EconomyScript>().money > _costBombStrike)
         {
-            if (rando.Next(0, 5000) == 3)
+            if (rando.Next(0, 50000) < 6)
             {
-                Instantiate(blindPrefab);
-                econManager.GetComponent<EconomyScript>().SpendCoin(_costBlind);
+                Instantiate(bombSPrefab);
+                econManager.GetComponent<EconomyScript>().SpendCoin(_costBombStrike);
             }
-        }     
+        }
+
+        //if (econManager.GetComponent<EconomyScript>().money > _costBlind)
+        //{
+        //    if (rando.Next(0, 5000) == 3)
+        //    {
+        //        Instantiate(blindPrefab);
+        //        econManager.GetComponent<EconomyScript>().SpendCoin(_costBlind);
+        //    }
+        //}     
     }
 }
