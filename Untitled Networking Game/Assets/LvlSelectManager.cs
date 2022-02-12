@@ -36,4 +36,9 @@ public class LvlSelectManager : MonoBehaviour
     {
         SceneManager.LoadScene("Main Menu");
     }
+
+    public void LevelSelect()
+    {
+        SceneManager.LoadScene("Level Select");
+    }
 }
