@@ -77,7 +77,7 @@ public class TrapAIScript : MonoBehaviour
             {
                 if (econManager.GetComponent<EconomyScript>().money > _costLava)
                 {
-                    Instantiate(lavaPrefab);
+                    Instantiate(lavaPrefab, new Vector2(_cam.transform.position.x, _cam.transform.position.y - 12), Quaternion.identity);
                     econManager.GetComponent<EconomyScript>().SpendCoin(_costLava);
                     spendAt = Random.Range(40, 120);
                 }
