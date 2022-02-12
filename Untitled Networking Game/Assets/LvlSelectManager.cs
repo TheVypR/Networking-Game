@@ -39,6 +39,11 @@ public class LvlSelectManager : MonoBehaviour
 
     public void LevelSelect()
     {
-        SceneManager.LoadScene("Level Select");
+        SceneManager.LoadScene("LevelSelect");
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }

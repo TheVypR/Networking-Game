@@ -37,6 +37,10 @@ public class LvlMngrScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("Main Menu");
+        }
 
         //update timer
         timeLeft = (int)(levelTime - (Time.time - startTime));
