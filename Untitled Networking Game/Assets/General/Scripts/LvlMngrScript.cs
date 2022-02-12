@@ -38,11 +38,6 @@ public class LvlMngrScript : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKey(KeyCode.Escape))
-        {
-            SceneManager.LoadScene("Main Menu");
-        }
-
         //update timer
         timeLeft = (int)(levelTime - (Time.time - startTime));
 
