@@ -82,7 +82,7 @@ public class TrapAIScript : MonoBehaviour
                     spendAt = Random.Range(40, 120);
                 }
             }
-            else if (rand < 85)
+            /*else if (rand < 85)
             {
                 if (econManager.GetComponent<EconomyScript>().money > _costBombStrike)
                 {
@@ -100,7 +100,7 @@ public class TrapAIScript : MonoBehaviour
                     StartCoroutine(camSlowEnum());
                     spendAt = Random.Range(40, 120);
                 }
-            }
+            }*/
         }
     }
 

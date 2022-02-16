@@ -24,7 +24,7 @@ public class LavaScript : MonoBehaviour
 
     IEnumerator TriggerLava()
     {
-        transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y - 12);
+        transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y - 20);
         for (int i = 0; i < 80; i++)
         {
             transform.position += new Vector3(0, 0.05f, 0);
