@@ -30,6 +30,7 @@ public class LvlMngrScript : MonoBehaviour
 
 
     //Respawn Screen
+    public GameObject _respawnCanvas;
     public TMP_Text _respawning;
     public Text _respawnText;
     public Text _respawnTextBack;
@@ -67,9 +68,10 @@ public class LvlMngrScript : MonoBehaviour
 
         if (_dead)
         {
-            _respawning.enabled = true;
-            _respawnText.enabled = true;
-            _respawnTextBack.enabled = true;
+            //_respawning.enabled = true;
+            //_respawnText.enabled = true;
+            //_respawnTextBack.enabled = true;
+            _respawnCanvas.SetActive(true);
             if (_timeRespawn > 0)
             {
                 _timeRespawn -= Time.deltaTime;
@@ -95,9 +97,10 @@ public class LvlMngrScript : MonoBehaviour
     {
         //Handle all respawn timer and texts
         {
-            _respawning.enabled = false;
+            /*_respawning.enabled = false;
             _respawnText.enabled = false;
-            _respawnTextBack.enabled = false;
+            _respawnTextBack.enabled = false;*/
+            _respawnCanvas.SetActive(false);
             _timeRespawn = 4f;
             _dead = false;
         }
