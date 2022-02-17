@@ -34,8 +34,12 @@ public class LvlMngrScript : MonoBehaviour
     public TMP_Text _respawning;
     public Text _respawnText;
     public Text _respawnTextBack;
+    public TMP_Text _deathText;
+    public Text _addPlusOne;
     public float _timeRespawn;
     public bool _dead = false;
+    public int _countDeaths;
+    private float _textRise;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +48,8 @@ public class LvlMngrScript : MonoBehaviour
         _playerTrans = _player.GetComponent<Transform>();
         startTime = Time.time;
         _timeRespawn = 4f;
+        _countDeaths = 0;
+        _textRise = 0;
     }
 
     // Update is called once per frame
@@ -72,13 +78,20 @@ public class LvlMngrScript : MonoBehaviour
             //_respawnText.enabled = true;
             //_respawnTextBack.enabled = true;
             _respawnCanvas.SetActive(true);
+            _deathText.text = "Death Count: " + _countDeaths;
+
             if (_timeRespawn > 0)
             {
+                if (_textRise < 5)
+                {
+                    _textRise += 0.01f;
+                    Debug.Log(_textRise);
+                }
+                _addPlusOne.GetComponent<Text>().transform.position = new Vector3(1400, (_textRise * 200) + 250, 0);
+                
                 _timeRespawn -= Time.deltaTime;
                 _respawnText.text = "" + _timeRespawn;
                 _respawnTextBack.text = "" + _timeRespawn;
-
-                Debug.Log(_timeRespawn);
             }
         }
 
@@ -89,7 +102,7 @@ public class LvlMngrScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.L))
         {
-            lava = Instantiate(_lavaFlood, new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y - 12), Quaternion.identity);
+            lava = Instantiate(_lavaFlood, new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y - 20), Quaternion.identity);
         }
     }
 
@@ -103,6 +116,7 @@ public class LvlMngrScript : MonoBehaviour
             _respawnCanvas.SetActive(false);
             _timeRespawn = 4f;
             _dead = false;
+            _textRise = 0;
         }
 
 
@@ -121,6 +135,7 @@ public class LvlMngrScript : MonoBehaviour
         _player.SetActive(false);
 
         _dead = true;
+        Invoke("CountDeath", 1);
         Invoke("Respawn", 3);
     }
 
@@ -144,8 +159,8 @@ public class LvlMngrScript : MonoBehaviour
         SceneManager.LoadScene("LevelSelect");
     }
 
-    public void RespawnTime()
+    public void CountDeath()
     {
-        
+        _countDeaths += 1;
     }
 }

@@ -77,12 +77,12 @@ public class TrapAIScript : MonoBehaviour
             {
                 if (econManager.GetComponent<EconomyScript>().money > _costLava)
                 {
-                    Instantiate(lavaPrefab, new Vector2(_cam.transform.position.x, _cam.transform.position.y - 12), Quaternion.identity);
+                    Instantiate(lavaPrefab, new Vector2(_cam.transform.position.x, _cam.transform.position.y - 20), Quaternion.identity);
                     econManager.GetComponent<EconomyScript>().SpendCoin(_costLava);
                     spendAt = Random.Range(40, 120);
                 }
             }
-            /*else if (rand < 85)
+            else if (rand < 85)
             {
                 if (econManager.GetComponent<EconomyScript>().money > _costBombStrike)
                 {
@@ -100,7 +100,7 @@ public class TrapAIScript : MonoBehaviour
                     StartCoroutine(camSlowEnum());
                     spendAt = Random.Range(40, 120);
                 }
-            }*/
+            }
         }
     }
 
