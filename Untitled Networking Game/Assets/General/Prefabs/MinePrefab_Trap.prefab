@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 2268267969536380742}
   - component: {fileID: 8679815770752637091}
   - component: {fileID: 2344099844685702400}
+  - component: {fileID: 2387928225426046918}
+  - component: {fileID: 209473540296184836}
   m_Layer: 0
   m_Name: MinePrefab_Trap
   m_TagString: Trap
@@ -102,3 +104,35 @@ CapsuleCollider2D:
   m_Offset: {x: 0.0090756, y: -0.3630272}
   m_Size: {x: 1.1996678, y: 0.23764613}
   m_Direction: 1
+--- !u!95 &2387928225426046918
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4035902709572466124}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 31063cec9cd4a6949bd444ba571b8bbc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &209473540296184836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4035902709572466124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a1934dd76cbabf408b79bde9f8a12a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
