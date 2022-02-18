@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]//require a rigidbody
-
 public class PlayerMovementScript : MonoBehaviour
 {
     //adopted vars
@@ -54,12 +53,12 @@ public class PlayerMovementScript : MonoBehaviour
     private void Update()
     {
         //jump
-        if (Input.GetButton("Jump") && OnGround())
+        if (MyInput.GetKeyInteract(2) && OnGround())
         {
             y = jumpSpeed;
             _audioS.PlayOneShot(jump, (float)0.50);
         }
-        else if (Input.GetButtonUp("Jump") && _rBody.velocity.y > 0)
+        else if (!MyInput.GetKeyInteract(2) && _rBody.velocity.y > 0)
         {
             y = 0;
         }
@@ -90,7 +89,7 @@ public class PlayerMovementScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        x = Input.GetAxis("Horizontal") * moveSpeed;
+        x = MyInput.GetXAxis(2) * moveSpeed;
 
         if (_spriteRenderer.flipX && x > 0)
         {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MyInput
 {
-    static string[] xAxis = {"Player1_Horizontal", "Player2_Horizontal", "Computer1_Horizontal", "Computer_2_Horizontal"};
+    static string[] xAxis = {"Player1_Horizontal", "Player2_Horizontal", "Computer1_Horizontal", "Computer2_Horizontal"};
     static string[] yAxis = {"Player1_Vertical", "Player2_Vertical", "Computer1_Vertical", "Computer2_Vertical"};
 
     //buttons
