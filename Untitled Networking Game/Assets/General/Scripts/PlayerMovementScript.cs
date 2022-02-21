@@ -107,12 +107,11 @@ public class PlayerMovementScript : MonoBehaviour
         {
             _mngr.PlayerDeath(spwn);
         }
-
+        print(_anim.GetBool("LavaContact"));
     }//end FixedUpdate
 
     private bool OnGround()
     {
-
         return Physics2D.Raycast(new Vector2(_groundCheck.position.x - 0.3f, _groundCheck.position.y), Vector2.down, 0.2f, _groundLayer)
                 || Physics2D.Raycast(new Vector2(_groundCheck.position.x + 0.3f, _groundCheck.position.y), Vector2.down, 0.2f, _groundLayer);
     }//end OnGround
@@ -149,8 +148,11 @@ public class PlayerMovementScript : MonoBehaviour
 
     void PlayerDeath()
     {
-        _anim.SetBool("LavaContact", false);
         _mngr.PlayerDeath(spwn);
+        _anim.SetBool("LavaContact", false);
+        _anim.SetBool("Running", false);
+        _anim.SetBool("Falling", false);
+        _anim.SetBool("Glued", false);
     }
 
     IEnumerator GlueTime()
