@@ -139,13 +139,23 @@ public class PlayerMovementScript : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Trap"))
         {
-            _mngr.PlayerDeath(spwn);
+            Invoke("PlayerDeath", 1);
+        } else if (collision.gameObject.tag.Equals("Lava"))
+        {
+            _anim.SetBool("LavaContact", true);
+            Invoke("PlayerDeath", 0.5f);
         }
+    }
+
+    void PlayerDeath()
+    {
+        _anim.SetBool("LavaContact", false);
+        _mngr.PlayerDeath(spwn);
     }
 
     IEnumerator GlueTime()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         moveSpeed = 10;
         _anim.SetBool("Glued", false);
         StopCoroutine(GlueTime());
