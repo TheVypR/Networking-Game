@@ -84,7 +84,7 @@ public class PlayerMovementScript : MonoBehaviour
 
         //update animation
         _anim.SetBool("Running", (x != 0));
-        _anim.SetBool("Falling", (y < 0));
+        _anim.SetBool("Falling", (y < -0.001));
     }
 
     private void FixedUpdate()
@@ -107,7 +107,6 @@ public class PlayerMovementScript : MonoBehaviour
         {
             _mngr.PlayerDeath(spwn);
         }
-        print(_anim.GetBool("LavaContact"));
     }//end FixedUpdate
 
     private bool OnGround()
@@ -148,11 +147,11 @@ public class PlayerMovementScript : MonoBehaviour
 
     void PlayerDeath()
     {
-        _mngr.PlayerDeath(spwn);
         _anim.SetBool("LavaContact", false);
         _anim.SetBool("Running", false);
         _anim.SetBool("Falling", false);
         _anim.SetBool("Glued", false);
+        _mngr.PlayerDeath(spwn);
     }
 
     IEnumerator GlueTime()
