@@ -184,8 +184,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
+  m_HorizontalAxis: Player1_Horizontal
+  m_VerticalAxis: Player1_Vertical
   m_SubmitButton: Submit
   m_CancelButton: Cancel
   m_InputActionsPerSecond: 10
@@ -31590,7 +31590,7 @@ PrefabInstance:
     - target: {fileID: 2792531010389649940, guid: 1813e965e3ab49242b17e61f2e61d16d,
         type: 3}
       propertyPath: openingTrapNum
-      value: 25
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2792531010389649940, guid: 1813e965e3ab49242b17e61f2e61d16d,
         type: 3}

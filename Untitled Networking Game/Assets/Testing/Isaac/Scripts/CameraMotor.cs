@@ -10,7 +10,7 @@ public class CameraMotor : MonoBehaviour
     public bool debug;
 
     //control vars
-    public float moveSpeed = 0.02f;
+    private float moveSpeed = 1.5f;
     public float autoSpeed = 0.035f;
     public float followDistance = 3f;
     Vector3 Yoffset = new Vector3(0, 5, 0);
@@ -25,6 +25,8 @@ public class CameraMotor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         if (!debug)
         {
             AutoMove();
@@ -56,22 +58,20 @@ public class CameraMotor : MonoBehaviour
                     targetPos = new Vector3(_playerTrans.position.x, transform.position.y, -10) - Xoffset;
                 }
 
-                Vector3 smoothPos = Vector3.Lerp(transform.position, targetPos, moveSpeed);
-                transform.position = smoothPos;
+                transform.position = Vector3.Lerp(transform.position, targetPos, moveSpeed * Time.deltaTime);
             }
             else
             {
-                if (_playerTrans.position.y > transform.position.y + 2)
+                if (_playerTrans.position.y > transform.position.y + 0.2)
                 {
                     targetPos = new Vector3(transform.position.x, _playerTrans.position.y, 0) + Yoffset;
                 }
-                else if (_playerTrans.position.y < transform.position.y - 2)
+                else if (_playerTrans.position.y < transform.position.y - 0.5)
                 {
                     targetPos = new Vector3(transform.position.x, _playerTrans.position.y, -10) - Yoffset;
                 }
 
-                Vector3 smoothPos = Vector3.Lerp(transform.position, targetPos, moveSpeed);
-                transform.position = smoothPos;
+                transform.position = Vector3.Lerp(transform.position, targetPos, moveSpeed * Time.deltaTime);
             }
         }
     }
