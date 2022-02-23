@@ -85,7 +85,6 @@ public class LvlMngrScript : MonoBehaviour
                 if (_textRise < 5)
                 {
                     _textRise += 0.01f;
-                    Debug.Log(_textRise);
                 }
                 _addPlusOne.GetComponent<Text>().transform.position = new Vector3(1400, (_textRise * 200) + 250, 0);
                 
@@ -134,9 +133,14 @@ public class LvlMngrScript : MonoBehaviour
         this.spwn = spwn;
         _player.SetActive(false);
 
-        _dead = true;
         Invoke("CountDeath", 1);
-        Invoke("Respawn", 3);
+        Invoke("Respawn", 3.5f);
+        Invoke("isDead", 0.5f);
+    }
+
+    void isDead()
+    {
+        _dead = true;
     }
 
     public void GameOver(int player)

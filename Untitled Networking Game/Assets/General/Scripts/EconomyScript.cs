@@ -61,7 +61,6 @@ public class EconomyScript : MonoBehaviour
         {
             _camScript.autoSpeed += 0.01f;
             drainAmt = (int)(Mathf.Abs((_camScript.autoSpeed - 0.035f) * 100));
-            print(drainAmt);
             if (drainAmt == 0 && drainRoutine != null)
             {
                 gainRoutine = StartCoroutine(GainMoney());

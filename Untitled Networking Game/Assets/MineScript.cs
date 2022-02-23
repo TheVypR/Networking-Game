@@ -10,12 +10,13 @@ public class MineScript : MonoBehaviour
         _anim = GetComponent<Animator>();   
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
+        print("Boom?");
         if (collision.gameObject.tag.Equals("Player"))
         {
+            print("Boom");
             _anim.SetBool("Triggered", true);
-            Invoke("ResetMine", 2);
         }
     }
 
