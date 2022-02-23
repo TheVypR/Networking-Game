@@ -111,8 +111,8 @@ public class PlayerMovementScript : MonoBehaviour
 
     private bool OnGround()
     {
-        return Physics2D.Raycast(new Vector2(_groundCheck.position.x - 0.3f, _groundCheck.position.y), Vector2.down, 0.2f, _groundLayer)
-                || Physics2D.Raycast(new Vector2(_groundCheck.position.x + 0.3f, _groundCheck.position.y), Vector2.down, 0.2f, _groundLayer);
+        return Physics2D.Raycast(new Vector2(_groundCheck.position.x - 0.2f, _groundCheck.position.y), Vector2.down, 0.2f, _groundLayer)
+                || Physics2D.Raycast(new Vector2(_groundCheck.position.x + 0.2f, _groundCheck.position.y), Vector2.down, 0.2f, _groundLayer);
     }//end OnGround
 
     private void OnTriggerEnter2D(Collider2D collision)
