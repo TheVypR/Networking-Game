@@ -266,7 +266,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerTrans: {fileID: 892716941}
   debug: 0
-  moveSpeed: 0.02
   autoSpeed: 0.035
   followDistance: 3
 --- !u!1 &448720542
@@ -6815,31 +6814,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 379944422999406121, guid: 3ccf805a2d48c764bb9b68df5f330681,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 498593892647564585, guid: 3ccf805a2d48c764bb9b68df5f330681,
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 498593892647564585, guid: 3ccf805a2d48c764bb9b68df5f330681,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6737881601269786680, guid: 3ccf805a2d48c764bb9b68df5f330681,
         type: 3}
       propertyPath: _mngr
       value: 
       objectReference: {fileID: 166103066}
-    - target: {fileID: 6737881601269786680, guid: 3ccf805a2d48c764bb9b68df5f330681,
-        type: 3}
-      propertyPath: _groundLayer.m_Bits
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 7178553796478119847, guid: 3ccf805a2d48c764bb9b68df5f330681,
         type: 3}
       propertyPath: m_RootOrder
@@ -7121,8 +7105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
+  m_HorizontalAxis: Player1_Horizontal
+  m_VerticalAxis: Player1_Vertical
   m_SubmitButton: Submit
   m_CancelButton: Cancel
   m_InputActionsPerSecond: 10

@@ -1189,7 +1189,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerTrans: {fileID: 937353696}
   debug: 0
-  moveSpeed: 0.02
   autoSpeed: 0.035
   followDistance: 3
 --- !u!50 &453859691
@@ -31079,31 +31078,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 379944422999406121, guid: 3ccf805a2d48c764bb9b68df5f330681,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 498593892647564585, guid: 3ccf805a2d48c764bb9b68df5f330681,
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 498593892647564585, guid: 3ccf805a2d48c764bb9b68df5f330681,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6737881601269786680, guid: 3ccf805a2d48c764bb9b68df5f330681,
         type: 3}
       propertyPath: _mngr
       value: 
       objectReference: {fileID: 1519317154}
-    - target: {fileID: 6737881601269786680, guid: 3ccf805a2d48c764bb9b68df5f330681,
-        type: 3}
-      propertyPath: _groundLayer.m_Bits
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 7178553796478119847, guid: 3ccf805a2d48c764bb9b68df5f330681,
         type: 3}
       propertyPath: m_RootOrder
