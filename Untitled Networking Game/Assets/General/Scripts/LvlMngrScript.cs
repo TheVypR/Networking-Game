@@ -31,15 +31,15 @@ public class LvlMngrScript : MonoBehaviour
 
     //Respawn Screen
     public GameObject _respawnCanvas;
-    public TMP_Text _respawning;
-    public Text _respawnText;
-    public Text _respawnTextBack;
-    public TMP_Text _deathText;
-    public Text _addPlusOne;
-    public float _timeRespawn;
-    public bool _dead = false;
-    public int _countDeaths;
-    private float _textRise;
+    TMP_Text _respawning;
+    Text _respawnText;
+    Text _respawnTextBack;
+    TMP_Text _deathText;
+    Text _addPlusOne;
+    float _timeRespawn;
+    bool _dead = false;
+    int _countDeaths;
+    float _textRise;
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +50,13 @@ public class LvlMngrScript : MonoBehaviour
         _timeRespawn = 4f;
         _countDeaths = 0;
         _textRise = 0;
+
+        //respawn canvas children
+        _respawnText = _respawnCanvas.transform.Find("RespawnCountdownText").gameObject.GetComponent<Text>();
+        _respawnTextBack = _respawnCanvas.transform.Find("RespawnCountdownText (1)").gameObject.GetComponent<Text>();
+        _respawning = _respawnCanvas.transform.Find("RespawningText").gameObject.GetComponent<TMP_Text>();
+        _deathText = _respawnCanvas.transform.Find("Death Count").gameObject.GetComponent<TMP_Text>();
+        _addPlusOne = _respawnCanvas.transform.Find("AddOneDeathText").gameObject.GetComponent<Text>();
     }
 
     // Update is called once per frame
