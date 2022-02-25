@@ -5,9 +5,14 @@ using UnityEngine;
 public class MineScript : MonoBehaviour
 {
     Animator _anim;
+
+    //explode sound
+    AudioSource _src;
+    public AudioClip explode;
     private void Start()
     {
-        _anim = GetComponent<Animator>();   
+        _anim = GetComponent<Animator>();
+        _src = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -17,6 +22,7 @@ public class MineScript : MonoBehaviour
         {
             print("Boom");
             _anim.SetBool("Triggered", true);
+            _src.PlayOneShot(explode);
         }
     }
 
