@@ -9,6 +9,7 @@ TagManager:
   - Glue
   - Checkpoint
   - Lava
+  - Player2
   layers:
   - Default
   - TransparentFX
