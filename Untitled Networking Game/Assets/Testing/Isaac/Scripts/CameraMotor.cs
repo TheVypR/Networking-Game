@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraMotor : MonoBehaviour
 {
     public Transform _playerTrans;
+    private bool isP2 = false;
 
     //debug var
     public bool debug;
@@ -25,9 +26,7 @@ public class CameraMotor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
-        if (!debug)
+        if (!debug && !isP2)
         {
             AutoMove();
         }
@@ -39,45 +38,54 @@ public class CameraMotor : MonoBehaviour
         Vector3 targetPos = transform.position;
         if (_playerTrans)
         {
-            if (isDebug)
+            if (!isP2)
             {
-                if (_playerTrans.position.y > transform.position.y + 2)
+                if (isDebug)
                 {
-                    targetPos = new Vector3(transform.position.x, _playerTrans.position.y, 0) + Yoffset;
+                    if (_playerTrans.position.y > transform.position.y + 2)
+                    {
+                        targetPos = new Vector3(transform.position.x, _playerTrans.position.y, 0) + Yoffset;
+                    }
+                    else if (_playerTrans.position.y < transform.position.y - 2)
+                    {
+                        targetPos = new Vector3(transform.position.x, _playerTrans.position.y, -10) - Yoffset;
+                    }
+                    else if (_playerTrans.position.x > transform.position.x + 3)
+                    {
+                        targetPos = new Vector3(_playerTrans.position.x, transform.position.y, -10) + Xoffset;
+                    }
+                    else if (_playerTrans.position.x < transform.position.x - 3)
+                    {
+                        targetPos = new Vector3(_playerTrans.position.x, transform.position.y, -10) - Xoffset;
+                    }
                 }
-                else if (_playerTrans.position.y < transform.position.y - 2)
+                else
                 {
-                    targetPos = new Vector3(transform.position.x, _playerTrans.position.y, -10) - Yoffset;
+                    if (_playerTrans.position.y > transform.position.y + 0.2)
+                    {
+                        targetPos = new Vector3(transform.position.x, _playerTrans.position.y, 0) + Yoffset;
+                    }
+                    else if (_playerTrans.position.y < transform.position.y - 0.5)
+                    {
+                        targetPos = new Vector3(transform.position.x, _playerTrans.position.y, -10) - Yoffset;
+                    }                
                 }
-                else if (_playerTrans.position.x > transform.position.x + 3)
-                {
-                    targetPos = new Vector3(_playerTrans.position.x, transform.position.y, -10) + Xoffset;
-                }
-                else if (_playerTrans.position.x < transform.position.x - 3)
-                {
-                    targetPos = new Vector3(_playerTrans.position.x, transform.position.y, -10) - Xoffset;
-                }
-
-                transform.position = Vector3.Lerp(transform.position, targetPos, moveSpeed * Time.deltaTime);
-            }
-            else
+            } else
             {
-                if (_playerTrans.position.y > transform.position.y + 0.2)
-                {
-                    targetPos = new Vector3(transform.position.x, _playerTrans.position.y, 0) + Yoffset;
-                }
-                else if (_playerTrans.position.y < transform.position.y - 0.5)
-                {
-                    targetPos = new Vector3(transform.position.x, _playerTrans.position.y, -10) - Yoffset;
-                }
-
-                transform.position = Vector3.Lerp(transform.position, targetPos, moveSpeed * Time.deltaTime);
+                targetPos = new Vector3(_playerTrans.position.x, _playerTrans.position.y, 10);
             }
+
+            transform.position = Vector3.Lerp(transform.position, targetPos, moveSpeed * Time.deltaTime);
         }
     }
 
     void AutoMove()
     {
         transform.position += new Vector3(autoSpeed, 0, 0);
+    }
+
+    void setMode(bool p2)
+    {
+        isP2 = p2;
     }
 }
