@@ -111,8 +111,10 @@ public class PlayerMovementScript : MonoBehaviour
 
     private bool OnGround()
     {
-        return Physics2D.Raycast(new Vector2(_groundCheck.position.x - 0.25f, _groundCheck.position.y), Vector2.down, 0.15f, _groundLayer)
+        bool grounded = Physics2D.Raycast(new Vector2(_groundCheck.position.x - 0.25f, _groundCheck.position.y), Vector2.down, 0.15f, _groundLayer)
                 || Physics2D.Raycast(new Vector2(_groundCheck.position.x + 0.25f, _groundCheck.position.y), Vector2.down, 0.15f, _groundLayer);
+        if (grounded) print("Grounded");
+        return grounded;
     }//end OnGround
 
     private void OnTriggerEnter2D(Collider2D collision)
