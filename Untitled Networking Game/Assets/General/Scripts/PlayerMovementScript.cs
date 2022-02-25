@@ -32,6 +32,7 @@ public class PlayerMovementScript : MonoBehaviour
     //audio vars
     public AudioClip footstep;
     public AudioClip jump;
+    public AudioClip lavaDeath;
 
     enum STATE
     {
@@ -143,6 +144,7 @@ public class PlayerMovementScript : MonoBehaviour
         } else if (collision.gameObject.tag.Equals("Lava"))
         {
             _anim.SetBool("LavaContact", true);
+            _audioS.PlayOneShot(lavaDeath);
             Invoke("PlayerDeath", 0.5f);
         }
     }
