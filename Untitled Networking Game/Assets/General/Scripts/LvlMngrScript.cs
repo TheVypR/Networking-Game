@@ -140,7 +140,7 @@ public class LvlMngrScript : MonoBehaviour
         this.spwn = spwn;
         _player.SetActive(false);
 
-        Invoke("CountDeath", 1);
+        _countDeaths++;
         Invoke("Respawn", 3.5f);
         Invoke("isDead", 0.5f);
     }
@@ -168,10 +168,5 @@ public class LvlMngrScript : MonoBehaviour
     void EndGame()
     {
         SceneManager.LoadScene("LevelSelect");
-    }
-
-    public void CountDeath()
-    {
-        _countDeaths += 1;
     }
 }
