@@ -8,6 +8,7 @@ public class MyInput
     static string[] yAxis = {"Player1_Vertical", "Player2_Vertical", "Computer1_Vertical", "Computer2_Vertical"};
 
     //buttons
+    static KeyCode[] ps4Buttons = {KeyCode.Joystick1Button0, KeyCode.Joystick2Button0, KeyCode.Joystick1Button1, KeyCode.Joystick2Button1, KeyCode.Joystick1Button2, KeyCode.Joystick2Button2, KeyCode.Joystick1Button3, KeyCode.Joystick2Button3 };
     static KeyCode[] interactButton = {KeyCode.Joystick1Button1, KeyCode.Joystick2Button1, KeyCode.Space, KeyCode.KeypadEnter};
     static KeyCode[] backButton = {KeyCode.Joystick1Button2, KeyCode.Joystick2Button2, KeyCode.Escape, KeyCode.Backspace};
     static KeyCode[] pauseButton = {KeyCode.Joystick1Button9, KeyCode.Joystick2Button9, KeyCode.Escape, KeyCode.Backspace};
@@ -40,5 +41,25 @@ public class MyInput
     public static float GetYAxis(int player)
     {
         return Input.GetAxis(yAxis[player]);
+    }
+
+    public static bool GetPS4X(int player)
+    {
+        return Input.GetKey(ps4Buttons[2+player]);
+    }
+
+    public static bool GetPS4Square(int player)
+    {
+        return Input.GetKey(ps4Buttons[player]);
+    }
+
+    public static bool GetPS4Circle(int player)
+    {
+        return Input.GetKey(ps4Buttons[4+player]);
+    }
+
+    public static bool GetPS4Triangle(int player)
+    {
+        return Input.GetKey(ps4Buttons[6+player]);
     }
 }

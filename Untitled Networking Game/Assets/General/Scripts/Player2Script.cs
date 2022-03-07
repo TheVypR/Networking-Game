@@ -23,7 +23,7 @@ public class Player2Script : MonoBehaviour
 
         if (player2)
         {
-            if (Input.GetKeyDown(KeyCode.D))
+            if (MyInput.GetXAxis(1) > 0)
             {
                 if (place >= spawns)
                 {
@@ -36,7 +36,7 @@ public class Player2Script : MonoBehaviour
                 target = spawners.transform.GetChild(place);
             }
 
-            if (Input.GetKeyDown(KeyCode.A))
+            if (MyInput.GetXAxis(1) < 0)
             {
                 if (place < 0)
                 {
@@ -47,6 +47,23 @@ public class Player2Script : MonoBehaviour
                     place--;
                 }
                 target = spawners.transform.GetChild(place);
+            }
+
+            //trap placing
+            if (MyInput.GetPS4X(1))
+            {
+                //bring up trap display canvas
+            } else if (MyInput.GetPS4Square(1))
+            {
+
+            }
+            else if (MyInput.GetPS4Circle(1))
+            {
+
+            }
+            else if (MyInput.GetPS4Triangle(1))
+            {
+
             }
         }
     }
