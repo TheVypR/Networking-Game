@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player2Script : MonoBehaviour
 {
+    //get traps
+    public GameObject[] proxTraps;
     bool player2 = false;
     public GameObject spawners;
     float x;
@@ -52,18 +54,30 @@ public class Player2Script : MonoBehaviour
             //trap placing
             if (MyInput.GetPS4X(1))
             {
-                //bring up trap display canvas
+                if (proxTraps.Length > 0)
+                {
+                    Instantiate(proxTraps[0]);
+                }
             } else if (MyInput.GetPS4Square(1))
             {
-
+                if (proxTraps.Length > 1)
+                {
+                    Instantiate(proxTraps[1]);
+                }
             }
             else if (MyInput.GetPS4Circle(1))
             {
-
+                if (proxTraps.Length > 2)
+                {
+                    Instantiate(proxTraps[2]);
+                }
             }
             else if (MyInput.GetPS4Triangle(1))
             {
-
+                if (proxTraps.Length > 3)
+                {
+                    Instantiate(proxTraps[3]);
+                }
             }
         }
     }
