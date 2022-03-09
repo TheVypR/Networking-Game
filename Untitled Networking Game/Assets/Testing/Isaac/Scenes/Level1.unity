@@ -1044,6 +1044,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerTrans: {fileID: 937353696}
+  _player2Trans: {fileID: 746963819}
   debug: 0
   autoSpeed: 0.035
   followDistance: 3
@@ -28469,7 +28470,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &746963818
 MonoBehaviour:
   m_ObjectHideFlags: 0

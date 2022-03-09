@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraMotor : MonoBehaviour
 {
     public Transform _playerTrans;
+    public Transform _player2Trans;
     private bool isP2 = false;
 
     //debug var
@@ -30,7 +31,12 @@ public class CameraMotor : MonoBehaviour
         {
             AutoMove();
         }
+        if (isP2)
+        {
+            p2();
+        }
         Follow(debug);
+
     }
 
     void Follow(bool isDebug)
@@ -87,5 +93,10 @@ public class CameraMotor : MonoBehaviour
     void setMode(bool p2)
     {
         isP2 = p2;
+    }
+
+    void p2()
+    {
+        transform.position = Vector3.Lerp(transform.position, _player2Trans.position, moveSpeed * Time.deltaTime);
     }
 }
