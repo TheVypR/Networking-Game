@@ -6,7 +6,7 @@ public class CameraMotor : MonoBehaviour
 {
     public Transform _playerTrans;
     public Transform _player2Trans;
-    private bool isP2 = false;
+    private bool isSetup = false;
 
     //debug var
     public bool debug;
@@ -27,11 +27,11 @@ public class CameraMotor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!debug && !isP2)
+        if (!debug && !isSetup)
         {
             AutoMove();
         }
-        if (isP2)
+        if (isSetup)
         {
             p2();
         }
@@ -44,7 +44,7 @@ public class CameraMotor : MonoBehaviour
         Vector3 targetPos = transform.position;
         if (_playerTrans)
         {
-            if (!isP2)
+            if (!isSetup)
             {
                 if (isDebug)
                 {
@@ -90,9 +90,9 @@ public class CameraMotor : MonoBehaviour
         transform.position += new Vector3(autoSpeed, 0, 0);
     }
 
-    void setMode(bool p2)
+    public void setMode(bool p2)
     {
-        isP2 = p2;
+        isSetup = p2;
     }
 
     void p2()

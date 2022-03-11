@@ -37,8 +37,19 @@ public class LvlSelectManager : MonoBehaviour
         SceneManager.LoadScene("Main Menu");
     }
 
-    public void LevelSelect()
+    public void LevelSelect(bool isMultiplayer)
     {
+        print(isMultiplayer);
+        if (isMultiplayer)
+        {
+            print(isMultiplayer);
+            PlayerPrefs.SetInt("mode", 1);
+            print(PlayerPrefs.GetInt("mode"));
+        } else
+        {
+            PlayerPrefs.SetInt("mode", 0);
+            print(PlayerPrefs.GetInt("mode"));
+        }
         SceneManager.LoadScene("LevelSelect");
     }
 

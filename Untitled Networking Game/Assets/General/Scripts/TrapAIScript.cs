@@ -58,10 +58,7 @@ public class TrapAIScript : MonoBehaviour
             }
             spawn.parent = null;
         }
-        /*int r = rando.Next(0, 3);
-        Transform spawn = spawners.transform.GetChild(r);
-        Instantiate(mine, spawn);
-        spawn.parent = null;*/
+        
         spendAt = Random.Range(40, 120);
     }
 

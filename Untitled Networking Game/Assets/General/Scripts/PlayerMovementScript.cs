@@ -114,7 +114,6 @@ public class PlayerMovementScript : MonoBehaviour
     {
         bool grounded = Physics2D.Raycast(new Vector2(_groundCheck.position.x - 0.25f, _groundCheck.position.y), Vector2.down, 0.15f, _groundLayer)
                 || Physics2D.Raycast(new Vector2(_groundCheck.position.x + 0.25f, _groundCheck.position.y), Vector2.down, 0.15f, _groundLayer);
-        if (grounded) print("Grounded");
         return grounded;
     }//end OnGround
 

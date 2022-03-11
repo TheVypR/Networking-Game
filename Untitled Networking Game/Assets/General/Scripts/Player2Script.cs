@@ -84,8 +84,6 @@ public class Player2Script : MonoBehaviour
 
     private void FixedUpdate()
     {
-
         gameObject.transform.position = target.position;
-
     }
 }

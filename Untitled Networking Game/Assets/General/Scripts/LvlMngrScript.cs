@@ -8,6 +8,10 @@ using System;
 
 public class LvlMngrScript : MonoBehaviour
 {
+    //check multiplier
+    int isMultiplayer;
+    public GameObject singleplayerAI;
+
     public GameObject _player;
     public GameObject _airStrike;
     public GameObject _lavaFlood;
@@ -28,6 +32,12 @@ public class LvlMngrScript : MonoBehaviour
     public Text _winScreen;
     public Text _loseScreen;
 
+    //setup or gameplay
+    public GameObject transitionCanvas;
+    public CameraMotor _camMotor;
+    bool isSetup = false;
+    public float setupTimer = 30;
+    float setupStart;
 
     //Respawn Screen
     public GameObject _respawnCanvas;
@@ -44,12 +54,35 @@ public class LvlMngrScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //check if multiplayer
+        if (PlayerPrefs.HasKey("mode"))
+        {
+            print("multi");
+            isMultiplayer = PlayerPrefs.GetInt("mode");
+            //disable trap AI
+            if (isMultiplayer == 1)
+            {
+                singleplayerAI.SetActive(false);
+            } else
+            {
+                singleplayerAI.SetActive(true);
+            }
+        } else
+        {
+            print("single");
+            PlayerPrefs.SetInt("mode", 0);
+            isMultiplayer = 0;
+            singleplayerAI.SetActive(true);
+        }
+
         _playerRbody = _player.GetComponent<Rigidbody2D>();
         _playerTrans = _player.GetComponent<Transform>();
         startTime = Time.time;
         _timeRespawn = 4f;
         _countDeaths = 0;
         _textRise = 0;
+
+        setupStart = Time.time;
 
         //respawn canvas children
         _respawnText = _respawnCanvas.transform.Find("RespawnCountdownText").gameObject.GetComponent<Text>();
@@ -65,6 +98,13 @@ public class LvlMngrScript : MonoBehaviour
         if (Input.GetKey(KeyCode.Escape))
         {
             SceneManager.LoadScene("Main Menu");
+        }
+
+        if((Time.time - setupStart) > setupTimer)
+        {
+            //load intermediary canvas and pause time
+            Time.timeScale = 0;
+            transitionCanvas.SetActive(true);
         }
 
         //update timer
@@ -168,5 +208,11 @@ public class LvlMngrScript : MonoBehaviour
     void EndGame()
     {
         SceneManager.LoadScene("LevelSelect");
+    }
+
+    public void StartRound()
+    {
+        Time.timeScale = 1;
+        transitionCanvas.SetActive(false);
     }
 }
