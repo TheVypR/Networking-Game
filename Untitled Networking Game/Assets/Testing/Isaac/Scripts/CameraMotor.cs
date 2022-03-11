@@ -89,6 +89,9 @@ public class CameraMotor : MonoBehaviour
     public void setMode(bool setup)
     {
         isSetup = setup;
-        print(isSetup);
+        if (!isSetup)
+        {
+            transform.position = new Vector3(0, 0, -10);
+        }
     }
 }

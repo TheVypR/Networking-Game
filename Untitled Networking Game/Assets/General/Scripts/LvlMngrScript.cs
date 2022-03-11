@@ -108,13 +108,7 @@ public class LvlMngrScript : MonoBehaviour
             SceneManager.LoadScene("Main Menu");
         }
 
-        if(isMultiplayer == 1 && (Time.time - setupStart) > setupTimer)
-        {
-            isSetup = false;
-            //load intermediary canvas and pause time
-            Time.timeScale = 0;
-            transitionCanvas.SetActive(true);
-        }
+        
 
 
 
@@ -123,6 +117,13 @@ public class LvlMngrScript : MonoBehaviour
         {
             //update timer
             timeLeft = (int)(setupTimer - (Time.time - setupStart));
+            if (isMultiplayer == 1 && timeLeft <= 0)
+            {
+                isSetup = false;
+                //load intermediary canvas and pause time
+                Time.timeScale = 0;
+                transitionCanvas.SetActive(true);
+            }
         }
         else
         {
@@ -232,7 +233,6 @@ public class LvlMngrScript : MonoBehaviour
     public void StartRound()
     {
         Time.timeScale = 1;
-        isSetup = false;
         startTime = Time.time;
         transitionCanvas.SetActive(false);
         _camMotor.setMode(false);
