@@ -31,10 +31,6 @@ public class CameraMotor : MonoBehaviour
         {
             AutoMove();
         }
-        if (isSetup)
-        {
-            p2();
-        }
         Follow(debug);
 
     }
@@ -78,7 +74,7 @@ public class CameraMotor : MonoBehaviour
                 }
             } else
             {
-                targetPos = new Vector3(_playerTrans.position.x, _playerTrans.position.y, -10);
+                targetPos = new Vector3(_player2Trans.position.x, _player2Trans.position.y, -10);
             }
 
             transform.position = Vector3.Lerp(transform.position, targetPos, moveSpeed * Time.deltaTime);
@@ -94,10 +90,5 @@ public class CameraMotor : MonoBehaviour
     {
         isSetup = setup;
         print(isSetup);
-    }
-
-    void p2()
-    {
-        transform.position = Vector3.Lerp(transform.position, new Vector3(_player2Trans.position.x, _player2Trans.position.y, -10), moveSpeed * Time.deltaTime);
     }
 }
