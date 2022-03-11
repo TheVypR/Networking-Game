@@ -55,7 +55,7 @@ public class TitleFallingScript : MonoBehaviour
         if (_timer >= 2f)
         {
             
-            Invoke("LoadMainMenuScene", 1);
+            //Invoke("LoadMainMenuScene", 1);
         }
     }
 
