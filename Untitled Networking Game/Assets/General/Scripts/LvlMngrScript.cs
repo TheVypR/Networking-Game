@@ -128,15 +128,15 @@ public class LvlMngrScript : MonoBehaviour
         {
             //update timer
             timeLeft = (int)(levelTime - (Time.time - startTime));
+            if (timeLeft <= 0)
+            {
+                //game over
+                GameOver(2);
+            }
         }
-
         _timer.text = "Time: " + timeLeft;
 
-        if (timeLeft <= 0)
-        {
-            //game over
-            GameOver(2);
-        }
+        
 
         if (_dead)
         {
@@ -232,6 +232,8 @@ public class LvlMngrScript : MonoBehaviour
     public void StartRound()
     {
         Time.timeScale = 1;
+        isSetup = false;
+        startTime = Time.time;
         transitionCanvas.SetActive(false);
         _camMotor.setMode(false);
     }
