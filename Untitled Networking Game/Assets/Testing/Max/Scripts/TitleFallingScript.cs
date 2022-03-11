@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class TitleFallingScript : MonoBehaviour
 {
+    public GameObject _player;
     public Transform _playerPos;
-    public OpeningMMScript _player;
 
     Animator _titleAnimator;
 
@@ -19,9 +19,8 @@ public class TitleFallingScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _playerPos = GetComponent<Transform>();
+        _playerPos = _player.GetComponent<Transform>();
         _titleAnimator = GetComponent<Animator>();
-        _player = GetComponent<OpeningMMScript>();
         _animationTime = 2f;
         _timer = 0f;
     }
@@ -52,11 +51,11 @@ public class TitleFallingScript : MonoBehaviour
             _titleAnimator.SetBool("TitleFall", true);
             _timer += Time.deltaTime;
         }
-        if (_timer >= 2f)
-        {
-            
-            //Invoke("LoadMainMenuScene", 1);
-        }
+    }
+
+    void KillPlayer()
+    {
+        _player.SetActive(false);
     }
 
     void LoadMainMenuScene()
