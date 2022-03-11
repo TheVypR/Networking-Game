@@ -50,7 +50,7 @@ public class CameraMotor : MonoBehaviour
                 {
                     if (_playerTrans.position.y > transform.position.y + 2)
                     {
-                        targetPos = new Vector3(transform.position.x, _playerTrans.position.y, 0) + Yoffset;
+                        targetPos = new Vector3(transform.position.x, _playerTrans.position.y, -10) + Yoffset;
                     }
                     else if (_playerTrans.position.y < transform.position.y - 2)
                     {
@@ -69,7 +69,7 @@ public class CameraMotor : MonoBehaviour
                 {
                     if (_playerTrans.position.y > transform.position.y + 0.2)
                     {
-                        targetPos = new Vector3(transform.position.x, _playerTrans.position.y, 0) + Yoffset;
+                        targetPos = new Vector3(transform.position.x, _playerTrans.position.y, -10) + Yoffset;
                     }
                     else if (_playerTrans.position.y < transform.position.y - 0.5)
                     {
@@ -78,7 +78,7 @@ public class CameraMotor : MonoBehaviour
                 }
             } else
             {
-                targetPos = new Vector3(_playerTrans.position.x, _playerTrans.position.y, 10);
+                targetPos = new Vector3(_playerTrans.position.x, _playerTrans.position.y, -10);
             }
 
             transform.position = Vector3.Lerp(transform.position, targetPos, moveSpeed * Time.deltaTime);
@@ -90,13 +90,14 @@ public class CameraMotor : MonoBehaviour
         transform.position += new Vector3(autoSpeed, 0, 0);
     }
 
-    public void setMode(bool p2)
+    public void setMode(bool setup)
     {
-        isSetup = p2;
+        isSetup = setup;
+        print(isSetup);
     }
 
     void p2()
     {
-        transform.position = Vector3.Lerp(transform.position, _player2Trans.position, moveSpeed * Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position, new Vector3(_player2Trans.position.x, _player2Trans.position.y, -10), moveSpeed * Time.deltaTime);
     }
 }

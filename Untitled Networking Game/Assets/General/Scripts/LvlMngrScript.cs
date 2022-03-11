@@ -57,32 +57,40 @@ public class LvlMngrScript : MonoBehaviour
         //check if multiplayer
         if (PlayerPrefs.HasKey("mode"))
         {
-            print("multi");
             isMultiplayer = PlayerPrefs.GetInt("mode");
             //disable trap AI
             if (isMultiplayer == 1)
             {
                 singleplayerAI.SetActive(false);
+                _camMotor.setMode(true);
             } else
             {
                 singleplayerAI.SetActive(true);
+                _camMotor.setMode(false);
             }
         } else
         {
-            print("single");
             PlayerPrefs.SetInt("mode", 0);
             isMultiplayer = 0;
+            _camMotor.setMode(false);
             singleplayerAI.SetActive(true);
         }
 
         _playerRbody = _player.GetComponent<Rigidbody2D>();
         _playerTrans = _player.GetComponent<Transform>();
-        startTime = Time.time;
+
+        //only start round if singleplayer
+        if (isMultiplayer == 0) { startTime = Time.time; }
+
         _timeRespawn = 4f;
         _countDeaths = 0;
         _textRise = 0;
 
-        setupStart = Time.time;
+        if (isMultiplayer == 1)
+        {
+            isSetup = true;
+            setupStart = Time.time;
+        }
 
         //respawn canvas children
         _respawnText = _respawnCanvas.transform.Find("RespawnCountdownText").gameObject.GetComponent<Text>();
@@ -100,17 +108,28 @@ public class LvlMngrScript : MonoBehaviour
             SceneManager.LoadScene("Main Menu");
         }
 
-        if((Time.time - setupStart) > setupTimer)
+        if(isMultiplayer == 1 && (Time.time - setupStart) > setupTimer)
         {
+            isSetup = false;
             //load intermediary canvas and pause time
             Time.timeScale = 0;
             transitionCanvas.SetActive(true);
         }
 
-        //update timer
-        timeLeft = (int)(levelTime - (Time.time - startTime));
+
 
         //update timer text
+        if (isSetup)
+        {
+            //update timer
+            timeLeft = (int)(setupTimer - (Time.time - setupStart));
+        }
+        else
+        {
+            //update timer
+            timeLeft = (int)(levelTime - (Time.time - startTime));
+        }
+
         _timer.text = "Time: " + timeLeft;
 
         if (timeLeft <= 0)
@@ -214,5 +233,6 @@ public class LvlMngrScript : MonoBehaviour
     {
         Time.timeScale = 1;
         transitionCanvas.SetActive(false);
+        _camMotor.setMode(false);
     }
 }
