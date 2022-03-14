@@ -200,7 +200,7 @@ GameObject:
   m_Component:
   - component: {fileID: 55164997}
   m_Layer: 0
-  m_Name: SpwnPt (8)
+  m_Name: SpwnPt 13
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -219,7 +219,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 278177205}
-  m_RootOrder: 8
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &172198760
 GameObject:
@@ -265,7 +265,7 @@ GameObject:
   m_Component:
   - component: {fileID: 189663014}
   m_Layer: 0
-  m_Name: SpwnPt (3)
+  m_Name: SpwnPt 8
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -284,7 +284,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 278177205}
-  m_RootOrder: 3
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &203093305
 GameObject:
@@ -296,7 +296,7 @@ GameObject:
   m_Component:
   - component: {fileID: 203093306}
   m_Layer: 0
-  m_Name: SpwnPt
+  m_Name: SpwnPt 1
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -315,7 +315,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 278177205}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &278177204
 PrefabInstance:
@@ -402,7 +402,7 @@ GameObject:
   m_Component:
   - component: {fileID: 278417680}
   m_Layer: 0
-  m_Name: SpwnPt (15)
+  m_Name: SpwnPt 4
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -421,7 +421,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 278177205}
-  m_RootOrder: 15
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &290866720 stripped
 MonoBehaviour:
@@ -781,7 +781,7 @@ GameObject:
   m_Component:
   - component: {fileID: 512500933}
   m_Layer: 0
-  m_Name: SpwnPt (12)
+  m_Name: SpwnPt 7
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -800,7 +800,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 278177205}
-  m_RootOrder: 12
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &618650086 stripped
 GameObject:
@@ -27648,7 +27648,7 @@ GameObject:
   m_Component:
   - component: {fileID: 715262593}
   m_Layer: 0
-  m_Name: SpwnPt (5)
+  m_Name: SpwnPt 5
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -27679,7 +27679,7 @@ GameObject:
   m_Component:
   - component: {fileID: 721456406}
   m_Layer: 0
-  m_Name: SpwnPt (13)
+  m_Name: SpwnPt 14
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -27698,7 +27698,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 278177205}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &741302500
 PrefabInstance:
@@ -28076,7 +28076,7 @@ GameObject:
   m_Component:
   - component: {fileID: 891900284}
   m_Layer: 0
-  m_Name: SpwnPt (6)
+  m_Name: SpwnPt 9
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -28095,7 +28095,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 278177205}
-  m_RootOrder: 6
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &937353690 stripped
 GameObject:
@@ -28194,7 +28194,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1033130958}
   m_Layer: 0
-  m_Name: SpwnPt (14)
+  m_Name: SpwnPt 15
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -28213,7 +28213,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 278177205}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1061845384
 GameObject:
@@ -28225,7 +28225,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1061845385}
   m_Layer: 0
-  m_Name: SpwnPt (7)
+  m_Name: SpwnPt 10
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -28244,7 +28244,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 278177205}
-  m_RootOrder: 7
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1073012703 stripped
 MonoBehaviour:
@@ -28326,7 +28326,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1280183860}
   m_Layer: 0
-  m_Name: SpwnPt (11)
+  m_Name: SpwnPt 11
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -28357,7 +28357,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1323290551}
   m_Layer: 0
-  m_Name: SpwnPt (1)
+  m_Name: SpwnPt 3
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -28376,7 +28376,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 278177205}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1324194683 stripped
 GameObject:
@@ -28394,7 +28394,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1406875213}
   m_Layer: 0
-  m_Name: SpwnPt (10)
+  m_Name: SpwnPt 2
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -28413,7 +28413,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 278177205}
-  m_RootOrder: 10
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1434042600
 PrefabInstance:
@@ -28518,7 +28518,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1730454641}
   m_Layer: 0
-  m_Name: SpwnPt (4)
+  m_Name: SpwnPt 0
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -28537,7 +28537,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 278177205}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1947413950
 GameObject:
@@ -28549,7 +28549,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1947413951}
   m_Layer: 0
-  m_Name: SpwnPt (2)
+  m_Name: SpwnPt 6
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -28568,7 +28568,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 278177205}
-  m_RootOrder: 2
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1988529764
 PrefabInstance:
@@ -28729,7 +28729,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2082234632}
   m_Layer: 0
-  m_Name: SpwnPt (9)
+  m_Name: SpwnPt 12
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -28748,7 +28748,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 278177205}
-  m_RootOrder: 9
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &182667169627978341
 PrefabInstance:

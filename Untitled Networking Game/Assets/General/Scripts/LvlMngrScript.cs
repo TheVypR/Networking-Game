@@ -62,6 +62,7 @@ public class LvlMngrScript : MonoBehaviour
             if (isMultiplayer == 1)
             {
                 singleplayerAI.SetActive(false);
+                _player.SetActive(false);
                 _camMotor.setMode(true);
             } else
             {
@@ -232,6 +233,7 @@ public class LvlMngrScript : MonoBehaviour
 
     public void StartRound()
     {
+        _player.SetActive(true);
         Time.timeScale = 1;
         startTime = Time.time;
         transitionCanvas.SetActive(false);
