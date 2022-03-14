@@ -2,13 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MineScript : MonoBehaviour
+public class MineScript : TrapScript
 {
     Animator _anim;
 
     //explode sound
     AudioSource _src;
     public AudioClip explode;
+
+    public int charge = 100;
+    public override int cost { get { return charge; } set { charge = value; } }
+
     private void Start()
     {
         _anim = GetComponent<Animator>();

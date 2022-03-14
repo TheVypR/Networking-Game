@@ -11,6 +11,7 @@ public class LvlMngrScript : MonoBehaviour
     //check multiplier
     int isMultiplayer;
     public GameObject singleplayerAI;
+    public EconomyScript economyScript;
 
     public GameObject _player;
     public GameObject _airStrike;
@@ -109,10 +110,6 @@ public class LvlMngrScript : MonoBehaviour
             SceneManager.LoadScene("Main Menu");
         }
 
-        
-
-
-
         //update timer text
         if (isSetup)
         {
@@ -138,13 +135,8 @@ public class LvlMngrScript : MonoBehaviour
         }
         _timer.text = "Time: " + timeLeft;
 
-        
-
         if (_dead)
         {
-            //_respawning.enabled = true;
-            //_respawnText.enabled = true;
-            //_respawnTextBack.enabled = true;
             _respawnCanvas.SetActive(true);
             _deathText.text = "Death Count: " + _countDeaths;
 
@@ -167,9 +159,6 @@ public class LvlMngrScript : MonoBehaviour
     {
         //Handle all respawn timer and texts
         {
-            /*_respawning.enabled = false;
-            _respawnText.enabled = false;
-            _respawnTextBack.enabled = false;*/
             _respawnCanvas.SetActive(false);
             _timeRespawn = 4f;
             _dead = false;
@@ -223,6 +212,7 @@ public class LvlMngrScript : MonoBehaviour
 
     public void StartRound()
     {
+        economyScript.StartGain();
         _player.SetActive(true);
         Time.timeScale = 1;
         startTime = Time.time;

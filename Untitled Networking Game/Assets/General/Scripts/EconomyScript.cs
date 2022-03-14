@@ -14,6 +14,7 @@ public class EconomyScript : MonoBehaviour
     public Text _moneyCountTxt;
     public int money = 100;
     int drainAmt = 0;
+    bool setupMode = false;
 
     //money control
     Coroutine gainRoutine;
@@ -23,6 +24,15 @@ public class EconomyScript : MonoBehaviour
     void Start()
     {
         _camScript = FindObjectOfType<CameraMotor>();
+        setupMode = PlayerPrefs.GetInt("mode") == 1;
+        if (!setupMode)
+        {
+            gainRoutine = StartCoroutine(GainMoney());
+        }
+    }
+
+    public void StartGain()
+    {
         gainRoutine = StartCoroutine(GainMoney());
     }
 

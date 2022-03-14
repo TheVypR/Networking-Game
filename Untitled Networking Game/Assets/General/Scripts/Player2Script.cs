@@ -7,6 +7,7 @@ public class Player2Script : MonoBehaviour
     //get traps
     public GameObject[] proxTraps;
     public GameObject spawners;
+    public EconomyScript _econ;
     Transform[] spawns;
     int place = 0;
     float lastSwitch;
@@ -54,11 +55,13 @@ public class Player2Script : MonoBehaviour
                 lastSwitch = Time.time;
             }
         }
+
         //trap placing
         if (Input.GetKeyDown(KeyCode.L))
             {
                 if (proxTraps.Length > 0)
                 {
+                    _econ.SpendCoin(proxTraps[0].GetComponent<TrapScript>().cost);
                     Instantiate(proxTraps[0], transform.position, Quaternion.identity);
                 }
             }
@@ -66,6 +69,7 @@ public class Player2Script : MonoBehaviour
             {
                 if (proxTraps.Length > 1)
                 {
+                    _econ.SpendCoin(proxTraps[1].GetComponent<TrapScript>().cost);
                     Instantiate(proxTraps[1], transform.position, Quaternion.identity);
                 }
             }
@@ -73,6 +77,7 @@ public class Player2Script : MonoBehaviour
             {
                 if (proxTraps.Length > 2)
                 {
+                    _econ.SpendCoin(proxTraps[2].GetComponent<TrapScript>().cost);
                     Instantiate(proxTraps[2], transform.position, Quaternion.identity);
                 }
             }
@@ -80,6 +85,7 @@ public class Player2Script : MonoBehaviour
             {
                 if (proxTraps.Length > 3)
                 {
+                    _econ.SpendCoin(proxTraps[3].GetComponent<TrapScript>().cost);
                     Instantiate(proxTraps[3], transform.position, Quaternion.identity);
                 }
             }
@@ -88,8 +94,9 @@ public class Player2Script : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
-        gameObject.transform.position = target.position;
-        print(place);
+        if (target)
+        {
+            gameObject.transform.position = target.position;
+        }
     }
 }
