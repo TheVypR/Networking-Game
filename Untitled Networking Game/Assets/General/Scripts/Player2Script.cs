@@ -6,11 +6,11 @@ public class Player2Script : MonoBehaviour
 {
     //get traps
     public GameObject[] proxTraps;
-    bool player2 = true;
     public GameObject spawners;
-    float x;
     Transform[] spawns;
     int place = 0;
+    float lastSwitch;
+    public float SWITCH_RATE = 0.25f;
     int TRAP_MAX;
     Transform target;
 
@@ -25,9 +25,8 @@ public class Player2Script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player2)
-        {
-            if (MyInput.GetXAxis(3) >= 0.1)
+        if ((Time.time - lastSwitch) >= SWITCH_RATE) {
+            if (MyInput.GetRawXAxis(3) == 1)
             {
                 if (place >= TRAP_MAX)
                 {
@@ -38,9 +37,10 @@ public class Player2Script : MonoBehaviour
                     place++;
                 }
                 target = spawners.transform.Find("SpwnPt " + place);
+                lastSwitch = Time.time;
             }
 
-            if (MyInput.GetXAxis(3) <= -0.1)
+            if (MyInput.GetRawXAxis(3) == -1)
             {
                 if (place < 0)
                 {
@@ -51,10 +51,11 @@ public class Player2Script : MonoBehaviour
                     place--;
                 }
                 target = spawners.transform.Find("SpwnPt " + place);
+                lastSwitch = Time.time;
             }
-
-            //trap placing
-            if (Input.GetKeyDown(KeyCode.L))
+        }
+        //trap placing
+        if (Input.GetKeyDown(KeyCode.L))
             {
                 if (proxTraps.Length > 0)
                 {
@@ -82,11 +83,12 @@ public class Player2Script : MonoBehaviour
                     Instantiate(proxTraps[3], transform.position, Quaternion.identity);
                 }
             }
-        }
+        
     }
 
     private void FixedUpdate()
     {
+        
         gameObject.transform.position = target.position;
         print(place);
     }
