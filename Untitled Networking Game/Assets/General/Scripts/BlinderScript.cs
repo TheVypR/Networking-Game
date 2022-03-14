@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlinderScript : MonoBehaviour
+public class BlinderScript : TrapScript
 {
     public GameObject _blindPrefab;
+
+    int charge = 150;
+    public override int cost { get { return charge; } set { cost = charge; } }
+
     // Start is called before the first frame update
     void Start()
     {

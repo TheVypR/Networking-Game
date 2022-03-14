@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LavaScript : MonoBehaviour
+public class LavaScript : TrapScript
 {
     int first = 0;
+
+    int charge = 100;
+    public override int cost { get { return charge; } set { cost=charge; } }
 
     // Start is called before the first frame update
     void Start()

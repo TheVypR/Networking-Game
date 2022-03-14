@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GluerScript : MonoBehaviour
+public class GluerScript : TrapScript
 {
     public GameObject _gluePrefab;
     public Transform _glueSpwn;
     Coroutine _spray;
-    
+
+    int charge = 100;
+    public override int cost { get { return charge; } set { cost = charge; } }
+
     // Start is called before the first frame update
     void Start()
     {
