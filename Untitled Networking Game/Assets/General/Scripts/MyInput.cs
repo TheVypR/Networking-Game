@@ -43,23 +43,34 @@ public class MyInput
         return Input.GetAxis(yAxis[player]);
     }
 
+    public static float GetRawXAxis(int player)
+    {
+        return Input.GetAxisRaw(xAxis[player]);
+    }
+
+    //detect if a player is using the Y-axis
+    public static float GetRawYAxis(int player)
+    {
+        return Input.GetAxisRaw(yAxis[player]);
+    }
+
     public static bool GetPS4X(int player)
     {
-        return Input.GetKey(ps4Buttons[2+player]);
+        return Input.GetKeyDown(ps4Buttons[2+player]);
     }
 
     public static bool GetPS4Square(int player)
     {
-        return Input.GetKey(ps4Buttons[player]);
+        return Input.GetKeyDown(ps4Buttons[player]);
     }
 
     public static bool GetPS4Circle(int player)
     {
-        return Input.GetKey(ps4Buttons[4+player]);
+        return Input.GetKeyDown(ps4Buttons[4+player]);
     }
 
     public static bool GetPS4Triangle(int player)
     {
-        return Input.GetKey(ps4Buttons[6+player]);
+        return Input.GetKeyDown(ps4Buttons[6+player]);
     }
 }

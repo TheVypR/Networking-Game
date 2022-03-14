@@ -161,16 +161,6 @@ public class LvlMngrScript : MonoBehaviour
                 _respawnTextBack.text = "" + _timeRespawn;
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            Instantiate(_airStrike);
-        }
-
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            lava = Instantiate(_lavaFlood, new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y - 20), Quaternion.identity);
-        }
     }
 
     void Respawn()

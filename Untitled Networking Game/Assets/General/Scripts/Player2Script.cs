@@ -19,6 +19,7 @@ public class Player2Script : MonoBehaviour
     {
         spawns = spawners.GetComponentsInChildren<Transform>();
         TRAP_MAX = spawns.Length;
+        transform.position = spawners.transform.Find("SpwnPt " + place).position;
     }
 
     // Update is called once per frame
@@ -53,32 +54,32 @@ public class Player2Script : MonoBehaviour
             }
 
             //trap placing
-            if (MyInput.GetPS4X(1))
+            if (Input.GetKeyDown(KeyCode.L))
             {
                 if (proxTraps.Length > 0)
                 {
-                    Instantiate(proxTraps[0]);
+                    Instantiate(proxTraps[0], transform.position, Quaternion.identity);
                 }
             }
             else if (MyInput.GetPS4Square(1))
             {
                 if (proxTraps.Length > 1)
                 {
-                    Instantiate(proxTraps[1]);
+                    Instantiate(proxTraps[1], transform.position, Quaternion.identity);
                 }
             }
             else if (MyInput.GetPS4Circle(1))
             {
                 if (proxTraps.Length > 2)
                 {
-                    Instantiate(proxTraps[2]);
+                    Instantiate(proxTraps[2], transform.position, Quaternion.identity);
                 }
             }
             else if (MyInput.GetPS4Triangle(1))
             {
                 if (proxTraps.Length > 3)
                 {
-                    Instantiate(proxTraps[3]);
+                    Instantiate(proxTraps[3], transform.position, Quaternion.identity);
                 }
             }
         }
