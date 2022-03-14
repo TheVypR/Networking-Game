@@ -213,7 +213,7 @@ GameObject:
   m_Component:
   - component: {fileID: 10786332}
   m_Layer: 0
-  m_Name: SpwnPt_1 (7)
+  m_Name: SpwnPt 7
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -328,7 +328,7 @@ GameObject:
   m_Component:
   - component: {fileID: 72469671}
   m_Layer: 0
-  m_Name: SpwnPt_1 (18)
+  m_Name: SpwnPt 18
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -567,7 +567,7 @@ GameObject:
   m_Component:
   - component: {fileID: 214676468}
   m_Layer: 0
-  m_Name: SpwnPt_1 (4)
+  m_Name: SpwnPt 4
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -604,7 +604,7 @@ GameObject:
   m_Component:
   - component: {fileID: 227138694}
   m_Layer: 0
-  m_Name: SpwnPt_1 (3)
+  m_Name: SpwnPt 3
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -3452,7 +3452,7 @@ Tilemap:
       - {fileID: -3687522134155505030, guid: 5da356080964538469772e061655198e, type: 3}
       - {fileID: 7197290295905485796, guid: 5da356080964538469772e061655198e, type: 3}
       - {fileID: -6709448686708286247, guid: 5da356080964538469772e061655198e, type: 3}
-      m_AnimationSpeed: 30
+      m_AnimationSpeed: 30.000002
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 343, y: 35, z: 0}
@@ -3962,7 +3962,7 @@ Tilemap:
       - {fileID: -3687522134155505030, guid: 5da356080964538469772e061655198e, type: 3}
       - {fileID: 7197290295905485796, guid: 5da356080964538469772e061655198e, type: 3}
       - {fileID: -6709448686708286247, guid: 5da356080964538469772e061655198e, type: 3}
-      m_AnimationSpeed: 30
+      m_AnimationSpeed: 30.000002
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 371, y: 41, z: 0}
@@ -4064,7 +4064,7 @@ Tilemap:
       - {fileID: -3687522134155505030, guid: 5da356080964538469772e061655198e, type: 3}
       - {fileID: 7197290295905485796, guid: 5da356080964538469772e061655198e, type: 3}
       - {fileID: -6709448686708286247, guid: 5da356080964538469772e061655198e, type: 3}
-      m_AnimationSpeed: 30.000002
+      m_AnimationSpeed: 30
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 373, y: 41, z: 0}
@@ -4421,7 +4421,7 @@ Tilemap:
       - {fileID: -3687522134155505030, guid: 5da356080964538469772e061655198e, type: 3}
       - {fileID: 7197290295905485796, guid: 5da356080964538469772e061655198e, type: 3}
       - {fileID: -6709448686708286247, guid: 5da356080964538469772e061655198e, type: 3}
-      m_AnimationSpeed: 30
+      m_AnimationSpeed: 30.000002
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 391, y: 47, z: 0}
@@ -4880,7 +4880,7 @@ Tilemap:
       - {fileID: -3687522134155505030, guid: 5da356080964538469772e061655198e, type: 3}
       - {fileID: 7197290295905485796, guid: 5da356080964538469772e061655198e, type: 3}
       - {fileID: -6709448686708286247, guid: 5da356080964538469772e061655198e, type: 3}
-      m_AnimationSpeed: 30
+      m_AnimationSpeed: 30.000002
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 328, y: 63, z: 0}
@@ -5237,7 +5237,7 @@ Tilemap:
       - {fileID: -3687522134155505030, guid: 5da356080964538469772e061655198e, type: 3}
       - {fileID: 7197290295905485796, guid: 5da356080964538469772e061655198e, type: 3}
       - {fileID: -6709448686708286247, guid: 5da356080964538469772e061655198e, type: 3}
-      m_AnimationSpeed: 30
+      m_AnimationSpeed: 30.000002
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 392, y: 63, z: 0}
@@ -6637,7 +6637,7 @@ GameObject:
   m_Component:
   - component: {fileID: 270787899}
   m_Layer: 0
-  m_Name: SpwnPt_1 (12)
+  m_Name: SpwnPt 12
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -6651,7 +6651,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 270787898}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 406.7, y: 51.5, z: 0}
+  m_LocalPosition: {x: 372.3, y: 25.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6668,7 +6668,7 @@ GameObject:
   m_Component:
   - component: {fileID: 322863498}
   m_Layer: 0
-  m_Name: SpwnPt_1 (13)
+  m_Name: SpwnPt 13
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -6699,7 +6699,7 @@ GameObject:
   m_Component:
   - component: {fileID: 333835374}
   m_Layer: 0
-  m_Name: SpwnPt_1 (22)
+  m_Name: SpwnPt 22
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -6730,7 +6730,7 @@ GameObject:
   m_Component:
   - component: {fileID: 336663018}
   m_Layer: 0
-  m_Name: SpwnPt_1 (1)
+  m_Name: SpwnPt 1
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -6836,7 +6836,7 @@ GameObject:
   m_Component:
   - component: {fileID: 372727501}
   m_Layer: 0
-  m_Name: SpwnPt_1 (21)
+  m_Name: SpwnPt 21
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -6867,7 +6867,7 @@ GameObject:
   m_Component:
   - component: {fileID: 389084910}
   m_Layer: 0
-  m_Name: SpwnPt_1 (10)
+  m_Name: SpwnPt 10
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -133750,7 +133750,7 @@ GameObject:
   m_Component:
   - component: {fileID: 533525656}
   m_Layer: 0
-  m_Name: SpwnPt_1 (11)
+  m_Name: SpwnPt 11
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -133856,7 +133856,7 @@ GameObject:
   m_Component:
   - component: {fileID: 674881859}
   m_Layer: 0
-  m_Name: SpwnPt_1 (6)
+  m_Name: SpwnPt 6
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -133893,7 +133893,7 @@ GameObject:
   m_Component:
   - component: {fileID: 715601642}
   m_Layer: 0
-  m_Name: SpwnPt_1 (14)
+  m_Name: SpwnPt 14
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -134102,7 +134102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1065748442}
   m_Layer: 0
-  m_Name: SpwnPt_1 (2)
+  m_Name: SpwnPt 2
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -134289,7 +134289,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1153752921}
   m_Layer: 0
-  m_Name: SpwnPt_1 (16)
+  m_Name: SpwnPt 16
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -134303,7 +134303,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1153752920}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 371.2, y: 25.5, z: 0}
+  m_LocalPosition: {x: 402.4, y: 51.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -134389,7 +134389,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1195660098}
   m_Layer: 0
-  m_Name: SpwnPt_1 (17)
+  m_Name: SpwnPt 17
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -134507,7 +134507,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1449786968}
   m_Layer: 0
-  m_Name: SpwnPt_1 (15)
+  m_Name: SpwnPt 15
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -134584,7 +134584,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1594850264}
   m_Layer: 0
-  m_Name: SpwnPt_1 (9)
+  m_Name: SpwnPt 9
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -134916,7 +134916,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1750281162}
   m_Layer: 0
-  m_Name: SpwnPt_1 (19)
+  m_Name: SpwnPt 19
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -135280,7 +135280,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2035055713}
   m_Layer: 0
-  m_Name: SpwnPt_1 (8)
+  m_Name: SpwnPt 8
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -135311,7 +135311,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2037971545}
   m_Layer: 0
-  m_Name: SpwnPt_1 (5)
+  m_Name: SpwnPt 5
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -135342,7 +135342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2081327154}
   m_Layer: 0
-  m_Name: SpwnPt_1
+  m_Name: SpwnPt 0
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -135472,7 +135472,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2146010506}
   m_Layer: 0
-  m_Name: SpwnPt_1 (20)
+  m_Name: SpwnPt 20
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
