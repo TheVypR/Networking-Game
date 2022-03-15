@@ -29059,6 +29059,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1502618885, guid: 60c7afbf89a385d4fb79550a7a9e4204, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2197986701129282032, guid: 60c7afbf89a385d4fb79550a7a9e4204,
         type: 3}
       propertyPath: m_Name
@@ -29129,29 +29133,6 @@ PrefabInstance:
       propertyPath: spawners
       value: 
       objectReference: {fileID: 1324194683}
-    - target: {fileID: 2197986701129282035, guid: 60c7afbf89a385d4fb79550a7a9e4204,
-        type: 3}
-      propertyPath: proxTraps.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2197986701129282035, guid: 60c7afbf89a385d4fb79550a7a9e4204,
-        type: 3}
-      propertyPath: proxTraps.Array.data[0]
-      value: 
-      objectReference: {fileID: 4035902709572466124, guid: dee342d9e76ebcd439dc91a44795e867,
-        type: 3}
-    - target: {fileID: 2197986701129282035, guid: 60c7afbf89a385d4fb79550a7a9e4204,
-        type: 3}
-      propertyPath: proxTraps.Array.data[1]
-      value: 
-      objectReference: {fileID: 6438363114763634812, guid: 110e3151d55b4e047890d23aef05848e,
-        type: 3}
-    - target: {fileID: 2197986701129282035, guid: 60c7afbf89a385d4fb79550a7a9e4204,
-        type: 3}
-      propertyPath: proxTraps.Array.data[2]
-      value: 
-      objectReference: {fileID: 7963604077150690235, guid: 664996d325c095649b75a80470380698,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60c7afbf89a385d4fb79550a7a9e4204, type: 3}
 --- !u!4 &2197986701456061082 stripped
