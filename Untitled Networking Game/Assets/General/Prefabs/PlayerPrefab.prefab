@@ -165,6 +165,8 @@ MonoBehaviour:
   jumpSpeed: 15
   footstep: {fileID: 8300000, guid: 3abcb52d7e8726143af1fc6542c46b5e, type: 3}
   jump: {fileID: 8300000, guid: 13971eba9aadf6a4c881345b8a3c6d98, type: 3}
+  lavaDeath: {fileID: 8300000, guid: 08a43051cdd29e7408603a6cbd122c64, type: 3}
+  fallOutDeath: {fileID: 8300000, guid: 75c0e644bc9da2f4db007de20bd74f8c, type: 3}
 --- !u!95 &-4354805650353561996
 Animator:
   serializedVersion: 4
