@@ -31,6 +31,10 @@ public class CameraMotor : MonoBehaviour
         {
             AutoMove();
         }
+        if (isSetup)
+        {
+            Camera.main.orthographicSize = 16;
+        }
         Follow(debug);
 
     }
@@ -91,6 +95,7 @@ public class CameraMotor : MonoBehaviour
         isSetup = setup;
         if (!isSetup)
         {
+            Camera.main.orthographicSize = 8;
             transform.position = new Vector3(0, 0, -10);
         }
     }
