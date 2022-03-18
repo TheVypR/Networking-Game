@@ -6,7 +6,7 @@ public class BlinderScript : TrapScript
 {
     public GameObject _blindPrefab;
 
-    int charge = 150;
+    int charge = 75;
     public override int cost { get { return charge; } set { cost = charge; } }
 
     // Start is called before the first frame update

@@ -10,7 +10,7 @@ public class MineScript : TrapScript
     AudioSource _src;
     public AudioClip explode;
 
-    public int charge = 100;
+    public int charge = 125;
     public override int cost { get { return charge; } set { charge = value; } }
 
     private void Start()

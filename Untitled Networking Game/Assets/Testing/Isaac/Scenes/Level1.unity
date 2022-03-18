@@ -571,7 +571,7 @@ PrefabInstance:
     - target: {fileID: 6058287160162197090, guid: 30d7296bf3333e8499e32cfd96e6be48,
         type: 3}
       propertyPath: money
-      value: 150
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 6058287160162197091, guid: 30d7296bf3333e8499e32cfd96e6be48,
         type: 3}

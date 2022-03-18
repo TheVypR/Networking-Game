@@ -8,7 +8,7 @@ public class GluerScript : TrapScript
     public Transform _glueSpwn;
     Coroutine _spray;
 
-    int charge = 100;
+    int charge = 75;
     public override int cost { get { return charge; } set { cost = charge; } }
 
     // Start is called before the first frame update
