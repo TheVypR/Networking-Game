@@ -28649,6 +28649,11 @@ PrefabInstance:
       propertyPath: _mngr
       value: 
       objectReference: {fileID: 1519317154}
+    - target: {fileID: 6737881601269786680, guid: 3ccf805a2d48c764bb9b68df5f330681,
+        type: 3}
+      propertyPath: fallOutDeath
+      value: 
+      objectReference: {fileID: 8300000, guid: 75c0e644bc9da2f4db007de20bd74f8c, type: 3}
     - target: {fileID: 7178553796478119847, guid: 3ccf805a2d48c764bb9b68df5f330681,
         type: 3}
       propertyPath: m_RootOrder
