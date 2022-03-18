@@ -10,6 +10,7 @@ public class LvlMngrScript : MonoBehaviour
 {
     //check multiplier
     int isMultiplayer;
+    public GameObject player2;
     public GameObject singleplayerAI;
     public EconomyScript economyScript;
 
@@ -64,9 +65,11 @@ public class LvlMngrScript : MonoBehaviour
             {
                 singleplayerAI.SetActive(false);
                 _player.SetActive(false);
+                player2.SetActive(true);
                 _camMotor.setMode(true);
             } else
             {
+                player2.SetActive(false);
                 singleplayerAI.SetActive(true);
                 _camMotor.setMode(false);
             }
@@ -218,5 +221,6 @@ public class LvlMngrScript : MonoBehaviour
         startTime = Time.time;
         transitionCanvas.SetActive(false);
         _camMotor.setMode(false);
+        player2.GetComponent<Player2Script>().setMode(false);
     }
 }

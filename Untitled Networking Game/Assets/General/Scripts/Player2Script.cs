@@ -14,6 +14,7 @@ public class Player2Script : MonoBehaviour
     public Canvas gameCanvas;
     Text[] proxCosts;
     Text[] manCosts;
+    public GameObject indicator;
 
     public GameObject spawners;
     public EconomyScript _econ;
@@ -66,39 +67,41 @@ public class Player2Script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((Time.time - lastSwitch) >= SWITCH_RATE) {
-            if (MyInput.GetRawXAxis(3) == 1)
-            {
-                if (place >= TRAP_MAX)
-                {
-                    place = 0;
-                }
-                else
-                {
-                    place++;
-                }
-                target = spawners.transform.Find("SpwnPt " + place);
-                lastSwitch = Time.time;
-            }
-
-            if (MyInput.GetRawXAxis(3) == -1)
-            {
-                if (place < 0)
-                {
-                    place = TRAP_MAX - 1;
-                }
-                else
-                {
-                    place--;
-                }
-                target = spawners.transform.Find("SpwnPt " + place);
-                lastSwitch = Time.time;
-            }
-        }
-
-        //trap placing
+        //navigate the trap locations
         if (isSetup)
         {
+            if ((Time.time - lastSwitch) >= SWITCH_RATE) {
+                if (MyInput.GetRawXAxis(3) == 1)
+                {
+                    if (place >= TRAP_MAX)
+                    {
+                        place = 0;
+                    }
+                    else
+                    {
+                        place++;
+                    }
+                    target = spawners.transform.Find("SpwnPt " + place);
+                    lastSwitch = Time.time;
+                }
+
+                if (MyInput.GetRawXAxis(3) == -1)
+                {
+                    if (place < 0)
+                    {
+                        place = TRAP_MAX - 1;
+                    }
+                    else
+                    {
+                        place--;
+                    }
+                    target = spawners.transform.Find("SpwnPt " + place);
+                    lastSwitch = Time.time;
+                }
+            }
+
+        //trap placing
+        
             if (MyInput.GetPS4X(1))
             {
                 if (proxTraps.Length > 0)
@@ -180,5 +183,17 @@ public class Player2Script : MonoBehaviour
     public void setMode(bool isSetup)
     {
         this.isSetup = isSetup;
+        if (isSetup)
+        {
+            setupCanvas.enabled = true;
+            gameCanvas.enabled = false;
+            indicator.SetActive(true);
+        }
+        else
+        {
+            setupCanvas.enabled = false;
+            gameCanvas.enabled = true;
+            indicator.SetActive(false);
+        }
     }
 }
