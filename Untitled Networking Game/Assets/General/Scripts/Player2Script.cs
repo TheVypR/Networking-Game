@@ -1,11 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player2Script : MonoBehaviour
 {
     //get traps
     public GameObject[] proxTraps;
+    public GameObject[] manualTraps;
+
+    //guide canvases
+    public Canvas setupCanvas;
+    public Canvas gameCanvas;
+    Text[] proxCosts;
+    Text[] manCosts;
+
     public GameObject spawners;
     public EconomyScript _econ;
     Transform[] spawns;
@@ -15,12 +24,43 @@ public class Player2Script : MonoBehaviour
     int TRAP_MAX;
     Transform target;
 
+    //check mode
+    bool isSetup = true;
+
     // Start is called before the first frame update
     void Start()
     {
         spawns = spawners.GetComponentsInChildren<Transform>();
         TRAP_MAX = spawns.Length;
         transform.position = spawners.transform.Find("SpwnPt " + place).position;
+
+        //set trap costs
+        proxCosts = setupCanvas.GetComponentsInChildren<Text>();
+        manCosts = gameCanvas.GetComponentsInChildren<Text>();
+
+        //set the costs for proximity traps
+        for(int i = 0; i < proxTraps.Length; i++) {
+            if(i < proxCosts.Length)
+            {
+                proxCosts[i].text = proxTraps[i].GetComponent<TrapScript>().cost.ToString();
+            }else
+            {
+                break;
+            }
+        }
+
+        //set the costs for manual traps
+        for (int i = 0; i < manualTraps.Length; i++)
+        {
+            if (i < manCosts.Length)
+            {
+                manCosts[i].text = manualTraps[i].GetComponent<TrapScript>().cost.ToString();
+            }
+            else
+            {
+                break;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -57,7 +97,9 @@ public class Player2Script : MonoBehaviour
         }
 
         //trap placing
-        if (Input.GetKeyDown(KeyCode.L))
+        if (isSetup)
+        {
+            if (MyInput.GetPS4X(1))
             {
                 if (proxTraps.Length > 0)
                 {
@@ -89,6 +131,41 @@ public class Player2Script : MonoBehaviour
                     Instantiate(proxTraps[3], transform.position, Quaternion.identity);
                 }
             }
+        }else
+        {
+            if (MyInput.GetPS4X(1))
+            {
+                if (manualTraps.Length > 0)
+                {
+                    _econ.SpendCoin(manualTraps[0].GetComponent<TrapScript>().cost);
+                    Instantiate(manualTraps[0], transform.position, Quaternion.identity);
+                }
+            }
+            else if (MyInput.GetPS4Square(1))
+            {
+                if (manualTraps.Length > 1)
+                {
+                    _econ.SpendCoin(manualTraps[1].GetComponent<TrapScript>().cost);
+                    Instantiate(manualTraps[1], transform.position, Quaternion.identity);
+                }
+            }
+            else if (MyInput.GetPS4Circle(1))
+            {
+                if (manualTraps.Length > 2)
+                {
+                    _econ.SpendCoin(manualTraps[2].GetComponent<TrapScript>().cost);
+                    Instantiate(manualTraps[2], transform.position, Quaternion.identity);
+                }
+            }
+            else if (MyInput.GetPS4Triangle(1))
+            {
+                if (manualTraps.Length > 3)
+                {
+                    _econ.SpendCoin(manualTraps[3].GetComponent<TrapScript>().cost);
+                    Instantiate(manualTraps[3], transform.position, Quaternion.identity);
+                }
+            }
+        }
         
     }
 
@@ -98,5 +175,10 @@ public class Player2Script : MonoBehaviour
         {
             gameObject.transform.position = target.position;
         }
+    }
+
+    public void setMode(bool isSetup)
+    {
+        this.isSetup = isSetup;
     }
 }

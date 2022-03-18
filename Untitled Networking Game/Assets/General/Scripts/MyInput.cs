@@ -56,21 +56,21 @@ public class MyInput
 
     public static bool GetPS4X(int player)
     {
-        return Input.GetKeyDown(ps4Buttons[2+player]);
+        return Input.GetKeyDown(ps4Buttons[2+player]) || Input.GetKeyDown(KeyCode.H);
     }
 
     public static bool GetPS4Square(int player)
     {
-        return Input.GetKeyDown(ps4Buttons[player]);
+        return Input.GetKeyDown(ps4Buttons[player]) || Input.GetKeyDown(KeyCode.J);
     }
 
     public static bool GetPS4Circle(int player)
     {
-        return Input.GetKeyDown(ps4Buttons[4+player]);
+        return Input.GetKeyDown(ps4Buttons[4+player]) || Input.GetKeyDown(KeyCode.K);
     }
 
     public static bool GetPS4Triangle(int player)
     {
-        return Input.GetKeyDown(ps4Buttons[6+player]);
+        return Input.GetKeyDown(ps4Buttons[6+player]) || Input.GetKeyDown(KeyCode.L);
     }
 }
