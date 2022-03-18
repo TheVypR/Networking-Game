@@ -334,9 +334,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_HorizontalAxis: Player1_Horizontal
-  m_VerticalAxis: Player2_Vertical
+  m_VerticalAxis: Player1_Vertical
   m_SubmitButton: Submit
-  m_CancelButton: Cancel
+  m_CancelButton: 
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
@@ -1088,7 +1088,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Player 2
 
-    Press ''Start'' after Player 1 leaves the room'
+    Press ''X'' after Player 1 leaves the room'
 --- !u!222 &1394922576
 CanvasRenderer:
   m_ObjectHideFlags: 0

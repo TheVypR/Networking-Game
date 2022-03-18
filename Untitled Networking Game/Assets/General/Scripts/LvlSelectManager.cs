@@ -18,7 +18,7 @@ public class LvlSelectManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!scenename.Equals("") && MyInput.GetKeyPause(2))
+        if (!scenename.Equals("") && MyInput.GetPS4X(1))
         {
             SceneManager.LoadScene(scenename);
         }

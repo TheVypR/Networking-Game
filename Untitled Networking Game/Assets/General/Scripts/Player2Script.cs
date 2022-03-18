@@ -154,7 +154,7 @@ public class Player2Script : MonoBehaviour
             }
 
             //trigger manual traps
-            if (MyInput.GetPS4X(1))
+            if (MyInput.GetPS4Circle(1))
             {
                 if (manualTraps.Length > 0)
                 {
@@ -162,7 +162,7 @@ public class Player2Script : MonoBehaviour
                         Instantiate(manualTraps[0], transform.position, Quaternion.identity);
                 }
             }
-            else if (MyInput.GetPS4Square(1))
+            else if (MyInput.GetPS4X(1))
             {
                 if (manualTraps.Length > 1)
                 {
@@ -170,7 +170,7 @@ public class Player2Script : MonoBehaviour
                         Instantiate(manualTraps[1], transform.position, Quaternion.identity);
                 }
             }
-            else if (MyInput.GetPS4Circle(1))
+            else if (MyInput.GetPS4Square(1))
             {
                 if (manualTraps.Length > 2)
                 {
