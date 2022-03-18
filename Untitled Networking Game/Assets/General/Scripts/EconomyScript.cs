@@ -42,7 +42,7 @@ public class EconomyScript : MonoBehaviour
     {
         _moneyCountTxt.text = money.ToString();
         
-
+        //check if the player has money to spend
         if(money <= 0)
         {
             NoMoney();
@@ -71,7 +71,7 @@ public class EconomyScript : MonoBehaviour
         if (fastSlow == 1)
         {
             _camScript.autoSpeed += 0.02f;
-            drainAmt = (int)(Mathf.Abs((_camScript.autoSpeed - 0.035f - 0.01f) * 100));
+            drainAmt = (int)(Mathf.Abs((_camScript.autoSpeed - 0.035f) * 500));
             if (drainAmt == 0 && drainRoutine != null)
             {
                 gainRoutine = StartCoroutine(GainMoney());
