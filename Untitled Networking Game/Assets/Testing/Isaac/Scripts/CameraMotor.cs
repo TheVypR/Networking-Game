@@ -7,6 +7,7 @@ public class CameraMotor : MonoBehaviour
     public Transform _playerTrans;
     public Transform _player2Trans;
     private bool isSetup = false;
+    public GameObject background;
 
     //debug var
     public bool debug;
@@ -34,6 +35,7 @@ public class CameraMotor : MonoBehaviour
         if (isSetup)
         {
             Camera.main.orthographicSize = 16;
+            background.transform.localScale = new Vector3(3f, 3f, 1);
         }
         Follow(debug);
 
@@ -96,6 +98,7 @@ public class CameraMotor : MonoBehaviour
         if (!isSetup)
         {
             Camera.main.orthographicSize = 8;
+            background.transform.localScale = new Vector3(1.5f, 1.5f, 1);
             transform.position = new Vector3(0, 0, -10);
         }
     }
