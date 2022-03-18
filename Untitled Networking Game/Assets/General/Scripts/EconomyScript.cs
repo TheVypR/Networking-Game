@@ -31,8 +31,9 @@ public class EconomyScript : MonoBehaviour
         }
     }
 
-    public void StartGain()
+    public void StartRound()
     {
+        setupMode = false;
         gainRoutine = StartCoroutine(GainMoney());
     }
 
@@ -67,10 +68,10 @@ public class EconomyScript : MonoBehaviour
 
     public void CameraSpeed(int fastSlow)
     {
-        if (fastSlow == 0)
+        if (fastSlow == 1)
         {
-            _camScript.autoSpeed += 0.01f;
-            drainAmt = (int)(Mathf.Abs((_camScript.autoSpeed - 0.035f) * 100));
+            _camScript.autoSpeed += 0.02f;
+            drainAmt = (int)(Mathf.Abs((_camScript.autoSpeed - 0.035f - 0.01f) * 100));
             if (drainAmt == 0 && drainRoutine != null)
             {
                 gainRoutine = StartCoroutine(GainMoney());
@@ -81,12 +82,11 @@ public class EconomyScript : MonoBehaviour
                 StopCoroutine(gainRoutine);
                 drainRoutine = StartCoroutine(DrainMoney(drainAmt));
             }
-
         }
-        else if (fastSlow == 1)
+        else if(fastSlow == 0)
         {
-            _camScript.autoSpeed -= 0.01f;
-            drainAmt = (int)(Mathf.Abs((_camScript.autoSpeed - 0.035f) * 100));
+            _camScript.autoSpeed -= 0.02f;
+            drainAmt = (int)(Mathf.Abs((_camScript.autoSpeed - 0.035f + 0.01f) * 100));
             if (drainAmt == 0 && drainRoutine != null)
             {
                 gainRoutine = StartCoroutine(GainMoney());
@@ -100,9 +100,17 @@ public class EconomyScript : MonoBehaviour
         }
     }
 
-    public void SpendCoin(int amt)
+    public bool SpendCoin(int amt)
     {
-        money -= amt;
+        if (money - amt < 0)
+        {
+            return false;
+        }
+        else
+        {
+            money -= amt;
+            return true;
+        }
     }
 
     IEnumerator GainMoney()

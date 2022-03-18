@@ -215,7 +215,7 @@ public class LvlMngrScript : MonoBehaviour
 
     public void StartRound()
     {
-        economyScript.StartGain();
+        economyScript.StartRound();
         _player.SetActive(true);
         Time.timeScale = 1;
         startTime = Time.time;
