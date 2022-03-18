@@ -104,7 +104,7 @@ public class PlayerMovementScript : MonoBehaviour
 
         if (transform.position.y < -10)
         {
-            _audioS.PlayOneShot(fallOutDeath, (float)0.50);
+            _audioS.PlayOneShot(fallOutDeath, 0.5f);
             _mngr.PlayerDeath(spwn);
         } else if(transform.position.x < _cam.position.x - 16)
         {
