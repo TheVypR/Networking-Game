@@ -8932,7 +8932,7 @@ PrefabInstance:
     - target: {fileID: 3079037422646108637, guid: b4471afa0bc786445b93ed38cde31818,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.36106858
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3079037422646108637, guid: b4471afa0bc786445b93ed38cde31818,
         type: 3}
@@ -8942,27 +8942,27 @@ PrefabInstance:
     - target: {fileID: 3079037422646108637, guid: b4471afa0bc786445b93ed38cde31818,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3079037422646108637, guid: b4471afa0bc786445b93ed38cde31818,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3079037422646108637, guid: b4471afa0bc786445b93ed38cde31818,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3079037422646108637, guid: b4471afa0bc786445b93ed38cde31818,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -19.896782
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3079037422646108637, guid: b4471afa0bc786445b93ed38cde31818,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -11.104839
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3079037422646108637, guid: b4471afa0bc786445b93ed38cde31818,
         type: 3}
@@ -8983,6 +8983,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RespawnCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3079037422646108641, guid: b4471afa0bc786445b93ed38cde31818,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4471afa0bc786445b93ed38cde31818, type: 3}

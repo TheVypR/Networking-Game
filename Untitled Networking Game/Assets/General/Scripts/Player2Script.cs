@@ -194,7 +194,13 @@ public class Player2Script : MonoBehaviour
     {
         if (target)
         {
-            gameObject.transform.position = target.position;
+            if (isSetup)
+            {
+                gameObject.transform.position = target.position;
+            } else
+            {
+                gameObject.transform.position = Camera.main.transform.position;
+            }
         }
     }
 

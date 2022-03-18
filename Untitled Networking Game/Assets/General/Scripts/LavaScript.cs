@@ -5,6 +5,7 @@ using UnityEngine;
 public class LavaScript : TrapScript
 {
     int first = 0;
+    Vector3 camOffset = new Vector3(0, -4, 0);
 
     int charge = 100;
     public override int cost { get { return charge; } set { cost=charge; } }
@@ -12,18 +13,20 @@ public class LavaScript : TrapScript
     // Start is called before the first frame update
     void Start()
     {
-
+        gameObject.transform.position = gameObject.transform.position - camOffset;
+        gameObject.GetComponent<BoxCollider2D>().enabled = true;
+        StartCoroutine(TriggerLava());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (first == 0)
-        {
-            print(first);
-            first = 1;
-            StartCoroutine(TriggerLava());
-        }
+        //if (first == 0)
+        //{
+        //    print(first);
+        //    first = 1;
+            //StartCoroutine(TriggerLava());
+        //}
     }
 
     IEnumerator TriggerLava()
