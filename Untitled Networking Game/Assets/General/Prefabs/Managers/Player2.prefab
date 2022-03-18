@@ -154,6 +154,10 @@ MonoBehaviour:
   - {fileID: 4035902709572466124, guid: dee342d9e76ebcd439dc91a44795e867, type: 3}
   - {fileID: 6438363114763634812, guid: 110e3151d55b4e047890d23aef05848e, type: 3}
   - {fileID: 7963604077150690235, guid: 664996d325c095649b75a80470380698, type: 3}
+  manualTraps: []
+  setupCanvas: {fileID: 0}
+  gameCanvas: {fileID: 0}
+  indicator: {fileID: 0}
   spawners: {fileID: 0}
   _econ: {fileID: 0}
   SWITCH_RATE: 0.25

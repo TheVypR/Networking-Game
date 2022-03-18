@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class LvlSelectManager : MonoBehaviour
 {
+    string scenename = "";
+    public Canvas lvlSelect;
+    public Canvas startLevel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,22 +18,52 @@ public class LvlSelectManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (!scenename.Equals("") && MyInput.GetKeyPause(2))
+        {
+            SceneManager.LoadScene(scenename);
+        }
     }
 
     public void LevelOne()
     {
-        SceneManager.LoadScene("Level1");
+        if (PlayerPrefs.GetInt("mode") == 1)
+        {
+            scenename = "Level1";
+            lvlSelect.enabled = false;
+            startLevel.enabled = true;
+        }
+        else
+        {
+            SceneManager.LoadScene("Level1");
+        }
     }
 
     public void LevelTwo()
     {
-        SceneManager.LoadScene("Level2");
+        if (PlayerPrefs.GetInt("mode") == 1)
+        {
+            scenename = "Level2";
+            lvlSelect.enabled = false;
+            startLevel.enabled = true;
+        }
+        else
+        {
+            SceneManager.LoadScene("Level2");
+        }
     }
 
     public void LevelThree()
     {
-        SceneManager.LoadScene("Level3");
+        if (PlayerPrefs.GetInt("mode") == 1)
+        {
+            scenename = "Level3";
+            lvlSelect.enabled = false;
+            startLevel.enabled = true;
+        }
+        else
+        {
+            SceneManager.LoadScene("Level3");
+        }
     }
 
     public void Back()
@@ -44,7 +78,6 @@ public class LvlSelectManager : MonoBehaviour
         {
             print(isMultiplayer);
             PlayerPrefs.SetInt("mode", 1);
-            print(PlayerPrefs.GetInt("mode"));
         } else
         {
             PlayerPrefs.SetInt("mode", 0);
