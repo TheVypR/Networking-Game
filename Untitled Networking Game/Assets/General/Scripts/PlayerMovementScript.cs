@@ -33,6 +33,7 @@ public class PlayerMovementScript : MonoBehaviour
     public AudioClip footstep;
     public AudioClip jump;
     public AudioClip lavaDeath;
+    public AudioClip fallOutDeath;
 
     enum STATE
     {
@@ -103,6 +104,7 @@ public class PlayerMovementScript : MonoBehaviour
 
         if (transform.position.y < -10)
         {
+            _audioS.PlayOneShot(fallOutDeath, (float)0.50);
             _mngr.PlayerDeath(spwn);
         } else if(transform.position.x < _cam.position.x - 16)
         {
