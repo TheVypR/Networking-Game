@@ -71,7 +71,7 @@ public class Player2Script : MonoBehaviour
         if (isSetup)
         {
             if ((Time.time - lastSwitch) >= SWITCH_RATE) {
-                if (MyInput.GetRawXAxis(1) == 1)
+                if (MyInput.GetRawXAxis(3) == 1)
                 {
                     if (place >= TRAP_MAX)
                     {
@@ -85,7 +85,7 @@ public class Player2Script : MonoBehaviour
                     lastSwitch = Time.time;
                 }
 
-                if (MyInput.GetRawXAxis(1) == -1)
+                if (MyInput.GetRawXAxis(3) == -1)
                 {
                     if (place < 0)
                     {
@@ -138,14 +138,14 @@ public class Player2Script : MonoBehaviour
             //control camera speed
             if ((Time.time - lastSwitch) >= SWITCH_RATE)
             {
-                if (MyInput.GetXAxis(1) > 0.05)
+                if (MyInput.GetXAxis(3) > 0.05)
                 {
                     print("faster");
                     lastSwitch = Time.time;
                     _econ.CameraSpeed(1);
                 }
 
-                if (MyInput.GetXAxis(1) < -0.05)
+                if (MyInput.GetXAxis(3) < -0.05)
                 {
                     print("slower");
                     _econ.CameraSpeed(0);

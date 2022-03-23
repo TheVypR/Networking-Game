@@ -1088,7 +1088,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Player 2
 
-    Press ''X'' after Player 1 leaves the room'
+    Press ''X'' (PC: ''H'') after Player 1 leaves the room'
 --- !u!222 &1394922576
 CanvasRenderer:
   m_ObjectHideFlags: 0

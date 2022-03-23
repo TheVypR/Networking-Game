@@ -55,12 +55,12 @@ public class PlayerMovementScript : MonoBehaviour
     private void Update()
     {
         //jump
-        if (MyInput.GetKeyInteract(0) && OnGround())
+        if (MyInput.GetKeyInteract(2) && OnGround())
         {
             y = jumpSpeed;
             _audioS.PlayOneShot(jump, (float)0.50);
         }
-        else if (!MyInput.GetKeyInteract(0) && _rBody.velocity.y > 0)
+        else if (!MyInput.GetKeyInteract(2) && _rBody.velocity.y > 0)
         {
             y = 0;
         }
@@ -91,7 +91,7 @@ public class PlayerMovementScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        x = MyInput.GetXAxis(0) * moveSpeed;
+        x = MyInput.GetXAxis(2) * moveSpeed;
 
         if (_spriteRenderer.flipX && x > 0)
         {
