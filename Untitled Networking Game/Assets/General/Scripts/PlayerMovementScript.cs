@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 [RequireComponent(typeof(Rigidbody2D))]//require a rigidbody
-public class PlayerMovementScript : MonoBehaviour
+public class PlayerMovementScript : NetworkBehaviour
 {
     //adopted vars
     Rigidbody2D _rBody;
@@ -71,18 +72,6 @@ public class PlayerMovementScript : MonoBehaviour
 
         //update velocity
         _rBody.velocity = new Vector2(x, y);
-
-
-
-
-        if ((_rBody.velocity.x > 0.2f || _rBody.velocity.x < -0.2f) && OnGround())
-        {
-            if (playing == false)
-            {
-                StartCoroutine("playFootStep");
-            }
-
-        }
 
         //update animation
         _anim.SetBool("Running", (x != 0));
@@ -174,5 +163,10 @@ public class PlayerMovementScript : MonoBehaviour
         _audioS.PlayOneShot(footstep, 0.25f);
         yield return new WaitForSeconds(waitTime);
         playing = false;
+    }
+
+    void PlayerGravity()
+    {
+        
     }
 }
