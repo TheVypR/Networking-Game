@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 5932649615801134614}
   - component: {fileID: 8926938019058757048}
   - component: {fileID: 1905819520826458771}
+  - component: {fileID: 6164698817526273650}
   m_Layer: 0
   m_Name: Gluer
   m_TagString: Untagged
@@ -149,3 +150,20 @@ MonoBehaviour:
   _gluePrefab: {fileID: 6685019983165559364, guid: dc82337f86e750c4e97bfc1559bf96a3,
     type: 3}
   _glueSpwn: {fileID: 6842084689852851768}
+--- !u!114 &6164698817526273650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7963604077150690235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  visible: 0
+  m_AssetId: 664996d325c095649b75a80470380698
+  hasSpawned: 0
