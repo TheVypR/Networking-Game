@@ -20,14 +20,11 @@ public class TrapAIScript : MonoBehaviour
 
     BombStrikeScript bombStrikeScript;
     LavaScript lavaScript;
-    BlindScript blindScript;
     public EconomyScript econScript;
     public CameraMotor _cam;
 
-    private int MAX_TRAP_COST = 100;
     public int openingTrapNum;
 
-    private bool camSlowed = false;
     private float camSlowTime = 0f;
 
     public int _costBombStrike = 50;

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class LavaScript : TrapScript
 {
-    int first = 0;
     Vector3 camOffset = new Vector3(0, -4, 0);
 
     int charge = 100;
@@ -21,12 +20,7 @@ public class LavaScript : TrapScript
     // Update is called once per frame
     void Update()
     {
-        //if (first == 0)
-        //{
-        //    print(first);
-        //    first = 1;
-            //StartCoroutine(TriggerLava());
-        //}
+
     }
 
     IEnumerator TriggerLava()

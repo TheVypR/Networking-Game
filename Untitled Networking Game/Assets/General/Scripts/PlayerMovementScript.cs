@@ -23,8 +23,6 @@ public class PlayerMovementScript : NetworkBehaviour
     //control vars
     public float moveSpeed = 10;
     public float jumpSpeed = 5;
-    private float waitTime = 0.15f;
-    private bool playing = false;
 
     //local vars
     float x;
@@ -108,6 +106,7 @@ public class PlayerMovementScript : NetworkBehaviour
         return grounded;
     }//end OnGround
 
+    //fires if the player runs into a trigger
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag.Equals("Trap"))
@@ -154,19 +153,5 @@ public class PlayerMovementScript : NetworkBehaviour
         moveSpeed = 10;
         _anim.SetBool("Glued", false);
         StopCoroutine(GlueTime());
-    }
-
-    IEnumerator playFootStep()
-    {
-        playing = true;
-        // Play the sound
-        _audioS.PlayOneShot(footstep, 0.25f);
-        yield return new WaitForSeconds(waitTime);
-        playing = false;
-    }
-
-    void PlayerGravity()
-    {
-        
     }
 }
