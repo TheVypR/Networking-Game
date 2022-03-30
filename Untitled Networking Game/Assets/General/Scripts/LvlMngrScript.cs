@@ -103,6 +103,8 @@ public class LvlMngrScript : MonoBehaviour
         _respawning = _respawnCanvas.transform.Find("RespawningText").gameObject.GetComponent<TMP_Text>();
         _deathText = _respawnCanvas.transform.Find("Death Count").gameObject.GetComponent<TMP_Text>();
         _addPlusOne = _respawnCanvas.transform.Find("AddOneDeathText").gameObject.GetComponent<Text>();
+        _respawnCanvas.SetActive(false);
+        transitionCanvas.SetActive(false);
     }
 
     // Update is called once per frame

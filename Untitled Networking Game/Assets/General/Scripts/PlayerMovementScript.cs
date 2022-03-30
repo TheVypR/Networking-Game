@@ -57,7 +57,7 @@ public class PlayerMovementScript : NetworkBehaviour
         if (MyInput.GetKeyInteract(2) && OnGround())
         {
             y = jumpSpeed;
-            _audioS.PlayOneShot(jump, (float)0.50);
+            _audioS.PlayOneShot(jump, (float) 0.50);
         }
         else if (!MyInput.GetKeyInteract(2) && _rBody.velocity.y > 0)
         {
