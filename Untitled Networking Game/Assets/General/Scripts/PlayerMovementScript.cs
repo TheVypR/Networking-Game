@@ -12,6 +12,7 @@ public class PlayerMovementScript : NetworkBehaviour
     Animator _anim;
     AudioSource _audioS;
     Transform _cam;
+    Transform _trans;
     public Sprite _glued;
 
     //check vars
@@ -48,6 +49,7 @@ public class PlayerMovementScript : NetworkBehaviour
         _anim = GetComponent<Animator>();
         _audioS = GetComponent<AudioSource>();
         _cam = Camera.main.transform;
+        _trans = GetComponent<Transform>();
     }//end Start
 
 
@@ -69,7 +71,7 @@ public class PlayerMovementScript : NetworkBehaviour
         }//end if/elseif/else
 
         //update velocity
-        _rBody.velocity = new Vector2(x, y);
+        //_rBody.velocity = new Vector2(x, y);
 
         //update animation
         _anim.SetBool("Running", (x != 0));
@@ -78,7 +80,18 @@ public class PlayerMovementScript : NetworkBehaviour
 
     private void FixedUpdate()
     {
-        x = MyInput.GetXAxis(2) * moveSpeed;
+        if (isLocalPlayer)
+        {
+            x = MyInput.GetXAxis(2) * moveSpeed;
+            StepMovement(x, y);
+            if (!isServer)
+            {
+                CmdUpdatePosn(new Vector2(x, y), _trans.position);
+            } else
+            {
+                RpcUpdatePosn(_trans.position);
+            }
+        }
 
         if (_spriteRenderer.flipX && x > 0)
         {
@@ -99,12 +112,48 @@ public class PlayerMovementScript : NetworkBehaviour
         }
     }//end FixedUpdate
 
+    void StepMovement(float x, float y)
+    {
+        Vector2 axes = new Vector2(x, y);
+        Vector2 delta = axes * moveSpeed * Time.fixedDeltaTime;
+        _trans.Translate(delta);
+    }
+
     private bool OnGround()
     {
         bool grounded = Physics2D.Raycast(new Vector2(_groundCheck.position.x - 0.25f, _groundCheck.position.y), Vector2.down, 0.15f, _groundLayer)
                 || Physics2D.Raycast(new Vector2(_groundCheck.position.x + 0.25f, _groundCheck.position.y), Vector2.down, 0.15f, _groundLayer);
         return grounded;
     }//end OnGround
+
+    [Command]
+    void CmdUpdatePosn(Vector2 axes, Vector2 posn)
+    {
+        StepMovement(axes.x, axes.y);
+        if (Vector2.Distance(_trans.position, posn) > 0.1f)
+        {
+            TargetPosnError(connectionToClient, _trans.position);
+        }
+        RpcUpdatePosn(_trans.position);
+    }
+
+    [ClientRpc]
+    void RpcUpdatePosn(Vector2 posn)
+    {
+        if (!isLocalPlayer)
+        {
+            if (_trans == null)
+                return;
+
+            _trans.position = posn;
+        }
+    }
+
+    [TargetRpc]
+    void TargetPosnError(NetworkConnection conn, Vector2 posn)
+    {
+        transform.position = posn;
+    }
 
     //fires if the player runs into a trigger
     private void OnTriggerEnter2D(Collider2D collision)

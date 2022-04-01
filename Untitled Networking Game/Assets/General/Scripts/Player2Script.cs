@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Mirror;
 
-public class Player2Script : MonoBehaviour
+public class Player2Script : NetworkBehaviour
 {
     //get traps
     public GameObject[] proxTraps;
@@ -105,8 +106,11 @@ public class Player2Script : MonoBehaviour
             {
                 if (proxTraps.Length > 0)
                 {
-                    if(_econ.SpendCoin(proxTraps[0].GetComponent<TrapScript>().cost))
-                        Instantiate(proxTraps[0], transform.position, Quaternion.identity);
+                    if (_econ.SpendCoin(proxTraps[0].GetComponent<TrapScript>().cost))
+                    {
+                        GameObject trap = Instantiate(proxTraps[0], transform.position, Quaternion.identity);
+                        NetworkServer.Spawn(trap);
+                    }
                 }
             }
             else if (MyInput.GetPS4Square(1))
@@ -114,7 +118,10 @@ public class Player2Script : MonoBehaviour
                 if (proxTraps.Length > 1)
                 {
                     if(_econ.SpendCoin(proxTraps[1].GetComponent<TrapScript>().cost))
-                        Instantiate(proxTraps[1], transform.position, Quaternion.identity);
+                    {
+                        GameObject trap = Instantiate(proxTraps[1], transform.position, Quaternion.identity);
+                        NetworkServer.Spawn(trap);
+                    }
                 }
             }
             else if (MyInput.GetPS4Circle(1))
@@ -122,7 +129,10 @@ public class Player2Script : MonoBehaviour
                 if (proxTraps.Length > 2)
                 {
                     if(_econ.SpendCoin(proxTraps[2].GetComponent<TrapScript>().cost))
-                        Instantiate(proxTraps[2], transform.position, Quaternion.identity);
+                    {
+                        GameObject trap = Instantiate(proxTraps[2], transform.position, Quaternion.identity);
+                        NetworkServer.Spawn(trap);
+                    }
                 }
             }
             else if (MyInput.GetPS4Triangle(1))
@@ -130,7 +140,10 @@ public class Player2Script : MonoBehaviour
                 if (proxTraps.Length > 3)
                 {
                     if(_econ.SpendCoin(proxTraps[3].GetComponent<TrapScript>().cost))
-                        Instantiate(proxTraps[3], transform.position, Quaternion.identity);
+                    {
+                        GameObject trap = Instantiate(proxTraps[3], transform.position, Quaternion.identity);
+                        NetworkServer.Spawn(trap);
+                    }
                 }
             }
         }else
@@ -159,7 +172,10 @@ public class Player2Script : MonoBehaviour
                 if (manualTraps.Length > 0)
                 {
                     if(_econ.SpendCoin(manualTraps[0].GetComponent<TrapScript>().cost))
-                        Instantiate(manualTraps[0], transform.position, Quaternion.identity);
+                    {
+                        GameObject trap = Instantiate(manualTraps[0], transform.position, Quaternion.identity);
+                        NetworkServer.Spawn(trap);
+                    }
                 }
             }
             else if (MyInput.GetPS4X(1))
@@ -167,7 +183,10 @@ public class Player2Script : MonoBehaviour
                 if (manualTraps.Length > 1)
                 {
                     if(_econ.SpendCoin(manualTraps[1].GetComponent<TrapScript>().cost))
-                        Instantiate(manualTraps[1], transform.position, Quaternion.identity);
+                    {
+                        GameObject trap = Instantiate(manualTraps[1], transform.position, Quaternion.identity);
+                        NetworkServer.Spawn(trap);
+                    }
                 }
             }
             else if (MyInput.GetPS4Square(1))
@@ -175,7 +194,10 @@ public class Player2Script : MonoBehaviour
                 if (manualTraps.Length > 2)
                 {
                     if(_econ.SpendCoin(manualTraps[2].GetComponent<TrapScript>().cost))
-                        Instantiate(manualTraps[2], transform.position, Quaternion.identity);
+                    {
+                        GameObject trap = Instantiate(manualTraps[2], transform.position, Quaternion.identity);
+                        NetworkServer.Spawn(trap);
+                    }
                 }
             }
             else if (MyInput.GetPS4Triangle(1))
@@ -183,7 +205,10 @@ public class Player2Script : MonoBehaviour
                 if (manualTraps.Length > 3)
                 {
                     if(_econ.SpendCoin(manualTraps[3].GetComponent<TrapScript>().cost))
-                        Instantiate(manualTraps[3], transform.position, Quaternion.identity);
+                    {
+                        GameObject trap = Instantiate(manualTraps[3], transform.position, Quaternion.identity);
+                        NetworkServer.Spawn(trap);
+                    }
                 }
             }
         }
