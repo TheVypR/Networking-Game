@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Mirror;
 
-public class Player2Script : NetworkBehaviour
+public class Player2Script : PlayerBaseScript
 {
     //get traps
     public GameObject[] proxTraps;

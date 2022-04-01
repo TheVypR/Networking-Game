@@ -4,7 +4,7 @@ using UnityEngine;
 using Mirror;
 
 [RequireComponent(typeof(Rigidbody2D))]//require a rigidbody
-public class PlayerMovementScript : NetworkBehaviour
+public class PlayerMovementScript : PlayerBaseScript
 {
     //adopted vars
     Rigidbody2D _rBody;
@@ -86,13 +86,14 @@ public class PlayerMovementScript : NetworkBehaviour
     {
         if (PlayerPrefs.HasKey("player")) {
             print("has key");
-            if (isLocalPlayer && PlayerPrefs.GetInt("player") == 1)
+            if (PlayerPrefs.GetInt("player") == 1)
             {
                 x = MyInput.GetXAxis(2) * moveSpeed;
                 print(x);
                 StepMovement(x, y);
                 if (!isServer)
                 {
+                    print("client");
                     CmdUpdatePosn(new Vector2(x, y), _trans.position);
                 }
                 else
@@ -140,6 +141,7 @@ public class PlayerMovementScript : NetworkBehaviour
     [Command]
     void CmdUpdatePosn(Vector2 axes, Vector2 posn)
     {
+        print("cmd");
         StepMovement(axes.x, axes.y);
         if (Vector2.Distance(_trans.position, posn) > 0.1f)
         {
@@ -153,6 +155,7 @@ public class PlayerMovementScript : NetworkBehaviour
     {
         if (!isLocalPlayer)
         {
+            print("rpc");
             if (_trans == null)
                 return;
 
@@ -163,6 +166,7 @@ public class PlayerMovementScript : NetworkBehaviour
     [TargetRpc]
     void TargetPosnError(NetworkConnection conn, Vector2 posn)
     {
+        print("target");
         transform.position = posn;
     }
 

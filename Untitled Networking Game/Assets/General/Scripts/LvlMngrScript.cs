@@ -5,14 +5,19 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System;
+using Mirror;
 
-public class LvlMngrScript : MonoBehaviour
+public class LvlMngrScript : NetworkBehaviour
 {
     //check multiplier
     int isMultiplayer;
     public GameObject player2;
     public GameObject singleplayerAI;
     public EconomyScript economyScript;
+
+    //give authority
+    public NetworkIdentity _player1ID;
+    public NetworkIdentity _player2ID;
 
     public GameObject _player;
     public GameObject _airStrike;
