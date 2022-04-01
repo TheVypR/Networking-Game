@@ -30194,11 +30194,12 @@ PrefabInstance:
         type: 3}
       propertyPath: playerPrefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 3522214768419059699, guid: 82611d8f24835d14a9ef03d708d0a0fc,
+        type: 3}
     - target: {fileID: 5532383811722039141, guid: ef50c374c6cb20d42b5b5f67ff163d3c,
         type: 3}
       propertyPath: autoCreatePlayer
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5532383811722039141, guid: ef50c374c6cb20d42b5b5f67ff163d3c,
         type: 3}

@@ -84,10 +84,12 @@ public class PlayerMovementScript : NetworkBehaviour
 
     private void FixedUpdate()
     {
-        if (PlayerPrefs.HasKey("player")) { 
-            if (PlayerPrefs.GetInt("player") == 1)
+        if (PlayerPrefs.HasKey("player")) {
+            print("has key");
+            if (isLocalPlayer && PlayerPrefs.GetInt("player") == 1)
             {
                 x = MyInput.GetXAxis(2) * moveSpeed;
+                print(x);
                 StepMovement(x, y);
                 if (!isServer)
                 {
