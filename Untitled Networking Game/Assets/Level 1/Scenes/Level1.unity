@@ -908,7 +908,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneId: 4088726067
   serverOnly: 0
-  visible: 0
+  visible: 2
   m_AssetId: 
   hasSpawned: 0
 --- !u!114 &453859693
@@ -926,7 +926,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   clientAuthority: 0
-  sendInterval: 0.05
+  sendInterval: 0
   syncPosition: 1
   syncRotation: 1
   syncScale: 1
@@ -28340,6 +28340,11 @@ PrefabInstance:
       objectReference: {fileID: 741302502}
     - target: {fileID: 795280971617034766, guid: 3a4df08bbcb541a4b844bcfe2d1866b9,
         type: 3}
+      propertyPath: setupTimer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 795280971617034766, guid: 3a4df08bbcb541a4b844bcfe2d1866b9,
+        type: 3}
       propertyPath: _addPlusOne
       value: 
       objectReference: {fileID: 290866720}
@@ -29850,6 +29855,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5038713645339729874, guid: 0a7e95b938820dc498188c3816c29a0f,
         type: 3}
+    - target: {fileID: 7790212316723723056, guid: 60c7afbf89a385d4fb79550a7a9e4204,
+        type: 3}
+      propertyPath: sceneId
+      value: 25421844
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60c7afbf89a385d4fb79550a7a9e4204, type: 3}
 --- !u!4 &2197986701456061082 stripped
@@ -29858,23 +29868,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2197986701456061081}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2197986701456061083
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 553485801}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneId: 1698998637
-  serverOnly: 0
-  visible: 0
-  m_AssetId: 60c7afbf89a385d4fb79550a7a9e4204
-  hasSpawned: 0
 --- !u!1001 &3079037421413079805
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30199,8 +30192,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5532383811722039141, guid: ef50c374c6cb20d42b5b5f67ff163d3c,
         type: 3}
+      propertyPath: playerPrefab
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5532383811722039141, guid: ef50c374c6cb20d42b5b5f67ff163d3c,
+        type: 3}
       propertyPath: autoCreatePlayer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5532383811722039141, guid: ef50c374c6cb20d42b5b5f67ff163d3c,
+        type: 3}
+      propertyPath: playerSpawnMethod
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef50c374c6cb20d42b5b5f67ff163d3c, type: 3}
@@ -30210,23 +30213,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5532383810908620176}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5532383810908620178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5532383810908620177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneId: 3726656940
-  serverOnly: 0
-  visible: 0
-  m_AssetId: ef50c374c6cb20d42b5b5f67ff163d3c
-  hasSpawned: 0
 --- !u!114 &5532383810908620181
 MonoBehaviour:
   m_ObjectHideFlags: 0

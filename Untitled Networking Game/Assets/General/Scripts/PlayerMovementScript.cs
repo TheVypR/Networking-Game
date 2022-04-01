@@ -22,7 +22,7 @@ public class PlayerMovementScript : NetworkBehaviour
     Vector2 spwn = new Vector2(0, 5);
 
     //control vars
-    public float moveSpeed = 10;
+    public float moveSpeed = 2;
     public float jumpSpeed = 5;
 
     //local vars
@@ -50,6 +50,10 @@ public class PlayerMovementScript : NetworkBehaviour
         _audioS = GetComponent<AudioSource>();
         _cam = Camera.main.transform;
         _trans = GetComponent<Transform>();
+        if (!_mngr)
+        {
+            _mngr = FindObjectOfType<LvlMngrScript>();
+        }
     }//end Start
 
 
@@ -80,35 +84,40 @@ public class PlayerMovementScript : NetworkBehaviour
 
     private void FixedUpdate()
     {
-        if (isLocalPlayer)
-        {
-            x = MyInput.GetXAxis(2) * moveSpeed;
-            StepMovement(x, y);
-            if (!isServer)
+        if (PlayerPrefs.HasKey("player")) { 
+            if (PlayerPrefs.GetInt("player") == 1)
             {
-                CmdUpdatePosn(new Vector2(x, y), _trans.position);
-            } else
-            {
-                RpcUpdatePosn(_trans.position);
+                x = MyInput.GetXAxis(2) * moveSpeed;
+                StepMovement(x, y);
+                if (!isServer)
+                {
+                    CmdUpdatePosn(new Vector2(x, y), _trans.position);
+                }
+                else
+                {
+                    print("server");
+                    RpcUpdatePosn(_trans.position);
+                }
             }
-        }
 
-        if (_spriteRenderer.flipX && x > 0)
-        {
-            _spriteRenderer.flipX = false;
-        }
-        else if (!_spriteRenderer.flipX && x < 0)
-        {
-            _spriteRenderer.flipX = true;
-        }
+            if (_spriteRenderer.flipX && x > 0)
+            {
+                _spriteRenderer.flipX = false;
+            }
+            else if (!_spriteRenderer.flipX && x < 0)
+            {
+                _spriteRenderer.flipX = true;
+            }
 
-        if (transform.position.y < -10)
-        {
-            _audioS.PlayOneShot(fallOutDeath, 0.5f);
-            _mngr.PlayerDeath(spwn);
-        } else if(transform.position.x < _cam.position.x - 16)
-        {
-            _mngr.PlayerDeath(spwn);
+            if (transform.position.y < -10)
+            {
+                _audioS.PlayOneShot(fallOutDeath, 0.5f);
+                _mngr.PlayerDeath(spwn);
+            }
+            else if (transform.position.x < _cam.position.x - 16)
+            {
+                _mngr.PlayerDeath(spwn);
+            }
         }
     }//end FixedUpdate
 
