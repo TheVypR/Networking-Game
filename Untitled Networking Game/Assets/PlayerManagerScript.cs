@@ -10,13 +10,15 @@ public class PlayerManagerScript : NetworkBehaviour
     {
         if (PlayerPrefs.HasKey("player"))
         {
-            if (isServer)
+            if (isServer && isLocalPlayer)
             {
                 print("serverAuth");
                 if (PlayerPrefs.GetInt("player") == 1)
                 {
                     print("auth1");
-                    FindObjectOfType<PlayerMovementScript>().gameObject.GetComponent<NetworkIdentity>().AssignClientAuthority(connectionToClient);
+                    PlayerMovementScript p1 = FindObjectOfType<PlayerMovementScript>();
+                    NetworkIdentity p1ID = p1.gameObject.GetComponent<NetworkIdentity>();
+                    p1ID.AssignClientAuthority(connectionToClient);
                 }
                 else if (PlayerPrefs.GetInt("player") == 2)
                 {
