@@ -28121,6 +28121,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4708411144179788284, guid: 3a4df08bbcb541a4b844bcfe2d1866b9,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 51
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a4df08bbcb541a4b844bcfe2d1866b9, type: 3}
 --- !u!4 &874405607 stripped
@@ -29155,6 +29160,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1875699632383166154, guid: b261f6f2d6ba10641bf9e6138ff155f8,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 1875699632383166157, guid: b261f6f2d6ba10641bf9e6138ff155f8,
         type: 3}
       propertyPath: m_Name
@@ -29164,6 +29174,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2335097171265308655, guid: b261f6f2d6ba10641bf9e6138ff155f8,
+        type: 3}
+      propertyPath: m_Name
+      value: SetupText
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b261f6f2d6ba10641bf9e6138ff155f8, type: 3}
