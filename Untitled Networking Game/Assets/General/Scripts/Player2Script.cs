@@ -69,150 +69,158 @@ public class Player2Script : PlayerBaseScript
     void Update()
     {
         //navigate the trap locations
-        if (isSetup)
+        if (hasAuthority)
         {
-            if ((Time.time - lastSwitch) >= SWITCH_RATE) {
-                if (MyInput.GetRawXAxis(3) == 1)
+            if (isSetup)
+            {
+                if ((Time.time - lastSwitch) >= SWITCH_RATE)
                 {
-                    if (place >= TRAP_MAX)
+                    if (MyInput.GetRawXAxis(3) == 1)
                     {
-                        place = 0;
+                        if (place >= TRAP_MAX)
+                        {
+                            place = 0;
+                        }
+                        else
+                        {
+                            place++;
+                        }
+                        target = spawners.transform.Find("SpwnPt " + place);
+                        lastSwitch = Time.time;
                     }
-                    else
+
+                    if (MyInput.GetRawXAxis(3) == -1)
                     {
-                        place++;
+                        if (place < 0)
+                        {
+                            place = TRAP_MAX - 1;
+                        }
+                        else
+                        {
+                            place--;
+                        }
+                        target = spawners.transform.Find("SpwnPt " + place);
+                        lastSwitch = Time.time;
                     }
-                    target = spawners.transform.Find("SpwnPt " + place);
-                    lastSwitch = Time.time;
                 }
 
-                if (MyInput.GetRawXAxis(3) == -1)
+                //trap placing
+                if (MyInput.GetPS4X(1))
                 {
-                    if (place < 0)
+                    if (proxTraps.Length > 0)
                     {
-                        place = TRAP_MAX - 1;
+                        if (_econ.SpendCoin(proxTraps[0].GetComponent<TrapScript>().cost))
+                        {
+                            GameObject trap = Instantiate(proxTraps[0], transform.position, Quaternion.identity);
+                            CmdSpawnTrap(trap);
+                        }
                     }
-                    else
+                }
+                else if (MyInput.GetPS4Square(1))
+                {
+                    if (proxTraps.Length > 1)
                     {
-                        place--;
+                        if (_econ.SpendCoin(proxTraps[1].GetComponent<TrapScript>().cost))
+                        {
+                            GameObject trap = Instantiate(proxTraps[1], transform.position, Quaternion.identity);
+                            CmdSpawnTrap(trap);
+                        }
                     }
-                    target = spawners.transform.Find("SpwnPt " + place);
-                    lastSwitch = Time.time;
+                }
+                else if (MyInput.GetPS4Circle(1))
+                {
+                    if (proxTraps.Length > 2)
+                    {
+                        if (_econ.SpendCoin(proxTraps[2].GetComponent<TrapScript>().cost))
+                        {
+                            GameObject trap = Instantiate(proxTraps[2], transform.position, Quaternion.identity);
+                            CmdSpawnTrap(trap);
+                        }
+                    }
+                }
+                else if (MyInput.GetPS4Triangle(1))
+                {
+                    if (proxTraps.Length > 3)
+                    {
+                        if (_econ.SpendCoin(proxTraps[3].GetComponent<TrapScript>().cost))
+                        {
+                            GameObject trap = Instantiate(proxTraps[3], transform.position, Quaternion.identity);
+                            CmdSpawnTrap(trap);
+                        }
+                    }
                 }
             }
+            else
+            {
+                //control camera speed
+                if ((Time.time - lastSwitch) >= SWITCH_RATE)
+                {
+                    if (MyInput.GetXAxis(3) > 0.05)
+                    {
+                        lastSwitch = Time.time;
+                        _econ.CameraSpeed(1);
+                    }
 
-        //trap placing
-            if (MyInput.GetPS4X(1))
-            {
-                if (proxTraps.Length > 0)
-                {
-                    if (_econ.SpendCoin(proxTraps[0].GetComponent<TrapScript>().cost))
+                    if (MyInput.GetXAxis(3) < -0.05)
                     {
-                        GameObject trap = Instantiate(proxTraps[0], transform.position, Quaternion.identity);
-                        NetworkServer.Spawn(trap);
+                        _econ.CameraSpeed(0);
+                        lastSwitch = Time.time;
                     }
-                }
-            }
-            else if (MyInput.GetPS4Square(1))
-            {
-                if (proxTraps.Length > 1)
-                {
-                    if(_econ.SpendCoin(proxTraps[1].GetComponent<TrapScript>().cost))
-                    {
-                        GameObject trap = Instantiate(proxTraps[1], transform.position, Quaternion.identity);
-                        NetworkServer.Spawn(trap);
-                    }
-                }
-            }
-            else if (MyInput.GetPS4Circle(1))
-            {
-                if (proxTraps.Length > 2)
-                {
-                    if(_econ.SpendCoin(proxTraps[2].GetComponent<TrapScript>().cost))
-                    {
-                        GameObject trap = Instantiate(proxTraps[2], transform.position, Quaternion.identity);
-                        NetworkServer.Spawn(trap);
-                    }
-                }
-            }
-            else if (MyInput.GetPS4Triangle(1))
-            {
-                if (proxTraps.Length > 3)
-                {
-                    if(_econ.SpendCoin(proxTraps[3].GetComponent<TrapScript>().cost))
-                    {
-                        GameObject trap = Instantiate(proxTraps[3], transform.position, Quaternion.identity);
-                        NetworkServer.Spawn(trap);
-                    }
-                }
-            }
-        }else
-        {
-            //control camera speed
-            if ((Time.time - lastSwitch) >= SWITCH_RATE)
-            {
-                if (MyInput.GetXAxis(3) > 0.05)
-                {
-                    print("faster");
-                    lastSwitch = Time.time;
-                    _econ.CameraSpeed(1);
                 }
 
-                if (MyInput.GetXAxis(3) < -0.05)
+                //trigger manual traps
+                if (MyInput.GetPS4Circle(1))
                 {
-                    print("slower");
-                    _econ.CameraSpeed(0);
-                    lastSwitch = Time.time;
-                }
-            }
-
-            //trigger manual traps
-            if (MyInput.GetPS4Circle(1))
-            {
-                if (manualTraps.Length > 0)
-                {
-                    if(_econ.SpendCoin(manualTraps[0].GetComponent<TrapScript>().cost))
+                    if (manualTraps.Length > 0)
                     {
-                        GameObject trap = Instantiate(manualTraps[0], transform.position, Quaternion.identity);
-                        NetworkServer.Spawn(trap);
+                        if (_econ.SpendCoin(manualTraps[0].GetComponent<TrapScript>().cost))
+                        {
+                            GameObject trap = Instantiate(manualTraps[0], transform.position, Quaternion.identity);
+                            CmdSpawnTrap(trap);
+                        }
                     }
                 }
-            }
-            else if (MyInput.GetPS4X(1))
-            {
-                if (manualTraps.Length > 1)
+                else if (MyInput.GetPS4X(1))
                 {
-                    if(_econ.SpendCoin(manualTraps[1].GetComponent<TrapScript>().cost))
+                    if (manualTraps.Length > 1)
                     {
-                        GameObject trap = Instantiate(manualTraps[1], transform.position, Quaternion.identity);
-                        NetworkServer.Spawn(trap);
+                        if (_econ.SpendCoin(manualTraps[1].GetComponent<TrapScript>().cost))
+                        {
+                            GameObject trap = Instantiate(manualTraps[1], transform.position, Quaternion.identity);
+                            CmdSpawnTrap(trap);
+                        }
                     }
                 }
-            }
-            else if (MyInput.GetPS4Square(1))
-            {
-                if (manualTraps.Length > 2)
+                else if (MyInput.GetPS4Square(1))
                 {
-                    if(_econ.SpendCoin(manualTraps[2].GetComponent<TrapScript>().cost))
+                    if (manualTraps.Length > 2)
                     {
-                        GameObject trap = Instantiate(manualTraps[2], transform.position, Quaternion.identity);
-                        NetworkServer.Spawn(trap);
+                        if (_econ.SpendCoin(manualTraps[2].GetComponent<TrapScript>().cost))
+                        {
+                            GameObject trap = Instantiate(manualTraps[2], transform.position, Quaternion.identity);
+                            CmdSpawnTrap(trap);
+                        }
                     }
                 }
-            }
-            else if (MyInput.GetPS4Triangle(1))
-            {
-                if (manualTraps.Length > 3)
+                else if (MyInput.GetPS4Triangle(1))
                 {
-                    if(_econ.SpendCoin(manualTraps[3].GetComponent<TrapScript>().cost))
+                    if (manualTraps.Length > 3)
                     {
-                        GameObject trap = Instantiate(manualTraps[3], transform.position, Quaternion.identity);
-                        NetworkServer.Spawn(trap);
+                        if (_econ.SpendCoin(manualTraps[3].GetComponent<TrapScript>().cost))
+                        {
+                            GameObject trap = Instantiate(manualTraps[3], transform.position, Quaternion.identity);
+                            CmdSpawnTrap(trap);
+                        }
                     }
                 }
             }
         }
-        
+    }
+
+    [Command]
+    private void CmdSpawnTrap(GameObject trap)
+    {
+        NetworkServer.Spawn(trap);
     }
 
     private void FixedUpdate()

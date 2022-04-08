@@ -69,7 +69,7 @@ public class LvlMngrScript : NetworkBehaviour
             if (isMultiplayer == 1)
             {
                 singleplayerAI.SetActive(false);
-                //_player.SetActive(false);
+                _player.GetComponent<PlayerMovementScript>().enabled = false;
                 player2.SetActive(true);
                 _camMotor.setMode(true);
             } else
@@ -223,7 +223,7 @@ public class LvlMngrScript : NetworkBehaviour
     public void StartRound()
     {
         economyScript.StartRound();
-        _player.SetActive(true);
+        _player.GetComponent<PlayerMovementScript>().enabled = true;
         Time.timeScale = 1;
         startTime = Time.time;
         transitionCanvas.SetActive(false);

@@ -35,13 +35,6 @@ public class PlayerMovementScript : PlayerBaseScript
     public AudioClip lavaDeath;
     public AudioClip fallOutDeath;
 
-    enum STATE
-    {
-        WALKING = 0,
-        JUMPING = 1
-    }//state enum
-    STATE curState = STATE.WALKING;
-
     private void Start()
     {
         _rBody = GetComponent<Rigidbody2D>();
@@ -66,15 +59,14 @@ public class PlayerMovementScript : PlayerBaseScript
 
     private void FixedUpdate()
     {
-        if (hasAuthority)
+        if (hasAuthority)//only triggered by the localPlayer that is Player 1
         {
-            print("not server");
             x = MyInput.GetXAxis(2) * moveSpeed;
             //jump
             if (MyInput.GetKeyInteract(2) && OnGround())
             {
                 y = jumpSpeed;
-                _audioS.PlayOneShot(jump, 0.25f);
+                //_audioS.PlayOneShot(jump, 0.25f);
             }
             else if (!MyInput.GetKeyInteract(2) && _rBody.velocity.y > 0)
             {
@@ -87,9 +79,8 @@ public class PlayerMovementScript : PlayerBaseScript
             StepMovement(x, y);
             CmdUpdatePosn(new Vector2(x, y), _trans.position);
         }
-        else if(isServer)
+        if(isServer)
         {
-            print("server");
             RpcUpdatePosn(_trans.position);
         }
 
@@ -116,8 +107,7 @@ public class PlayerMovementScript : PlayerBaseScript
     void StepMovement(float x, float y)
     {
         Vector2 axes = new Vector2(x, y);
-        Vector2 delta = axes * moveSpeed * Time.fixedDeltaTime;
-        _trans.Translate(delta);
+        _rBody.velocity = axes;
     }
 
     private bool OnGround()
@@ -130,7 +120,6 @@ public class PlayerMovementScript : PlayerBaseScript
     [Command]
     void CmdUpdatePosn(Vector2 axes, Vector2 posn)
     {
-        print("cmd");
         StepMovement(axes.x, axes.y);
         if (Vector2.Distance(_trans.position, posn) > 0.1f)
         {
