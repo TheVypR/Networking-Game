@@ -22,8 +22,8 @@ public class PlayerMovementScript : PlayerBaseScript
     Vector2 spwn = new Vector2(0, 5);
 
     //control vars
-    public float moveSpeed = 2;
-    public float jumpSpeed = 5;
+    public float moveSpeed = 10;
+    public float jumpSpeed = 15;
 
     //local vars
     float x;
@@ -62,11 +62,13 @@ public class PlayerMovementScript : PlayerBaseScript
         if (hasAuthority)//only triggered by the localPlayer that is Player 1
         {
             x = MyInput.GetXAxis(2) * moveSpeed;
+            print("yes");
+
             //jump
             if (MyInput.GetKeyInteract(2) && OnGround())
             {
                 y = jumpSpeed;
-                //_audioS.PlayOneShot(jump, 0.25f);
+                _audioS.PlayOneShot(jump, 0.25f);
             }
             else if (!MyInput.GetKeyInteract(2) && _rBody.velocity.y > 0)
             {
@@ -76,9 +78,14 @@ public class PlayerMovementScript : PlayerBaseScript
             {
                 y = _rBody.velocity.y;
             }//end if/elseif/else
-            StepMovement(x, y);
-            CmdUpdatePosn(new Vector2(x, y), _trans.position);
+            print("Time:" + Time.time);
+            print("(x, y): " + MyInput.GetRawXAxis(2).ToString());
+            print("posn:" + _rBody.position);
+            //StepMovement(x, y);
+            //CmdUpdatePosn(x, y, _trans.position);
         }
+
+        //server sends position to all 
         if(isServer)
         {
             RpcUpdatePosn(_trans.position);
@@ -106,6 +113,8 @@ public class PlayerMovementScript : PlayerBaseScript
 
     void StepMovement(float x, float y)
     {
+        print("x: " + x);
+        print("y " + y);
         Vector2 axes = new Vector2(x, y);
         _rBody.velocity = axes;
     }
@@ -118,9 +127,9 @@ public class PlayerMovementScript : PlayerBaseScript
     }//end OnGround
 
     [Command]
-    void CmdUpdatePosn(Vector2 axes, Vector2 posn)
+    void CmdUpdatePosn(float x, float y, Vector2 posn)
     {
-        StepMovement(axes.x, axes.y);
+        StepMovement(x, y);
         if (Vector2.Distance(_trans.position, posn) > 0.1f)
         {
             TargetPosnError(connectionToClient, _trans.position);

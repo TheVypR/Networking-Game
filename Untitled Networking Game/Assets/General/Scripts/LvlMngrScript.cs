@@ -15,10 +15,6 @@ public class LvlMngrScript : NetworkBehaviour
     public GameObject singleplayerAI;
     public EconomyScript economyScript;
 
-    //give authority
-    public NetworkIdentity _player1ID;
-    public NetworkIdentity _player2ID;
-
     public GameObject _player;
     public GameObject _airStrike;
     public GameObject _lavaFlood;

@@ -16,6 +16,7 @@ public class Player2Script : PlayerBaseScript
     Text[] proxCosts;
     Text[] manCosts;
     public GameObject indicator;
+    public Transform p1;
 
     public GameObject spawners;
     public EconomyScript _econ;
@@ -175,7 +176,7 @@ public class Player2Script : PlayerBaseScript
                     {
                         if (_econ.SpendCoin(manualTraps[0].GetComponent<TrapScript>().cost))
                         {
-                            GameObject trap = Instantiate(manualTraps[0], transform.position, Quaternion.identity);
+                            GameObject trap = Instantiate(manualTraps[0], p1.position, Quaternion.identity);
                             CmdSpawnTrap(trap);
                         }
                     }
@@ -186,7 +187,7 @@ public class Player2Script : PlayerBaseScript
                     {
                         if (_econ.SpendCoin(manualTraps[1].GetComponent<TrapScript>().cost))
                         {
-                            GameObject trap = Instantiate(manualTraps[1], transform.position, Quaternion.identity);
+                            GameObject trap = Instantiate(manualTraps[1], p1.position, Quaternion.identity);
                             CmdSpawnTrap(trap);
                         }
                     }
@@ -197,7 +198,7 @@ public class Player2Script : PlayerBaseScript
                     {
                         if (_econ.SpendCoin(manualTraps[2].GetComponent<TrapScript>().cost))
                         {
-                            GameObject trap = Instantiate(manualTraps[2], transform.position, Quaternion.identity);
+                            GameObject trap = Instantiate(manualTraps[2], p1.position, Quaternion.identity);
                             CmdSpawnTrap(trap);
                         }
                     }
@@ -208,7 +209,7 @@ public class Player2Script : PlayerBaseScript
                     {
                         if (_econ.SpendCoin(manualTraps[3].GetComponent<TrapScript>().cost))
                         {
-                            GameObject trap = Instantiate(manualTraps[3], transform.position, Quaternion.identity);
+                            GameObject trap = Instantiate(manualTraps[3], p1.position, Quaternion.identity);
                             CmdSpawnTrap(trap);
                         }
                     }
@@ -230,9 +231,6 @@ public class Player2Script : PlayerBaseScript
             if (isSetup)
             {
                 gameObject.transform.position = target.position;
-            } else
-            {
-                gameObject.transform.position = Camera.main.transform.position;
             }
         }
     }
