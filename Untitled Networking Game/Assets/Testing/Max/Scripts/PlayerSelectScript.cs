@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 using TMPro;
 using Mirror;
 
-public class PlayerSelectScript : NetworkBehaviour
+public class PlayerSelectScript : MonoBehaviour
 {
     public GameObject _highlightedP1_P1Btn;
     public GameObject _highlightedP2_P1Btn;
@@ -14,8 +14,8 @@ public class PlayerSelectScript : NetworkBehaviour
     public GameObject _P1selectP1Btn;
     public GameObject _P2selectP1Btn;
 
-    public TextMeshProUGUI _P1text;
-    public TextMeshProUGUI _P2text;
+    public TextMeshProUGUI _runner;
+    public TextMeshProUGUI _trapper;
 
 
     public GameObject _p1Btn;
@@ -32,6 +32,9 @@ public class PlayerSelectScript : NetworkBehaviour
 
     private float _highlightSizeP1 = 1;
     private float _highlightSizeP2 = 1;
+
+    private float _runnerSize = 1;
+    private float _trapperSize = 1;
 
     public bool _shrink;
     public bool _grow;
@@ -50,6 +53,8 @@ public class PlayerSelectScript : NetworkBehaviour
         _shrink = false;
         _grow = true;
 
+        
+        /*
         if (isLocalPlayer)
         {
             _highlightedP1_P1Btn.SetActive(true);
@@ -72,15 +77,132 @@ public class PlayerSelectScript : NetworkBehaviour
             _P1text.gameObject.SetActive(false);
             _P2text.gameObject.SetActive(true);
         }
+        */
 
 
-        
+        _highlightedP1_P1Btn.SetActive(true);
+        _highlightedP2_P1Btn.SetActive(false);
+
+        _P1selectP1Btn.SetActive(true);
+        _P2selectP1Btn.SetActive(false);
+
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+        if (EventSystem.current.currentSelectedGameObject == _p1Btn)
+        {
+            //cb_btn1.selectedColor = Color.yellow;
+
+            //Check if the posn is correctly in its place
+            if (a.transform.position != a1.transform.position)
+            {
+                a.transform.position = Vector2.Lerp(a.transform.position, a1.transform.position, t1);
+            }
+
+
+            if (_runner.transform.localScale.x < 2 && _runner.transform.localScale.y < 2)
+            {
+                _runner.transform.localScale = new Vector3(_runnerSize += 0.1f, _runnerSize += 0.1f, 0);
+
+                if (_runner.transform.localScale.x >= 1.99 && _runner.transform.localScale.y >= 1.99)
+                {
+                    _runner.transform.localScale = new Vector3(2, 2, 0);
+                }
+            }
+            if (_trapper.transform.localScale.x > 1 && _trapper.transform.localScale.y > 1)
+            {
+                _trapper.transform.localScale = new Vector3(_trapperSize -= 0.1f, _trapperSize -= 0.1f, 0);
+
+                if (_trapper.transform.localScale.x <= 1.01 && _trapper.transform.localScale.y <= 1.01)
+                {
+                    _runner.transform.localScale = new Vector3(1, 1, 0);
+                }
+            }
+
+
+
+            //Floating/Breathing effect for highlighted selection
+            if (_highlightedP1_P1Btn.transform.localScale.x <= 1.2f && _highlightedP1_P1Btn.transform.localScale.y <= 1.2f && _shrink == false && _grow == true)
+            {
+                if (_highlightedP1_P1Btn.transform.localScale.x >= 1.19f && _highlightedP1_P1Btn.transform.localScale.y >= 1.19f)
+                {
+                    _grow = false;
+                    _shrink = true;
+                }
+                _highlightedP1_P1Btn.transform.localScale = new Vector3(_highlightSizeP1 += 0.001f, _highlightSizeP1 += 0.001f, 0);
+            }
+            if (_highlightedP1_P1Btn.transform.localScale.x >= 1f && _highlightedP1_P1Btn.transform.localScale.y >= 1f && _grow == false && _shrink == true)
+            {
+                if (_highlightedP1_P1Btn.transform.localScale.x <= 1.01f && _highlightedP1_P1Btn.transform.localScale.y <= 1.01f)
+                {
+                    _grow = true;
+                    _shrink = false;
+                }
+                _highlightedP1_P1Btn.transform.localScale = new Vector3(_highlightSizeP1 -= 0.001f, _highlightSizeP1 -= 0.001f, 0);
+            }
+        }
+
+        if (EventSystem.current.currentSelectedGameObject == _p2Btn)
+        {
+            //cb_btn2.selectedColor = Color.yellow;
+
+
+            //Check if the posn is correctly in its place
+            if (a.transform.position != b1.transform.position)
+            {
+                a.transform.position = Vector2.Lerp(a.transform.position, b1.transform.position, t1);
+            }
+
+
+            if (_trapper.transform.localScale.x < 2 && _trapper.transform.localScale.y < 2)
+            {
+                _trapper.transform.localScale = new Vector3(_trapperSize += 0.1f, _trapperSize += 0.1f, 0);
+
+                if (_trapper.transform.localScale.x >= 1.99 && _trapper.transform.localScale.y >= 1.99)
+                {
+                    _runner.transform.localScale = new Vector3(2, 2, 0);
+                }
+            }
+            if (_runner.transform.localScale.x > 1 && _runner.transform.localScale.y > 1)
+            {
+                _runner.transform.localScale = new Vector3(_runnerSize -= 0.1f, _runnerSize -= 0.1f, 0);
+
+                if (_runner.transform.localScale.x <= 1.01 && _runner.transform.localScale.y <= 1.01)
+                {
+                    _runner.transform.localScale = new Vector3(1, 1, 0);
+                }
+            }
+
+
+            //Floating/Breathing effect for highlighted selection
+            if (_highlightedP1_P1Btn.transform.localScale.x <= 1.2f && _highlightedP1_P1Btn.transform.localScale.y <= 1.2f && _shrink == false && _grow == true)
+            {
+                if (_highlightedP1_P1Btn.transform.localScale.x >= 1.19f && _highlightedP1_P1Btn.transform.localScale.y >= 1.19f)
+                {
+                    _grow = false;
+                    _shrink = true;
+                }
+                _highlightedP1_P1Btn.transform.localScale = new Vector3(_highlightSizeP1 += 0.001f, _highlightSizeP1 += 0.001f, 0);
+            }
+            if (_highlightedP1_P1Btn.transform.localScale.x >= 1f && _highlightedP1_P1Btn.transform.localScale.y >= 1f && _grow == false && _shrink == true)
+            {
+                if (_highlightedP1_P1Btn.transform.localScale.x <= 1.01f && _highlightedP1_P1Btn.transform.localScale.y <= 1.01f)
+                {
+                    _grow = true;
+                    _shrink = false;
+                }
+                _highlightedP1_P1Btn.transform.localScale = new Vector3(_highlightSizeP1 -= 0.001f, _highlightSizeP1 -= 0.001f, 0);
+            }
+        }
+
+
+
+        /*
         if (isLocalPlayer)
         {
             if (EventSystem.current.currentSelectedGameObject == _p1Btn)
@@ -216,6 +338,7 @@ public class PlayerSelectScript : NetworkBehaviour
             }
         }
         
-        
+        */
+
     }
 }
