@@ -69,7 +69,7 @@ public class LvlMngrScript : NetworkBehaviour
             if (isMultiplayer == 1)
             {
                 singleplayerAI.SetActive(false);
-                _player.SetActive(false);
+                //_player.SetActive(false);
                 player2.SetActive(true);
                 _camMotor.setMode(true);
             } else

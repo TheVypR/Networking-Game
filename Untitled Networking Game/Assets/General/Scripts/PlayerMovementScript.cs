@@ -59,24 +59,6 @@ public class PlayerMovementScript : PlayerBaseScript
 
     private void Update()
     {
-        //jump
-        if (MyInput.GetKeyInteract(2) && OnGround())
-        {
-            y = jumpSpeed;
-            _audioS.PlayOneShot(jump, (float) 0.50);
-        }
-        else if (!MyInput.GetKeyInteract(2) && _rBody.velocity.y > 0)
-        {
-            y = 0;
-        }
-        else
-        {
-            y = _rBody.velocity.y;
-        }//end if/elseif/else
-
-        //update velocity
-        //_rBody.velocity = new Vector2(x, y);
-
         //update animation
         _anim.SetBool("Running", (x != 0));
         _anim.SetBool("Falling", (y < -0.001));
@@ -84,43 +66,50 @@ public class PlayerMovementScript : PlayerBaseScript
 
     private void FixedUpdate()
     {
-        if (PlayerPrefs.HasKey("player")) {
-            print("has key");
-            if (PlayerPrefs.GetInt("player") == 1)
+        if (hasAuthority)
+        {
+            print("not server");
+            x = MyInput.GetXAxis(2) * moveSpeed;
+            //jump
+            if (MyInput.GetKeyInteract(2) && OnGround())
             {
-                x = MyInput.GetXAxis(2) * moveSpeed;
-                print(x);
-                StepMovement(x, y);
-                if (!isServer)
-                {
-                    print("client");
-                    CmdUpdatePosn(new Vector2(x, y), _trans.position);
-                }
-                else
-                {
-                    print("server");
-                    RpcUpdatePosn(_trans.position);
-                }
+                y = jumpSpeed;
+                _audioS.PlayOneShot(jump, 0.25f);
             }
+            else if (!MyInput.GetKeyInteract(2) && _rBody.velocity.y > 0)
+            {
+                y = 0;
+            }
+            else
+            {
+                y = _rBody.velocity.y;
+            }//end if/elseif/else
+            StepMovement(x, y);
+            CmdUpdatePosn(new Vector2(x, y), _trans.position);
+        }
+        else if(isServer)
+        {
+            print("server");
+            RpcUpdatePosn(_trans.position);
+        }
 
-            if (_spriteRenderer.flipX && x > 0)
-            {
-                _spriteRenderer.flipX = false;
-            }
-            else if (!_spriteRenderer.flipX && x < 0)
-            {
-                _spriteRenderer.flipX = true;
-            }
+        if (_spriteRenderer.flipX && x > 0)
+        {
+            _spriteRenderer.flipX = false;
+        }
+        else if (!_spriteRenderer.flipX && x < 0)
+        {
+            _spriteRenderer.flipX = true;
+        }
 
-            if (transform.position.y < -10)
-            {
-                _audioS.PlayOneShot(fallOutDeath, 0.5f);
-                _mngr.PlayerDeath(spwn);
-            }
-            else if (transform.position.x < _cam.position.x - 16)
-            {
-                _mngr.PlayerDeath(spwn);
-            }
+        if (transform.position.y < -10)
+        {
+            _audioS.PlayOneShot(fallOutDeath, 0.5f);
+            _mngr.PlayerDeath(spwn);
+        }
+        else if (transform.position.x < _cam.position.x - 16)
+        {
+            _mngr.PlayerDeath(spwn);
         }
     }//end FixedUpdate
 
@@ -155,7 +144,6 @@ public class PlayerMovementScript : PlayerBaseScript
     {
         if (!isLocalPlayer)
         {
-            print("rpc");
             if (_trans == null)
                 return;
 

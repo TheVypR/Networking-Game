@@ -10,32 +10,22 @@ public class PlayerManagerScript : NetworkBehaviour
     {
         if (PlayerPrefs.HasKey("player"))
         {
-            if (isServer && isLocalPlayer)
+            if (isServer)
             {
-                print("serverAuth");
-                if (PlayerPrefs.GetInt("player") == 1)
+                if (isLocalPlayer)
                 {
-                    print("auth1");
+                    print("serverAuth");
                     PlayerMovementScript p1 = FindObjectOfType<PlayerMovementScript>();
                     NetworkIdentity p1ID = p1.gameObject.GetComponent<NetworkIdentity>();
                     p1ID.AssignClientAuthority(connectionToClient);
-                }
-                else if (PlayerPrefs.GetInt("player") == 2)
+                } else
                 {
-                    print("auth2");
-                    FindObjectOfType<Player2Script>().gameObject.GetComponent<NetworkIdentity>().AssignClientAuthority(connectionToClient);
-                }
-                else
-                {
-                    print("ERROR: No player number found");
+                    print("clientAuth");
+                    Player2Script p2 = FindObjectOfType<Player2Script>();
+                    NetworkIdentity p2ID = p2.gameObject.GetComponent<NetworkIdentity>();
+                    p2ID.AssignClientAuthority(connectionToClient);
                 }
             }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
