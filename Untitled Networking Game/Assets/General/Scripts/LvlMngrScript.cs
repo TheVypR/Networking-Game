@@ -18,6 +18,7 @@ public class LvlMngrScript : NetworkBehaviour
     public GameObject _player;
     public GameObject _airStrike;
     public GameObject _lavaFlood;
+    public GameObject _blind;
     GameObject lava;
 
     Transform _playerTrans;
@@ -225,5 +226,6 @@ public class LvlMngrScript : NetworkBehaviour
         transitionCanvas.SetActive(false);
         _camMotor.setMode(false);
         player2.GetComponent<Player2Script>().setMode(false);
+        _blind.gameObject.SetActive(false);
     }
 }

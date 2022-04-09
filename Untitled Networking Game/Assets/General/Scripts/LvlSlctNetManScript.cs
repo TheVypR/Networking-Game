@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 
 public class LvlSlctNetManScript : NetworkBehaviour
 {
-    NetworkManager netMan;
+    public NetworkManager netMan;
     public GameObject hostSelctCanvas;
     public GameObject level1Button;
     public GameObject hostButton;

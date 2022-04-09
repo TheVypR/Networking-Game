@@ -28,9 +28,11 @@ public class WaitForPlayerScript : MonoBehaviour
     {
         while (true)
         {
-            GameObject[] playerList = GameObject.FindGameObjectsWithTag("pickup");
-            int count = playerList.Length;
-            if (count > 1) { }
+            if (FindObjectsOfType<PlayerManagerScript>().Length > 1)
+            {
+                gameObject.SetActive(false);
+                playerBlind.gameObject.SetActive(true);
+            }
             yield return new WaitForSeconds(waitTime);
             
         }
