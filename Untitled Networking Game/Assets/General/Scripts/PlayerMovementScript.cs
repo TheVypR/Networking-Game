@@ -43,6 +43,17 @@ public class PlayerMovementScript : PlayerBaseScript
         _audioS = GetComponent<AudioSource>();
         _cam = Camera.main.transform;
         _trans = GetComponent<Transform>();
+
+        //start updates
+        if (hasAuthority)
+        {
+            StartCoroutine(UpdateServer());
+        }
+        if (isServer)
+        {
+            StartCoroutine(UpdateClients());
+        }
+
         if (!_mngr)
         {
             _mngr = FindObjectOfType<LvlMngrScript>();
@@ -62,9 +73,8 @@ public class PlayerMovementScript : PlayerBaseScript
         if (hasAuthority)//only triggered by the localPlayer that is Player 1
         {
             x = MyInput.GetXAxis(2) * moveSpeed;
-            print("yes");
 
-            //jump
+            ////jump
             if (MyInput.GetKeyInteract(2) && OnGround())
             {
                 y = jumpSpeed;
@@ -78,19 +88,11 @@ public class PlayerMovementScript : PlayerBaseScript
             {
                 y = _rBody.velocity.y;
             }//end if/elseif/else
-            print("Time:" + Time.time);
-            print("(x, y): " + MyInput.GetRawXAxis(2).ToString());
-            print("posn:" + _rBody.position);
-            //StepMovement(x, y);
-            //CmdUpdatePosn(x, y, _trans.position);
+
+            StepMovement(x, y);
         }
 
-        //server sends position to all 
-        if(isServer)
-        {
-            RpcUpdatePosn(_trans.position);
-        }
-
+        //flip sprite
         if (_spriteRenderer.flipX && x > 0)
         {
             _spriteRenderer.flipX = false;
@@ -100,6 +102,7 @@ public class PlayerMovementScript : PlayerBaseScript
             _spriteRenderer.flipX = true;
         }
 
+        //detect if player is off screen
         if (transform.position.y < -10)
         {
             _audioS.PlayOneShot(fallOutDeath, 0.5f);
@@ -110,6 +113,24 @@ public class PlayerMovementScript : PlayerBaseScript
             _mngr.PlayerDeath(spwn);
         }
     }//end FixedUpdate
+
+    IEnumerator UpdateServer()
+    {
+        while (true)
+        {
+            CmdUpdatePosn(x, y, _rBody.position);
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
+    IEnumerator UpdateClients()
+    {
+        while (true)
+        {
+            RpcUpdatePosn(_rBody.position);
+            yield return new WaitForFixedUpdate();
+        }
+    }
 
     void StepMovement(float x, float y)
     {
@@ -132,7 +153,7 @@ public class PlayerMovementScript : PlayerBaseScript
         StepMovement(x, y);
         if (Vector2.Distance(_trans.position, posn) > 0.1f)
         {
-            TargetPosnError(connectionToClient, _trans.position);
+            TargetPosnError(connectionToClient, _rBody.position);
         }
         RpcUpdatePosn(_trans.position);
     }
