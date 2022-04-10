@@ -69,6 +69,42 @@ public class Player2Script : PlayerBaseScript
     // Update is called once per frame
     void Update()
     {
+        
+    }
+
+    [Command]
+    private void CmdSpawnTrap(int index, string type)
+    {
+        GameObject trap;
+            print("netspawn");
+        if (type.Equals("prox"))
+        {
+            trap = Instantiate(proxTraps[index], transform.position, Quaternion.identity);
+        } else
+        {
+            trap = Instantiate(manualTraps[index], transform.position, Quaternion.identity);
+        }
+        NetworkServer.Spawn(trap);
+    }
+
+    [Command]
+    private void CmdMoveTrapSpawn(Vector2 target)
+    {
+        gameObject.transform.position = target;
+    }
+
+    private void FixedUpdate()
+    {
+        //move to next target
+        if (target)
+        {
+            if (isSetup)
+            {
+                gameObject.transform.position = target.position;
+                CmdMoveTrapSpawn(target.position);
+            }
+        }
+
         //navigate the trap locations
         if (hasAuthority)
         {
@@ -112,8 +148,7 @@ public class Player2Script : PlayerBaseScript
                     {
                         if (_econ.SpendCoin(proxTraps[0].GetComponent<TrapScript>().cost))
                         {
-                            GameObject trap = Instantiate(proxTraps[0], transform.position, Quaternion.identity);
-                            CmdSpawnTrap(trap);
+                            CmdSpawnTrap(0, "prox");
                         }
                     }
                 }
@@ -123,8 +158,7 @@ public class Player2Script : PlayerBaseScript
                     {
                         if (_econ.SpendCoin(proxTraps[1].GetComponent<TrapScript>().cost))
                         {
-                            GameObject trap = Instantiate(proxTraps[1], transform.position, Quaternion.identity);
-                            CmdSpawnTrap(trap);
+                            CmdSpawnTrap(1, "prox");
                         }
                     }
                 }
@@ -134,8 +168,7 @@ public class Player2Script : PlayerBaseScript
                     {
                         if (_econ.SpendCoin(proxTraps[2].GetComponent<TrapScript>().cost))
                         {
-                            GameObject trap = Instantiate(proxTraps[2], transform.position, Quaternion.identity);
-                            CmdSpawnTrap(trap);
+                            CmdSpawnTrap(2, "prox");
                         }
                     }
                 }
@@ -145,8 +178,7 @@ public class Player2Script : PlayerBaseScript
                     {
                         if (_econ.SpendCoin(proxTraps[3].GetComponent<TrapScript>().cost))
                         {
-                            GameObject trap = Instantiate(proxTraps[3], transform.position, Quaternion.identity);
-                            CmdSpawnTrap(trap);
+                            CmdSpawnTrap(3, "prox");
                         }
                     }
                 }
@@ -176,8 +208,7 @@ public class Player2Script : PlayerBaseScript
                     {
                         if (_econ.SpendCoin(manualTraps[0].GetComponent<TrapScript>().cost))
                         {
-                            GameObject trap = Instantiate(manualTraps[0], p1.position, Quaternion.identity);
-                            CmdSpawnTrap(trap);
+                            CmdSpawnTrap(0, "manual");
                         }
                     }
                 }
@@ -187,8 +218,7 @@ public class Player2Script : PlayerBaseScript
                     {
                         if (_econ.SpendCoin(manualTraps[1].GetComponent<TrapScript>().cost))
                         {
-                            GameObject trap = Instantiate(manualTraps[1], p1.position, Quaternion.identity);
-                            CmdSpawnTrap(trap);
+                            CmdSpawnTrap(1, "manual");
                         }
                     }
                 }
@@ -198,8 +228,7 @@ public class Player2Script : PlayerBaseScript
                     {
                         if (_econ.SpendCoin(manualTraps[2].GetComponent<TrapScript>().cost))
                         {
-                            GameObject trap = Instantiate(manualTraps[2], p1.position, Quaternion.identity);
-                            CmdSpawnTrap(trap);
+                            CmdSpawnTrap(2, "manual");
                         }
                     }
                 }
@@ -209,28 +238,10 @@ public class Player2Script : PlayerBaseScript
                     {
                         if (_econ.SpendCoin(manualTraps[3].GetComponent<TrapScript>().cost))
                         {
-                            GameObject trap = Instantiate(manualTraps[3], p1.position, Quaternion.identity);
-                            CmdSpawnTrap(trap);
+                            CmdSpawnTrap(3, "manual");
                         }
                     }
                 }
-            }
-        }
-    }
-
-    [Command]
-    private void CmdSpawnTrap(GameObject trap)
-    {
-        NetworkServer.Spawn(trap);
-    }
-
-    private void FixedUpdate()
-    {
-        if (target)
-        {
-            if (isSetup)
-            {
-                gameObject.transform.position = target.position;
             }
         }
     }
