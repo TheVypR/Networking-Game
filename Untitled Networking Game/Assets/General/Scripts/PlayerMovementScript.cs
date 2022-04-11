@@ -114,6 +114,7 @@ public class PlayerMovementScript : PlayerBaseScript
         }
     }//end FixedUpdate
 
+    //update the server
     IEnumerator UpdateServer()
     {
         while (true)
@@ -134,8 +135,6 @@ public class PlayerMovementScript : PlayerBaseScript
 
     void StepMovement(float x, float y)
     {
-        print("x: " + x);
-        print("y " + y);
         Vector2 axes = new Vector2(x, y);
         _rBody.velocity = axes;
     }
@@ -173,7 +172,6 @@ public class PlayerMovementScript : PlayerBaseScript
     [TargetRpc]
     void TargetPosnError(NetworkConnection conn, Vector2 posn)
     {
-        print("target");
         transform.position = posn;
     }
 

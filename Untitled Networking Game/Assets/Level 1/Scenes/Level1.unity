@@ -987,6 +987,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37c16344ea7bc7e41b678fad54d537b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   _playerTrans: {fileID: 937353696}
   _player2Trans: {fileID: 2197986701456061082}
   background: {fileID: 349216971}
@@ -28401,7 +28403,7 @@ PrefabInstance:
     - target: {fileID: 795280971617034766, guid: 3a4df08bbcb541a4b844bcfe2d1866b9,
         type: 3}
       propertyPath: setupTimer
-      value: 45
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 795280971617034766, guid: 3a4df08bbcb541a4b844bcfe2d1866b9,
         type: 3}

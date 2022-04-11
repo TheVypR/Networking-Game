@@ -214,7 +214,6 @@ public class Player2Script : PlayerBaseScript
     private void CmdSpawnTrap(int index, string type)
     {
         GameObject trap;
-            print("netspawn");
         if (type.Equals("prox"))
         {
             trap = Instantiate(proxTraps[index], transform.position, Quaternion.identity);

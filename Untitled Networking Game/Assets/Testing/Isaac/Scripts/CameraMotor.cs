@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class CameraMotor : MonoBehaviour
+public class CameraMotor : NetworkBehaviour
 {
     public Transform _playerTrans;
     public Transform _player2Trans;
@@ -25,6 +26,11 @@ public class CameraMotor : MonoBehaviour
 
     }
 
+    void FixedUpdate()
+    {
+
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -37,18 +43,18 @@ public class CameraMotor : MonoBehaviour
             Camera.main.orthographicSize = 16;
             background.transform.localScale = new Vector3(3f, 3f, 1);
         }
-        Follow(debug);
+        Follow();
 
     }
 
-    void Follow(bool isDebug)
+    void Follow()
     {
         Vector3 targetPos = transform.position;
         if (_playerTrans)
         {
             if (!isSetup)
             {
-                if (isDebug)
+                if (debug)
                 {
                     if (_playerTrans.position.y > transform.position.y + 2)
                     {
@@ -89,7 +95,18 @@ public class CameraMotor : MonoBehaviour
 
     void AutoMove()
     {
-        transform.position += new Vector3(autoSpeed, 0, 0);
+        if (isServer)
+        {
+            transform.position += new Vector3(autoSpeed, 0, 0);
+            RpcUpdateCamera(autoSpeed, transform.position);
+        }
+    }
+
+    [ClientRpc]
+    void RpcUpdateCamera(float curSpeed, Vector3 pos)
+    {
+        transform.position = pos;
+        autoSpeed = curSpeed;
     }
 
     public void setMode(bool setup)

@@ -39,6 +39,7 @@ public class LvlMngrScript : NetworkBehaviour
     //setup or gameplay
     public GameObject transitionCanvas;
     public CameraMotor _camMotor;
+    Transform _camTrans;
     bool isSetup = false;
     public float setupTimer = 30;
     float setupStart;
@@ -83,6 +84,7 @@ public class LvlMngrScript : NetworkBehaviour
             singleplayerAI.SetActive(true);
         }
 
+        _camTrans = Camera.main.transform;
         _playerRbody = _player.GetComponent<Rigidbody2D>();
         _playerTrans = _player.GetComponent<Transform>();
 
@@ -165,21 +167,39 @@ public class LvlMngrScript : NetworkBehaviour
     void Respawn()
     {
         //Handle all respawn timer and texts
-        {
-            _respawnCanvas.SetActive(false);
-            _timeRespawn = 4f;
-            _dead = false;
-            _textRise = 0;
-        }
-
-
+        _respawnCanvas.SetActive(false);
+        _timeRespawn = 4f;
+        _dead = false;
+        _textRise = 0;
+        
         _player.SetActive(true);
 
         _playerTrans.position = spwn;
-        Camera.main.transform.position = new Vector3(spwn.x, spwn.y, -10);
+        Vector3 camPos = new Vector3(spwn.x, spwn.y, -10);
+        _camTrans.position = camPos;
+        if (isServer)
+        {
+            RpcCameraReset(camPos);
+        }
         _playerRbody.velocity = Vector3.zero;
         _player.GetComponent<PlayerMovementScript>().moveSpeed = 10;
         Destroy(lava);
+    }
+
+    [Command]
+    void CmdCameraReset(Vector3 pos)
+    {
+        print(pos);
+        _camTrans.position = pos;
+        print(_camTrans.position);
+        RpcCameraReset(pos);
+    }
+
+    [ClientRpc]
+    void RpcCameraReset(Vector3 pos)
+    {
+        print(pos);
+        _camTrans.position = pos;
     }
 
     public void PlayerDeath(Vector2 spwn)
