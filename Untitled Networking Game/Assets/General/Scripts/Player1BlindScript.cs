@@ -21,14 +21,12 @@ public class Player1BlindScript : NetworkBehaviour
     {
         if(player1.hasAuthority)
         {
-            setupText.SetActive(false);
+            setupText.SetActive(true);
+            setupPanel.SetActive(true);
+        } else
+        {
+            setupPanel.SetActive(false);
             setupPanel.SetActive(false);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

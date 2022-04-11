@@ -28423,7 +28423,7 @@ PrefabInstance:
     - target: {fileID: 795280971617034766, guid: 3a4df08bbcb541a4b844bcfe2d1866b9,
         type: 3}
       propertyPath: setupTimer
-      value: 120
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 795280971617034766, guid: 3a4df08bbcb541a4b844bcfe2d1866b9,
         type: 3}
@@ -29748,7 +29748,7 @@ PrefabInstance:
     - target: {fileID: 1875699632383166157, guid: b261f6f2d6ba10641bf9e6138ff155f8,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2335097171265308655, guid: b261f6f2d6ba10641bf9e6138ff155f8,
         type: 3}
