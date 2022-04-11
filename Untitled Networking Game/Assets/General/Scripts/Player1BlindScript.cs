@@ -21,12 +21,14 @@ public class Player1BlindScript : NetworkBehaviour
     {
         if(player1.hasAuthority)
         {
+            print("auth");
             setupText.SetActive(true);
             setupPanel.SetActive(true);
         } else
         {
+            print("notauth");
             setupPanel.SetActive(false);
-            setupPanel.SetActive(false);
+            setupText.SetActive(false);
         }
     }
 }
