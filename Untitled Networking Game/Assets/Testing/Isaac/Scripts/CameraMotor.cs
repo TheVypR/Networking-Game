@@ -90,18 +90,21 @@ public class CameraMotor : NetworkBehaviour
             {
                 targetPos = new Vector3(_player2Trans.position.x, _player2Trans.position.y, -10);
             }
-
-            transform.position = Vector3.Lerp(transform.position, targetPos, moveSpeed * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, targetPos, moveSpeed*Time.deltaTime);
+            RpcUpdateY(transform.position);
         }
+    }
+
+    [ClientRpc]
+    void RpcUpdateY(Vector3 pos)
+    {
+        transform.position = pos;
     }
 
     void AutoMove()
     {
-        if (isServer)
-        {
-            transform.position += new Vector3(autoSpeed*Time.deltaTime, 0, 0);
-            RpcUpdateCamera(autoSpeed, transform.position);
-        }
+        transform.position += new Vector3(autoSpeed*Time.deltaTime, 0, 0);
+        RpcUpdateCamera(autoSpeed, transform.position);
     }
 
     [ClientRpc]
