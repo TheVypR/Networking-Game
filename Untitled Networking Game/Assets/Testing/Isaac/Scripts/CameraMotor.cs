@@ -15,7 +15,7 @@ public class CameraMotor : NetworkBehaviour
 
     //control vars
     private float moveSpeed = 1.5f;
-    public float autoSpeed = 0.035f;
+    public float autoSpeed = 35f;
     public float followDistance = 3f;
     Vector3 Yoffset = new Vector3(0, 5, 0);
     Vector3 Xoffset = new Vector3(5, 0, 0);
@@ -34,17 +34,19 @@ public class CameraMotor : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!debug && !isSetup)
+        if (isServer)
         {
-            AutoMove();
+            if (!debug && !isSetup)
+            {
+                AutoMove();
+            }
+            if (isSetup)
+            {
+                Camera.main.orthographicSize = 16;
+                background.transform.localScale = new Vector3(3f, 3f, 1);
+            }
+            Follow();
         }
-        if (isSetup)
-        {
-            Camera.main.orthographicSize = 16;
-            background.transform.localScale = new Vector3(3f, 3f, 1);
-        }
-        Follow();
-
     }
 
     void Follow()
@@ -97,7 +99,7 @@ public class CameraMotor : NetworkBehaviour
     {
         if (isServer)
         {
-            transform.position += new Vector3(autoSpeed, 0, 0);
+            transform.position += new Vector3(autoSpeed*Time.deltaTime, 0, 0);
             RpcUpdateCamera(autoSpeed, transform.position);
         }
     }

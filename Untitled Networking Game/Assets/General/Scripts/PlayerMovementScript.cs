@@ -119,7 +119,7 @@ public class PlayerMovementScript : PlayerBaseScript
     {
         while (true)
         {
-            CmdUpdatePosn(x, y, _rBody.position);
+            CmdUpdatePosn(_rBody.position, _rBody.velocity);
             yield return new WaitForFixedUpdate();
         }
     }
@@ -128,7 +128,7 @@ public class PlayerMovementScript : PlayerBaseScript
     {
         while (true)
         {
-            RpcUpdatePosn(_rBody.position);
+            RpcUpdatePosn(_rBody.position, _rBody.velocity);
             yield return new WaitForFixedUpdate();
         }
     }
@@ -147,32 +147,32 @@ public class PlayerMovementScript : PlayerBaseScript
     }//end OnGround
 
     [Command]
-    void CmdUpdatePosn(float x, float y, Vector2 posn)
+    void CmdUpdatePosn(Vector2 posn, Vector2 vel)
     {
-        StepMovement(x, y);
+        _rBody.velocity = vel;
+        _rBody.position = posn;
         if (Vector2.Distance(_trans.position, posn) > 0.1f)
         {
-            TargetPosnError(connectionToClient, _rBody.position);
+            TargetPosnError(connectionToClient, _rBody.position, _rBody.velocity);
         }
-        RpcUpdatePosn(_trans.position);
+        RpcUpdatePosn(_trans.position, vel);
     }
 
     [ClientRpc]
-    void RpcUpdatePosn(Vector2 posn)
+    void RpcUpdatePosn(Vector2 posn, Vector2 vel)
     {
-        if (!isLocalPlayer)
-        {
-            if (_trans == null)
-                return;
+        if (_trans == null)
+            return;
 
-            _trans.position = posn;
-        }
+        _trans.position = posn;
+        _rBody.velocity = vel;
     }
 
     [TargetRpc]
-    void TargetPosnError(NetworkConnection conn, Vector2 posn)
+    void TargetPosnError(NetworkConnection conn, Vector2 posn, Vector2 vel)
     {
-        transform.position = posn;
+        _rBody.position = posn;
+        _rBody.velocity = vel;
     }
 
     //fires if the player runs into a trigger
