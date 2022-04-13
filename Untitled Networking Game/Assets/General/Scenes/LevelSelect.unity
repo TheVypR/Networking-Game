@@ -154,6 +154,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb803a0272b5d0f48933d1e82a88ec67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   lvlSelect: {fileID: 674303837}
   startLevel: {fileID: 2103696639}
 --- !u!4 &110237935
@@ -1362,7 +1364,7 @@ PrefabInstance:
     - target: {fileID: 5532383811722039141, guid: ef50c374c6cb20d42b5b5f67ff163d3c,
         type: 3}
       propertyPath: dontDestroyOnLoad
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef50c374c6cb20d42b5b5f67ff163d3c, type: 3}

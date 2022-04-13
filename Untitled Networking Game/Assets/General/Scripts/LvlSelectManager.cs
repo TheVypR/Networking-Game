@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Mirror;
 
-public class LvlSelectManager : MonoBehaviour
+public class LvlSelectManager : NetworkBehaviour
 {
     string scenename = "";
     public GameObject lvlSelect;
@@ -35,7 +36,8 @@ public class LvlSelectManager : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("Level1");
+            SceneManager.LoadSceneAsync("Level1", LoadSceneMode.Additive);
+            
         }
     }
 

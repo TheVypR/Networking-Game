@@ -55,15 +55,18 @@ public class LvlMngrScript : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SceneManager.UnloadSceneAsync("LevelSelect");
         //check if multiplayer
         if (PlayerPrefs.HasKey("mode"))
         {
             isMultiplayer = PlayerPrefs.GetInt("mode");
             if(isMultiplayer == 2)
             {
-            }
-            //disable trap AI
-            if (isMultiplayer == 1)
+                singleplayerAI.SetActive(false);
+                _player.GetComponent<PlayerMovementScript>().enabled = false;
+                player2.SetActive(true);
+                _camMotor.setMode(true);
+            } else if (isMultiplayer == 1)
             {
                 singleplayerAI.SetActive(false);
                 _player.GetComponent<PlayerMovementScript>().enabled = false;
@@ -94,7 +97,7 @@ public class LvlMngrScript : NetworkBehaviour
         _countDeaths = 0;
         _textRise = 0;
 
-        if (isMultiplayer == 1)
+        if (isMultiplayer == 1 || isMultiplayer == 2)
         {
             isSetup = true;
             setupStart = Time.time;
@@ -164,7 +167,7 @@ public class LvlMngrScript : NetworkBehaviour
         {
             //update timer
             timeLeft = (int)(setupTimer - (Time.time - setupStart));
-            if (isMultiplayer == 1 && timeLeft <= 0)
+            if ((isMultiplayer == 1 || isMultiplayer == 2) && timeLeft <= 0)
             {
                 isSetup = false;
                 //load intermediary canvas and pause time
