@@ -19,6 +19,7 @@ public class CanvasManagerScript : NetworkBehaviour
     void Start()
     {
         StartCoroutine(SearchPlayers());
+        
 
         if (player1.hasAuthority)
         {
