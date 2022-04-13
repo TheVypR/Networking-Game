@@ -71,18 +71,24 @@ public class LvlSelectManager : MonoBehaviour
         SceneManager.LoadScene("Main Menu");
     }
 
-    public void LevelSelect(bool isMultiplayer)
+    public void LevelSelect(int mode)
     {
-        print(isMultiplayer);
-        if (isMultiplayer)
-        {
-            print(isMultiplayer);
-            PlayerPrefs.SetInt("mode", 1);
-        } else
-        {
-            PlayerPrefs.SetInt("mode", 0);
-            print(PlayerPrefs.GetInt("mode"));
-        }
+        //if (isMultiplayer)
+        //{
+        //    PlayerPrefs.SetInt("mode", 1);
+        //    if (isOnline)
+        //    {
+        //        PlayerPrefs.SetInt("online", 1);
+        //    } else
+        //    {
+        //        PlayerPrefs.SetInt("online", 0);
+        //    }
+        //} else
+        //{
+        //    PlayerPrefs.SetInt("mode", 0);
+        //    PlayerPrefs.SetInt("online", 0);
+        //}
+        PlayerPrefs.SetInt("mode", mode);
         SceneManager.LoadScene("LevelSelect");
     }
 
