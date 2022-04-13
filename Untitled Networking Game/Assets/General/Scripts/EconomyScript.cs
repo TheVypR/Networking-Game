@@ -21,7 +21,7 @@ public class EconomyScript : NetworkBehaviour
     Coroutine gainRoutine;
     Coroutine drainRoutine;
 
-    public CanvasManagerScript canvScript;
+    //public CanvasManagerScript canvScript;
 
     // Start is called before the first frame update
     void Start()
@@ -42,7 +42,7 @@ public class EconomyScript : NetworkBehaviour
     public void StartRound()
     {
         setupMode = false;
-        canvScript.setPlayerOneBlind(false);
+        //canvScript.setPlayerOneBlind(false);
         gainRoutine = StartCoroutine(GainMoney());
     }
 

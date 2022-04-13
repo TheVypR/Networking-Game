@@ -26,27 +26,25 @@ public class CameraMotor : NetworkBehaviour
 
     }
 
-    void FixedUpdate()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
+        //have the server update the position
         if (isServer)
         {
             if (!debug && !isSetup)
             {
                 AutoMove();
             }
-            if (isSetup)
-            {
-                Camera.main.orthographicSize = 16;
-                background.transform.localScale = new Vector3(3f, 3f, 1);
-            }
             Follow();
         }
+
+        //set the size for all machine
+        if (isSetup)
+        {
+            Camera.main.orthographicSize = 16;
+            background.transform.localScale = new Vector3(3f, 3f, 1);
+        }      
     }
 
     void Follow()

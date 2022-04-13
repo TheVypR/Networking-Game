@@ -1137,10 +1137,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  lastSyncTime: 0
+  <netIdentity>k__BackingField: {fileID: 0}
+  <ComponentIndex>k__BackingField: 0
+  <syncVarDirtyBits>k__BackingField: 0
+  syncObjectDirtyBits: 0
+  syncVarHookGuard: 0
   player1: {fileID: 937353697}
   setupText: {fileID: 1875699633076213730}
   setupPanel: {fileID: 1875699633076213729}
+  waitTime: 0.5
   playerWaitingBlind: {fileID: 121185589}
+  blindPlayerOne: 1
 --- !u!114 &522507500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29655,6 +29663,11 @@ PrefabInstance:
     - target: {fileID: 1875699632383166153, guid: b261f6f2d6ba10641bf9e6138ff155f8,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1875699632383166154, guid: b261f6f2d6ba10641bf9e6138ff155f8,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1875699632383166154, guid: b261f6f2d6ba10641bf9e6138ff155f8,
