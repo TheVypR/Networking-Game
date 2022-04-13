@@ -6,8 +6,12 @@ using UnityEngine.EventSystems;
 using TMPro;
 using Mirror;
 
-public class PlayerSelectScript : NetworkBehaviour
+public class PlayerSelectScript : MonoBehaviour
 {
+    public PSelectButtonManager _manager;
+    //public NetworkManager netMan;
+
+
     public GameObject _highlightedP1_P1Btn;
     public GameObject _highlightedP2_P1Btn;
 
@@ -45,6 +49,12 @@ public class PlayerSelectScript : NetworkBehaviour
 
     ColorBlock cb_btn1;
     ColorBlock cb_btn2;
+
+
+    bool _p1Runner = true;
+    bool _p1Trapper = true;
+    bool _p2Runner = true;
+    bool _p2Trapper = true;
 
     // Start is called before the first frame update
     void Start()
@@ -113,6 +123,8 @@ public class PlayerSelectScript : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        
 
         if (EventSystem.current.currentSelectedGameObject == _p1Btn)
         {
@@ -220,6 +232,7 @@ public class PlayerSelectScript : NetworkBehaviour
             }
         }
 
+        
 
 
         /*
@@ -234,6 +247,15 @@ public class PlayerSelectScript : NetworkBehaviour
                 {
                     a.transform.position = Vector2.Lerp(a.transform.position, a1.transform.position, t1);
                 }
+
+                
+                if (_manager.isRunner)
+                {
+                    print("Player 1 is now the runner!");
+                    //TODO: Breka out of the loop somehow
+                }
+
+                
 
 
 
@@ -268,6 +290,14 @@ public class PlayerSelectScript : NetworkBehaviour
                 {
                     a.transform.position = Vector2.Lerp(a.transform.position, b1.transform.position, t1);
                 }
+
+
+                if (_manager.isTrapper)
+                {
+                    print("Player 1 is now the trapper!");
+                    //TODO: Break out of the loop somehow
+                }
+
 
                 //Floating/Breathing effect for highlighted selection
                 if (_highlightedP1_P1Btn.transform.localScale.x <= 1.2f && _highlightedP1_P1Btn.transform.localScale.y <= 1.2f && _shrink == false && _grow == true)
@@ -303,6 +333,15 @@ public class PlayerSelectScript : NetworkBehaviour
                 }
 
 
+                if (_manager.isRunner)
+                {
+                    print("Player 2 is now the runner!");
+                    //TODO: Break out of the loop somehow
+                }
+
+                
+
+
 
                 //Floating/Breathing effect for highlighted selection
                 if (_highlightedP2_P1Btn.transform.localScale.x <= 1.2f && _highlightedP2_P1Btn.transform.localScale.y <= 1.2f && _shrink == false && _grow == true)
@@ -335,6 +374,14 @@ public class PlayerSelectScript : NetworkBehaviour
                 {
                     a.transform.position = Vector2.Lerp(a.transform.position, b1.transform.position, t1);
                 }
+
+
+                if (_manager.isTrapper)
+                {
+                    print("Player 2 is now the trapper!");
+                    //TODO: Break out of the loop somehow
+                }
+
 
                 //Floating/Breathing effect for highlighted selection
                 if (_highlightedP2_P1Btn.transform.localScale.x <= 1.2f && _highlightedP2_P1Btn.transform.localScale.y <= 1.2f && _shrink == false && _grow == true)

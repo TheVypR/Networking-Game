@@ -9240,6 +9240,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2116516156}
     m_Modifications:
+    - target: {fileID: 2983348914883767311, guid: 30d7296bf3333e8499e32cfd96e6be48,
+        type: 3}
+      propertyPath: sceneId
+      value: 4040721455
+      objectReference: {fileID: 0}
     - target: {fileID: 6058287159740271694, guid: 30d7296bf3333e8499e32cfd96e6be48,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -9268,7 +9273,7 @@ PrefabInstance:
     - target: {fileID: 6058287160162197093, guid: 30d7296bf3333e8499e32cfd96e6be48,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 27.50512
+      value: 27.42
       objectReference: {fileID: 0}
     - target: {fileID: 6058287160162197093, guid: 30d7296bf3333e8499e32cfd96e6be48,
         type: 3}

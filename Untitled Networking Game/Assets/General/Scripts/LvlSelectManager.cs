@@ -28,14 +28,30 @@ public class LvlSelectManager : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("mode") == 1)
         {
+            //check if the players have been selected, if not then send to select scene
+            if (PlayerPrefs.GetInt("runner") == 1 && PlayerPrefs.GetInt("trapper") == 2)
+            {
+                SceneManager.LoadScene("Level1");
+            }
+            else
+            {
+                SceneManager.LoadScene("Player Select");
+            }
+
+
             scenename = "Level1";
             lvlSelect.enabled = false;
             startLevel.enabled = true;
         }
         else
         {
-            SceneManager.LoadScene("Level1");
+            
+            
+            
         }
+
+
+        
     }
 
     public void LevelTwo()
@@ -49,7 +65,21 @@ public class LvlSelectManager : MonoBehaviour
         else
         {
             SceneManager.LoadScene("Level2");
+            /*
+            //check if the players have been selected, if not then send to select scene
+            if (PlayerPrefs.GetInt("runner") == 1 && PlayerPrefs.GetInt("trapper") == 2)
+            {
+                SceneManager.LoadScene("Level2");
+            }
+            else
+            {
+                SceneManager.LoadScene("PlayerSelect");
+            }
+            */
         }
+
+
+        
     }
 
     public void LevelThree()
@@ -63,7 +93,21 @@ public class LvlSelectManager : MonoBehaviour
         else
         {
             SceneManager.LoadScene("Level3");
+            /*
+            //check if the players have been selected, if not then send to select scene
+            if (PlayerPrefs.GetInt("runner") == 1 && PlayerPrefs.GetInt("trapper") == 2)
+            {
+                SceneManager.LoadScene("Level3");
+            }
+            else
+            {
+                SceneManager.LoadScene("PlayerSelect");
+            }
+            */
         }
+
+
+        
     }
 
     public void Back()
@@ -83,7 +127,7 @@ public class LvlSelectManager : MonoBehaviour
             PlayerPrefs.SetInt("mode", 0);
             print(PlayerPrefs.GetInt("mode"));
         }
-        SceneManager.LoadScene("Player Select");
+        SceneManager.LoadScene("LevelSelect");
     }
 
     public void Quit()
