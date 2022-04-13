@@ -6,10 +6,13 @@ using UnityEngine.EventSystems;
 using TMPro;
 using Mirror;
 
-public class PlayerSelectScript : MonoBehaviour
+public class PlayerSelectScript : NetworkBehaviour
 {
     public GameObject _highlightedP1_P1Btn;
     public GameObject _highlightedP2_P1Btn;
+
+    //PlayerPrefs here
+    int isMultiplayer;
 
     public GameObject _P1selectP1Btn;
     public GameObject _P2selectP1Btn;
@@ -86,6 +89,23 @@ public class PlayerSelectScript : MonoBehaviour
         _P1selectP1Btn.SetActive(true);
         _P2selectP1Btn.SetActive(false);
 
+
+
+        /*
+
+        if (PlayerPrefs.HasKey("mode"))
+        {
+            isMultiplayer = PlayerPrefs.GetInt("mode");
+
+            if (isMultiplayer == 1)
+            {
+
+            }
+        }
+
+        */
+
+        
 
 
     }

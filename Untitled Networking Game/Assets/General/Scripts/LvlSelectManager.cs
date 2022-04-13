@@ -83,7 +83,7 @@ public class LvlSelectManager : MonoBehaviour
             PlayerPrefs.SetInt("mode", 0);
             print(PlayerPrefs.GetInt("mode"));
         }
-        SceneManager.LoadScene("LevelSelect");
+        SceneManager.LoadScene("Player Select");
     }
 
     public void Quit()
