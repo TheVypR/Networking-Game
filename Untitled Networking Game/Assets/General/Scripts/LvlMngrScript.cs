@@ -15,12 +15,8 @@ public class LvlMngrScript : NetworkBehaviour
     public GameObject singleplayerAI;
     public EconomyScript economyScript;
 
+    //player objects
     public GameObject _player;
-    public GameObject _airStrike;
-    public GameObject _lavaFlood;
-    public GameObject _blind;
-    GameObject lava;
-
     Transform _playerTrans;
     Rigidbody2D _playerRbody;
 
@@ -111,6 +107,47 @@ public class LvlMngrScript : NetworkBehaviour
         transitionCanvas.SetActive(false);
     }
 
+    void StartSinglePlayer()
+    {
+        //start in play mode
+        startTime = Time.time;
+        //disable trap AI
+        player2.SetActive(false);
+
+    }
+
+    void StartLocalMultiplayer()
+    {
+        //start in setup mode
+        isSetup = true;
+        setupStart = Time.time;
+
+        //disable trap AI
+        singleplayerAI.SetActive(false);
+
+        //guarantee p2 is active
+        player2.SetActive(true);
+
+        //disable p1 script for setup phase
+        _player.GetComponent<PlayerMovementScript>().enabled = false;
+    }
+
+    void StartOnlineMultiplayer()
+    {
+        //start in setup mode
+        isSetup = true;
+        setupStart = Time.time;
+
+        //disable trap AI
+        singleplayerAI.SetActive(false);
+
+        //guarantee p2 is active
+        player2.SetActive(true);
+
+        //disable p1 script for setup phase
+        _player.GetComponent<PlayerMovementScript>().enabled = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -183,7 +220,6 @@ public class LvlMngrScript : NetworkBehaviour
         }
         _playerRbody.velocity = Vector3.zero;
         _player.GetComponent<PlayerMovementScript>().moveSpeed = 10;
-        Destroy(lava);
     }
 
     [Command]
@@ -246,6 +282,5 @@ public class LvlMngrScript : NetworkBehaviour
         transitionCanvas.SetActive(false);
         _camMotor.setMode(false);
         player2.GetComponent<Player2Script>().setMode(false);
-        _blind.gameObject.SetActive(false);
     }
 }

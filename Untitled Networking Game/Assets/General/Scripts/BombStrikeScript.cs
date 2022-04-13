@@ -8,7 +8,7 @@ public class BombStrikeScript : TrapScript
     public Transform _bombSpwn;
     
     //control vars
-    public float _moveSpeed = 10f;
+    public float _moveSpeed = 0.1f;
 
     int charge = 100;
     public override int cost { get { return charge; } set { cost = charge; } }
@@ -23,16 +23,12 @@ public class BombStrikeScript : TrapScript
     // Update is called once per frame
     void Update()
     {
-        transform.position += new Vector3(_moveSpeed * Time.deltaTime, 0, 0);
+        transform.position += new Vector3(_moveSpeed, 0, 0);
         if (transform.position.x > Camera.main.transform.position.x + 15)
         {
             StopCoroutine(SpawnBomb());
             Destroy(gameObject);
         }
-    }
-
-    private void FixedUpdate()
-    {
     }
 
     IEnumerator SpawnBomb()
