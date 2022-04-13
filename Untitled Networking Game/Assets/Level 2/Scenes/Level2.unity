@@ -8485,6 +8485,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2437872115451685751, guid: 32ecc41cba90daa4394a387157a5659f,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2619481498489338209, guid: 32ecc41cba90daa4394a387157a5659f,
         type: 3}
       propertyPath: m_Enabled

@@ -26,6 +26,12 @@ public class LvlSelectManager : NetworkBehaviour
         }
     }
 
+    [ClientRpc]
+    void RpcLoadScene(string scene)
+    {
+        SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive);
+    }
+
     public void LevelOne()
     {
         if (PlayerPrefs.GetInt("mode") == 1)
@@ -36,8 +42,11 @@ public class LvlSelectManager : NetworkBehaviour
         }
         else
         {
-            SceneManager.LoadSceneAsync("Level1", LoadSceneMode.Additive);
-            
+            if (isServer)
+            {
+                SceneManager.LoadSceneAsync("Level1", LoadSceneMode.Additive);
+                RpcLoadScene("Level1");
+            }
         }
     }
 
@@ -51,7 +60,8 @@ public class LvlSelectManager : NetworkBehaviour
         }
         else
         {
-            SceneManager.LoadScene("Level2");
+            SceneManager.LoadSceneAsync("Level2", LoadSceneMode.Additive);
+            RpcLoadScene("Level2");
         }
     }
 
@@ -65,7 +75,8 @@ public class LvlSelectManager : NetworkBehaviour
         }
         else
         {
-            SceneManager.LoadScene("Level3");
+            SceneManager.LoadSceneAsync("Level3", LoadSceneMode.Additive);
+            RpcLoadScene("Level3");
         }
     }
 
