@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 [RequireComponent(typeof(Rigidbody2D))]//require a rigidbody
-public class PlayerMovementScript : MonoBehaviour
+public class PlayerMovementScript : PlayerBaseScript
 {
     //adopted vars
     Rigidbody2D _rBody;
@@ -11,6 +12,7 @@ public class PlayerMovementScript : MonoBehaviour
     Animator _anim;
     AudioSource _audioS;
     Transform _cam;
+    Transform _trans;
     public Sprite _glued;
 
     //check vars
@@ -21,9 +23,7 @@ public class PlayerMovementScript : MonoBehaviour
 
     //control vars
     public float moveSpeed = 10;
-    public float jumpSpeed = 5;
-    private float waitTime = 0.15f;
-    private bool playing = false;
+    public float jumpSpeed = 15;
 
     //local vars
     float x;
@@ -35,13 +35,6 @@ public class PlayerMovementScript : MonoBehaviour
     public AudioClip lavaDeath;
     public AudioClip fallOutDeath;
 
-    enum STATE
-    {
-        WALKING = 0,
-        JUMPING = 1
-    }//state enum
-    STATE curState = STATE.WALKING;
-
     private void Start()
     {
         _rBody = GetComponent<Rigidbody2D>();
@@ -49,41 +42,27 @@ public class PlayerMovementScript : MonoBehaviour
         _anim = GetComponent<Animator>();
         _audioS = GetComponent<AudioSource>();
         _cam = Camera.main.transform;
+        _trans = GetComponent<Transform>();
+
+        //start updates
+        if (hasAuthority)
+        {
+            StartCoroutine(UpdateServer());
+        }
+        if (isServer)
+        {
+            StartCoroutine(UpdateClients());
+        }
+
+        if (!_mngr)
+        {
+            _mngr = FindObjectOfType<LvlMngrScript>();
+        }
     }//end Start
 
 
     private void Update()
     {
-        //jump
-        if (MyInput.GetKeyInteract(2) && OnGround())
-        {
-            y = jumpSpeed;
-            _audioS.PlayOneShot(jump, (float)0.50);
-        }
-        else if (!MyInput.GetKeyInteract(2) && _rBody.velocity.y > 0)
-        {
-            y = 0;
-        }
-        else
-        {
-            y = _rBody.velocity.y;
-        }//end if/elseif/else
-
-        //update velocity
-        _rBody.velocity = new Vector2(x, y);
-
-
-
-
-        if ((_rBody.velocity.x > 0.2f || _rBody.velocity.x < -0.2f) && OnGround())
-        {
-            if (playing == false)
-            {
-                StartCoroutine("playFootStep");
-            }
-
-        }
-
         //update animation
         _anim.SetBool("Running", (x != 0));
         _anim.SetBool("Falling", (y < -0.001));
@@ -91,8 +70,29 @@ public class PlayerMovementScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        x = MyInput.GetXAxis(2) * moveSpeed;
+        if (hasAuthority)//only triggered by the localPlayer that is Player 1
+        {
+            x = MyInput.GetXAxis(2) * moveSpeed;
 
+            ////jump
+            if (MyInput.GetKeyInteract(2) && OnGround())
+            {
+                y = jumpSpeed;
+                _audioS.PlayOneShot(jump, 0.25f);
+            }
+            else if (!MyInput.GetKeyInteract(2) && _rBody.velocity.y > 0)
+            {
+                y = 0;
+            }
+            else
+            {
+                y = _rBody.velocity.y;
+            }//end if/elseif/else
+
+            StepMovement(x, y);
+        }
+
+        //flip sprite
         if (_spriteRenderer.flipX && x > 0)
         {
             _spriteRenderer.flipX = false;
@@ -102,15 +102,42 @@ public class PlayerMovementScript : MonoBehaviour
             _spriteRenderer.flipX = true;
         }
 
+        //detect if player is off screen
         if (transform.position.y < -10)
         {
             _audioS.PlayOneShot(fallOutDeath, 0.5f);
             _mngr.PlayerDeath(spwn);
-        } else if(transform.position.x < _cam.position.x - 16)
+        }
+        else if (transform.position.x < _cam.position.x - 16)
         {
             _mngr.PlayerDeath(spwn);
         }
     }//end FixedUpdate
+
+    //update the server
+    IEnumerator UpdateServer()
+    {
+        while (true)
+        {
+            CmdUpdatePosn(_rBody.position, _rBody.velocity);
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
+    IEnumerator UpdateClients()
+    {
+        while (true)
+        {
+            RpcUpdatePosn(_rBody.position, _rBody.velocity);
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
+    void StepMovement(float x, float y)
+    {
+        Vector2 axes = new Vector2(x, y);
+        _rBody.velocity = axes;
+    }
 
     private bool OnGround()
     {
@@ -119,6 +146,36 @@ public class PlayerMovementScript : MonoBehaviour
         return grounded;
     }//end OnGround
 
+    [Command]
+    void CmdUpdatePosn(Vector2 posn, Vector2 vel)
+    {
+        _rBody.velocity = vel;
+        _rBody.position = posn;
+        if (Vector2.Distance(_trans.position, posn) > 0.1f)
+        {
+            TargetPosnError(connectionToClient, _rBody.position, _rBody.velocity);
+        }
+        RpcUpdatePosn(_trans.position, vel);
+    }
+
+    [ClientRpc]
+    void RpcUpdatePosn(Vector2 posn, Vector2 vel)
+    {
+        if (_trans == null)
+            return;
+
+        _trans.position = posn;
+        _rBody.velocity = vel;
+    }
+
+    [TargetRpc]
+    void TargetPosnError(NetworkConnection conn, Vector2 posn, Vector2 vel)
+    {
+        _rBody.position = posn;
+        _rBody.velocity = vel;
+    }
+
+    //fires if the player runs into a trigger
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag.Equals("Trap"))
@@ -165,14 +222,5 @@ public class PlayerMovementScript : MonoBehaviour
         moveSpeed = 10;
         _anim.SetBool("Glued", false);
         StopCoroutine(GlueTime());
-    }
-
-    IEnumerator playFootStep()
-    {
-        playing = true;
-        // Play the sound
-        _audioS.PlayOneShot(footstep, 0.25f);
-        yield return new WaitForSeconds(waitTime);
-        playing = false;
     }
 }
