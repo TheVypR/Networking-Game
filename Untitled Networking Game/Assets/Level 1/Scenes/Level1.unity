@@ -784,11 +784,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1101099460}
     m_Modifications:
+    - target: {fileID: 2983348914883767311, guid: 30d7296bf3333e8499e32cfd96e6be48,
+        type: 3}
+      propertyPath: sceneId
+      value: 4255567983
+      objectReference: {fileID: 0}
     - target: {fileID: 6058287160162197090, guid: 30d7296bf3333e8499e32cfd96e6be48,
         type: 3}
       propertyPath: money
       value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 6058287160162197090, guid: 30d7296bf3333e8499e32cfd96e6be48,
+        type: 3}
+      propertyPath: _player1ID
+      value: 
+      objectReference: {fileID: 937353697}
     - target: {fileID: 6058287160162197091, guid: 30d7296bf3333e8499e32cfd96e6be48,
         type: 3}
       propertyPath: m_Name
@@ -905,7 +915,6 @@ GameObject:
   - component: {fileID: 453859687}
   - component: {fileID: 453859690}
   - component: {fileID: 453859692}
-  - component: {fileID: 453859693}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -997,7 +1006,7 @@ MonoBehaviour:
   _playerTrans: {fileID: 937353696}
   _player2Trans: {fileID: 2197986701456061082}
   background: {fileID: 349216971}
-  debug: 0
+  debug: 1
   autoSpeed: 5
   followDistance: 3
 --- !u!114 &453859692
@@ -1017,40 +1026,6 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 
   hasSpawned: 0
---- !u!114 &453859693
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 453859686}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  clientAuthority: 0
-  sendInterval: 0
-  syncPosition: 1
-  syncRotation: 1
-  syncScale: 1
-  interpolatePosition: 1
-  interpolateRotation: 1
-  interpolateScale: 1
-  bufferTimeMultiplier: 1
-  bufferSizeLimit: 64
-  catchupThreshold: 4
-  catchupMultiplier: 0.1
-  onlySyncOnChange: 1
-  bufferResetMultiplier: 5
-  positionSensitivity: 0.01
-  rotationSensitivity: 0.01
-  scaleSensitivity: 0.01
-  showGizmos: 0
-  showOverlay: 0
-  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
 --- !u!1 &475485737
 GameObject:
   m_ObjectHideFlags: 0
@@ -28408,7 +28383,7 @@ PrefabInstance:
     - target: {fileID: 795280971617034766, guid: 3a4df08bbcb541a4b844bcfe2d1866b9,
         type: 3}
       propertyPath: setupTimer
-      value: 2
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 795280971617034766, guid: 3a4df08bbcb541a4b844bcfe2d1866b9,
         type: 3}

@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
-public class EconomyScript : MonoBehaviour
+using Mirror;
+public class EconomyScript : NetworkBehaviour
 {
     //Camera control
     CameraMotor _camScript;
     public const float MAX_SPEED = 0.065f;
     public const float MIN_SPEED = 0f;
+    public NetworkIdentity _player1ID;
 
     //control vars
     public Text _moneyCountTxt;
@@ -28,6 +29,11 @@ public class EconomyScript : MonoBehaviour
         if (!setupMode)
         {
             gainRoutine = StartCoroutine(GainMoney());
+        }
+
+        if (_player1ID.hasAuthority)
+        {
+            gameObject.SetActive(false);
         }
     }
 
@@ -66,9 +72,9 @@ public class EconomyScript : MonoBehaviour
         gainRoutine = StartCoroutine(GainMoney());
     }
 
-    public void CameraSpeed(int fastSlow)
+    public void CameraSpeed(bool fastSlow)
     {
-        if (fastSlow == 1)
+        if (fastSlow)
         {
             _camScript.autoSpeed += 0.02f;
             drainAmt = (int)(Mathf.Abs((_camScript.autoSpeed - 0.035f) * 500));
@@ -83,7 +89,7 @@ public class EconomyScript : MonoBehaviour
                 drainRoutine = StartCoroutine(DrainMoney(drainAmt));
             }
         }
-        else if(fastSlow == 0)
+        else
         {
             _camScript.autoSpeed -= 0.02f;
             drainAmt = (int)(Mathf.Abs((_camScript.autoSpeed - 0.035f + 0.01f) * 100));

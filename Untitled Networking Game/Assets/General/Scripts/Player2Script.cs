@@ -74,137 +74,149 @@ public class Player2Script : PlayerBaseScript
         {
             if (isSetup)
             {
-                if ((Time.time - lastSwitch) >= SWITCH_RATE)
+                PlaceProxTrap();
+            } else
+            {
+                PlaceManualTrap();
+            }
+        }
+    }
+
+    //check for placing a manual trap
+    private void PlaceProxTrap()
+    {
+        if ((Time.time - lastSwitch) >= SWITCH_RATE)
+        {
+            if (MyInput.GetRawXAxis(3) == 1)
+            {
+                if (place >= TRAP_MAX)
                 {
-                    if (MyInput.GetRawXAxis(3) == 1)
-                    {
-                        if (place >= TRAP_MAX)
-                        {
-                            place = 0;
-                        }
-                        else
-                        {
-                            place++;
-                        }
-                        target = spawners.transform.Find("SpwnPt " + place);
-                        lastSwitch = Time.time;
-                    }
-
-                    if (MyInput.GetRawXAxis(3) == -1)
-                    {
-                        if (place < 0)
-                        {
-                            place = TRAP_MAX - 1;
-                        }
-                        else
-                        {
-                            place--;
-                        }
-                        target = spawners.transform.Find("SpwnPt " + place);
-                        lastSwitch = Time.time;
-                    }
-
-                    //trap placing
-                    if (MyInput.GetPS4X(1))
-                    {
-                        if (proxTraps.Length > 0)
-                        {
-                            if (_econ.SpendCoin(proxTraps[0].GetComponent<TrapScript>().cost))
-                            {
-                                CmdSpawnTrap(0, "prox");
-                            }
-                        }
-                    }
-                    else if (MyInput.GetPS4Square(1))
-                    {
-                        if (proxTraps.Length > 1)
-                        {
-                            if (_econ.SpendCoin(proxTraps[1].GetComponent<TrapScript>().cost))
-                            {
-                                CmdSpawnTrap(1, "prox");
-                            }
-                        }
-                    }
-                    else if (MyInput.GetPS4Circle(1))
-                    {
-                        if (proxTraps.Length > 2)
-                        {
-                            if (_econ.SpendCoin(proxTraps[2].GetComponent<TrapScript>().cost))
-                            {
-                                CmdSpawnTrap(2, "prox");
-                            }
-                        }
-                    }
-                    else if (MyInput.GetPS4Triangle(1))
-                    {
-                        if (proxTraps.Length > 3)
-                        {
-                            if (_econ.SpendCoin(proxTraps[3].GetComponent<TrapScript>().cost))
-                            {
-                                CmdSpawnTrap(3, "prox");
-                            }
-                        }
-                    }
+                    place = 0;
                 }
                 else
                 {
-                    //control camera speed
-                    if ((Time.time - lastSwitch) >= SWITCH_RATE)
-                    {
-                        if (MyInput.GetXAxis(3) > 0.05)
-                        {
-                            lastSwitch = Time.time;
-                            _econ.CameraSpeed(1);
-                        }
+                    place++;
+                }
+                target = spawners.transform.Find("SpwnPt " + place);
+                lastSwitch = Time.time;
+            }
 
-                        if (MyInput.GetXAxis(3) < -0.05)
-                        {
-                            _econ.CameraSpeed(0);
-                            lastSwitch = Time.time;
-                        }
-                    }
+            if (MyInput.GetRawXAxis(3) == -1)
+            {
+                if (place < 0)
+                {
+                    place = TRAP_MAX - 1;
+                }
+                else
+                {
+                    place--;
+                }
+                target = spawners.transform.Find("SpwnPt " + place);
+                lastSwitch = Time.time;
+            }
 
-                    //trigger manual traps
-                    if (MyInput.GetPS4Circle(1))
+            //trap placing
+            if (MyInput.GetPS4X(1))
+            {
+                if (proxTraps.Length > 0)
+                {
+                    if (_econ.SpendCoin(proxTraps[0].GetComponent<TrapScript>().cost))
                     {
-                        if (manualTraps.Length > 0)
-                        {
-                            if (_econ.SpendCoin(manualTraps[0].GetComponent<TrapScript>().cost))
-                            {
-                                CmdSpawnTrap(0, "manual");
-                            }
-                        }
+                        CmdSpawnTrap(0, "prox");
                     }
-                    else if (MyInput.GetPS4X(1))
+                }
+            }
+            else if (MyInput.GetPS4Square(1))
+            {
+                if (proxTraps.Length > 1)
+                {
+                    if (_econ.SpendCoin(proxTraps[1].GetComponent<TrapScript>().cost))
                     {
-                        if (manualTraps.Length > 1)
-                        {
-                            if (_econ.SpendCoin(manualTraps[1].GetComponent<TrapScript>().cost))
-                            {
-                                CmdSpawnTrap(1, "manual");
-                            }
-                        }
+                        CmdSpawnTrap(1, "prox");
                     }
-                    else if (MyInput.GetPS4Square(1))
+                }
+            }
+            else if (MyInput.GetPS4Circle(1))
+            {
+                if (proxTraps.Length > 2)
+                {
+                    if (_econ.SpendCoin(proxTraps[2].GetComponent<TrapScript>().cost))
                     {
-                        if (manualTraps.Length > 2)
-                        {
-                            if (_econ.SpendCoin(manualTraps[2].GetComponent<TrapScript>().cost))
-                            {
-                                CmdSpawnTrap(2, "manual");
-                            }
-                        }
+                        CmdSpawnTrap(2, "prox");
                     }
-                    else if (MyInput.GetPS4Triangle(1))
+                }
+            }
+            else if (MyInput.GetPS4Triangle(1))
+            {
+                if (proxTraps.Length > 3)
+                {
+                    if (_econ.SpendCoin(proxTraps[3].GetComponent<TrapScript>().cost))
                     {
-                        if (manualTraps.Length > 3)
-                        {
-                            if (_econ.SpendCoin(manualTraps[3].GetComponent<TrapScript>().cost))
-                            {
-                                CmdSpawnTrap(3, "manual");
-                            }
-                        }
+                        CmdSpawnTrap(3, "prox");
                     }
+                }
+            }
+        }
+    }
+
+    //check if p2 triggered a manual trap
+    private void PlaceManualTrap()
+    {
+        //control camera speed
+        if ((Time.time - lastSwitch) >= SWITCH_RATE)
+        {
+            if (MyInput.GetXAxis(3) > 0.05)
+            {
+                lastSwitch = Time.time;
+                _econ.CameraSpeed(true);
+            }
+
+            if (MyInput.GetXAxis(3) < -0.05)
+            {
+                _econ.CameraSpeed(false);
+                lastSwitch = Time.time;
+            }
+        }
+
+        //trigger manual traps
+        if (MyInput.GetPS4Circle(1))
+        {
+            if (manualTraps.Length > 0)
+            {
+                if (_econ.SpendCoin(manualTraps[0].GetComponent<TrapScript>().cost))
+                {
+                    CmdSpawnTrap(0, "manual");
+                }
+            }
+        }
+        else if (MyInput.GetPS4X(1))
+        {
+            print("trigger");
+            if (manualTraps.Length > 1)
+            {
+                if (_econ.SpendCoin(manualTraps[1].GetComponent<TrapScript>().cost))
+                {
+                    CmdSpawnTrap(1, "manual");
+                }
+            }
+        }
+        else if (MyInput.GetPS4Square(1))
+        {
+            if (manualTraps.Length > 2)
+            {
+                if (_econ.SpendCoin(manualTraps[2].GetComponent<TrapScript>().cost))
+                {
+                    CmdSpawnTrap(2, "manual");
+                }
+            }
+        }
+        else if (MyInput.GetPS4Triangle(1))
+        {
+            if (manualTraps.Length > 3)
+            {
+                if (_econ.SpendCoin(manualTraps[3].GetComponent<TrapScript>().cost))
+                {
+                    CmdSpawnTrap(3, "manual");
                 }
             }
         }
@@ -214,11 +226,13 @@ public class Player2Script : PlayerBaseScript
     private void CmdSpawnTrap(int index, string type)
     {
         GameObject trap;
+        print("trap");
         if (type.Equals("prox"))
         {
             trap = Instantiate(proxTraps[index], transform.position, Quaternion.identity);
         } else
         {
+            print(type);
             trap = Instantiate(manualTraps[index], transform.position, Quaternion.identity);
         }
         NetworkServer.Spawn(trap);
@@ -240,9 +254,7 @@ public class Player2Script : PlayerBaseScript
                 gameObject.transform.position = target.position;
                 CmdMoveTrapSpawn(target.position);
             }
-        }
-
-        
+        }        
     }
 
     public void setMode(bool isSetup)

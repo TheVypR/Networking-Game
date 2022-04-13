@@ -89,7 +89,7 @@ public class TrapAIScript : MonoBehaviour
             {
                 if (econScript.money > 75)
                 {
-                    econScript.CameraSpeed(Random.Range(0, 2));
+                    econScript.CameraSpeed(Random.Range(0, 2) == 1);
                     camSlowTime = Random.Range(10, 30);
                     StartCoroutine(camSlowEnum());
                     spendAt = Random.Range(40, 120);
