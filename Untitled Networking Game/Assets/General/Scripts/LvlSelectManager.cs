@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 public class LvlSelectManager : MonoBehaviour
 {
     string scenename = "";
-    public Canvas lvlSelect;
-    public Canvas startLevel;
+    public GameObject lvlSelect;
+    public GameObject startLevel;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +18,7 @@ public class LvlSelectManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //used to check local multiplayer button press
         if (!scenename.Equals("") && MyInput.GetPS4X(1))
         {
             SceneManager.LoadScene(scenename);
@@ -29,8 +30,8 @@ public class LvlSelectManager : MonoBehaviour
         if (PlayerPrefs.GetInt("mode") == 1)
         {
             scenename = "Level1";
-            lvlSelect.enabled = false;
-            startLevel.enabled = true;
+            lvlSelect.SetActive(false);
+            startLevel.SetActive(true);
         }
         else
         {
@@ -43,8 +44,8 @@ public class LvlSelectManager : MonoBehaviour
         if (PlayerPrefs.GetInt("mode") == 1)
         {
             scenename = "Level2";
-            lvlSelect.enabled = false;
-            startLevel.enabled = true;
+            lvlSelect.SetActive(false);
+            startLevel.SetActive(true);
         }
         else
         {
@@ -57,8 +58,8 @@ public class LvlSelectManager : MonoBehaviour
         if (PlayerPrefs.GetInt("mode") == 1)
         {
             scenename = "Level3";
-            lvlSelect.enabled = false;
-            startLevel.enabled = true;
+            lvlSelect.SetActive(false);
+            startLevel.SetActive(true);
         }
         else
         {
@@ -71,23 +72,9 @@ public class LvlSelectManager : MonoBehaviour
         SceneManager.LoadScene("Main Menu");
     }
 
+    //used on Main Menu
     public void LevelSelect(int mode)
     {
-        //if (isMultiplayer)
-        //{
-        //    PlayerPrefs.SetInt("mode", 1);
-        //    if (isOnline)
-        //    {
-        //        PlayerPrefs.SetInt("online", 1);
-        //    } else
-        //    {
-        //        PlayerPrefs.SetInt("online", 0);
-        //    }
-        //} else
-        //{
-        //    PlayerPrefs.SetInt("mode", 0);
-        //    PlayerPrefs.SetInt("online", 0);
-        //}
         PlayerPrefs.SetInt("mode", mode);
         SceneManager.LoadScene("LevelSelect");
     }

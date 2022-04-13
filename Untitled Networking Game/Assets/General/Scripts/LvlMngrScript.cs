@@ -59,6 +59,9 @@ public class LvlMngrScript : NetworkBehaviour
         if (PlayerPrefs.HasKey("mode"))
         {
             isMultiplayer = PlayerPrefs.GetInt("mode");
+            if(isMultiplayer == 2)
+            {
+            }
             //disable trap AI
             if (isMultiplayer == 1)
             {
