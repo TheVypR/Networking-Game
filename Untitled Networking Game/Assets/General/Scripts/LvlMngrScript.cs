@@ -19,6 +19,7 @@ public class LvlMngrScript : NetworkBehaviour
     public GameObject _player;
     Transform _playerTrans;
     Rigidbody2D _playerRbody;
+    public GameObject _setupCanvas;
 
     Vector2 spwn;
 
@@ -55,11 +56,12 @@ public class LvlMngrScript : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SceneManager.UnloadSceneAsync("LevelSelect");
+        //SceneManager.UnloadSceneAsync("LevelSelect");
         //check if multiplayer
         if (PlayerPrefs.HasKey("mode"))
         {
-            isMultiplayer = PlayerPrefs.GetInt("mode");
+            PlayerPrefs.SetInt("mode", 2);
+            isMultiplayer = 2;//PlayerPrefs.GetInt("mode");
             if(isMultiplayer == 2)
             {
                 singleplayerAI.SetActive(false);
@@ -173,6 +175,7 @@ public class LvlMngrScript : NetworkBehaviour
                 //load intermediary canvas and pause time
                 Time.timeScale = 0;
                 transitionCanvas.SetActive(true);
+                _setupCanvas.SetActive(false);
             }
         }
         else

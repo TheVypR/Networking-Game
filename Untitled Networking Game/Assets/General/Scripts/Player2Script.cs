@@ -72,6 +72,7 @@ public class Player2Script : PlayerBaseScript
         //navigate the trap locations
         if (hasAuthority)
         {
+            print("p2auth");
             if (isSetup)
             {
                 PlaceProxTrap();
