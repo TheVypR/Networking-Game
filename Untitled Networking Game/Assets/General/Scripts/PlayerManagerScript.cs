@@ -6,21 +6,36 @@ using Mirror;
 public class PlayerManagerScript : NetworkBehaviour
 {
     bool gaveAuth = false;
+    int role;
+
+
     // Start is called before the first frame update
     void Start()
     {
         DontDestroyOnLoad(gameObject);
+
+        //for testing
+        if(isServer && isLocalPlayer)
+        {
+            PlayerPrefs.SetInt("player", 1);
+            CmdGivePrefs();
+        } else if(!isServer && isLocalPlayer)
+        {
+            PlayerPrefs.SetInt("player", 2);
+            CmdGivePrefs();
+        }
     }
 
     private void Update()
     {
-        if (PlayerPrefs.HasKey("player") && !gaveAuth)
+        if (!gaveAuth)
         {
-            if (isServer)
+            if (isServer && isLocalPlayer)
             {
                 if (PlayerPrefs.GetInt("player") == 1)
                 {
                     PlayerMovementScript p1 = FindObjectOfType<PlayerMovementScript>();
+                    print("testp1");
                     if (p1)
                     {
                         print("auth");
@@ -32,17 +47,33 @@ public class PlayerManagerScript : NetworkBehaviour
                 }
                 else
                 {
-                    Player2Script p2 = FindObjectOfType<Player2Script>();
-                    if (p2)
-                    {
-                        print("2auth");
-                        gaveAuth = true;
-                        NetworkIdentity p2ID = p2.gameObject.GetComponent<NetworkIdentity>();
-                        p2ID.AssignClientAuthority(connectionToClient);
-                        NetworkServer.AddPlayerForConnection(connectionToClient, gameObject);
-                    }
+                    
+                }
+            } else if(isServer && !isLocalPlayer)
+            {
+                Player2Script p2 = FindObjectOfType<Player2Script>();
+                print("testp2");
+                if (p2)
+                {
+                    print("2auth");
+                    gaveAuth = true;
+                    NetworkIdentity p2ID = p2.gameObject.GetComponent<NetworkIdentity>();
+                    p2ID.AssignClientAuthority(connectionToClient);
+                    NetworkServer.AddPlayerForConnection(connectionToClient, gameObject);
                 }
             }
+        }
+    }
+
+    [Command]
+    void CmdGivePrefs()
+    {
+        if (PlayerPrefs.HasKey("player"))
+        {
+            role = PlayerPrefs.GetInt("player");
+        } else
+        {
+            role = 0;
         }
     }
 }
