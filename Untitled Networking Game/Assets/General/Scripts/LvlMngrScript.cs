@@ -171,7 +171,6 @@ public class LvlMngrScript : NetworkBehaviour
             timeLeft = (int)(setupTimer - (Time.time - setupStart));
             if ((isMultiplayer == 1 || isMultiplayer == 2) && timeLeft <= 0)
             {
-                isSetup = false;
                 //load intermediary canvas and pause time
                 Time.timeScale = 0;
                 transitionCanvas.SetActive(true);
@@ -285,6 +284,7 @@ public class LvlMngrScript : NetworkBehaviour
     public void StartRound()
     {
         economyScript.StartRound();
+        isSetup = false;
         _player.GetComponent<PlayerMovementScript>().enabled = true;
         Time.timeScale = 1;
         startTime = Time.time;
