@@ -289,6 +289,15 @@ public class LvlMngrScript : NetworkBehaviour
     [Command (requiresAuthority=false)]
     void CmdStartRound()
     {
+        economyScript.StartRound();
+        isSetup = false;
+        _camMotor.setMode(false);
+        _player.GetComponent<PlayerMovementScript>().enabled = true;
+        Time.timeScale = 1;
+        startTime = Time.time;
+        transitionCanvas.SetActive(false);
+
+        player2.GetComponent<Player2Script>().setMode(false);
         ClientStartRound();
     }
 
@@ -297,11 +306,12 @@ public class LvlMngrScript : NetworkBehaviour
     {
         economyScript.StartRound();
         isSetup = false;
+        _camMotor.setMode(false);
         _player.GetComponent<PlayerMovementScript>().enabled = true;
         Time.timeScale = 1;
         startTime = Time.time;
         transitionCanvas.SetActive(false);
-        _camMotor.setMode(false);
+        
         player2.GetComponent<Player2Script>().setMode(false);
     }
 }

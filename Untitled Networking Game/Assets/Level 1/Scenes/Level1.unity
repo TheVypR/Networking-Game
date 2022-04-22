@@ -988,7 +988,7 @@ MonoBehaviour:
   _playerTrans: {fileID: 937353696}
   _player2Trans: {fileID: 2197986701456061082}
   background: {fileID: 349216971}
-  debug: 1
+  debug: 0
   autoSpeed: 5
   followDistance: 3
 --- !u!114 &453859692
