@@ -283,6 +283,18 @@ public class LvlMngrScript : NetworkBehaviour
 
     public void StartRound()
     {
+        CmdStartRound();
+    }
+
+    [Command (requiresAuthority=false)]
+    void CmdStartRound()
+    {
+        ClientStartRound();
+    }
+
+    [ClientRpc]
+    void ClientStartRound()
+    {
         economyScript.StartRound();
         isSetup = false;
         _player.GetComponent<PlayerMovementScript>().enabled = true;
