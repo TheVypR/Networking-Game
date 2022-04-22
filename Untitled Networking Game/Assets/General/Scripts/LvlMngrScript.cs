@@ -17,6 +17,8 @@ public class LvlMngrScript : NetworkBehaviour
 
     //player objects
     public GameObject _player;
+    public SpriteRenderer _playerSprite;
+    public PlayerMovementScript _playerMove;
     Transform _playerTrans;
     Rigidbody2D _playerRbody;
     public GameObject _setupCanvas;
@@ -91,6 +93,8 @@ public class LvlMngrScript : NetworkBehaviour
         _camTrans = Camera.main.transform;
         _playerRbody = _player.GetComponent<Rigidbody2D>();
         _playerTrans = _player.GetComponent<Transform>();
+        _playerSprite = _player.GetComponent<SpriteRenderer>();
+        _playerMove = _player.GetComponent<PlayerMovementScript>();
 
         //only start round if singleplayer
         if (isMultiplayer == 0) { startTime = Time.time; }
@@ -216,8 +220,10 @@ public class LvlMngrScript : NetworkBehaviour
         _timeRespawn = 4f;
         _dead = false;
         _textRise = 0;
-        
-        _player.SetActive(true);
+
+        //_player.SetActive(true);
+        _playerSprite.enabled = true;
+        _playerMove.enabled = true;
 
         _playerTrans.position = spwn;
         Vector3 camPos = new Vector3(spwn.x, spwn.y, -10);
@@ -226,6 +232,10 @@ public class LvlMngrScript : NetworkBehaviour
         {
             RpcCameraReset(camPos);
         }
+        if (isServer)
+        {
+            RpcPlayerReset(spwn);
+        }
         _playerRbody.velocity = Vector3.zero;
         _player.GetComponent<PlayerMovementScript>().moveSpeed = 10;
     }
@@ -233,24 +243,29 @@ public class LvlMngrScript : NetworkBehaviour
     [Command]
     void CmdCameraReset(Vector3 pos)
     {
-        print(pos);
         _camTrans.position = pos;
-        print(_camTrans.position);
         RpcCameraReset(pos);
     }
 
     [ClientRpc]
     void RpcCameraReset(Vector3 pos)
     {
-        print(pos);
         _camTrans.position = pos;
+    }
+
+    [ClientRpc]
+    void RpcPlayerReset(Vector3 pos)
+    {
+        _playerTrans.position = pos;
     }
 
     public void PlayerDeath(Vector2 spwn)
     {
+        print(spwn);
         this.spwn = spwn;
-        _player.SetActive(false);
-
+        //_player.SetActive(false);
+        _playerSprite.enabled = false;
+        _playerMove.enabled = false;
         _countDeaths++;
         Invoke("Respawn", 3.5f);
         Invoke("isDead", 0.5f);
@@ -289,6 +304,7 @@ public class LvlMngrScript : NetworkBehaviour
     [Command (requiresAuthority=false)]
     void CmdStartRound()
     {
+        //reset camera on server
         economyScript.StartRound();
         isSetup = false;
         _camMotor.setMode(false);
@@ -296,8 +312,9 @@ public class LvlMngrScript : NetworkBehaviour
         Time.timeScale = 1;
         startTime = Time.time;
         transitionCanvas.SetActive(false);
-
         player2.GetComponent<Player2Script>().setMode(false);
+
+        //reset camera on all clients
         ClientStartRound();
     }
 
