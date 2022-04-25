@@ -19,7 +19,7 @@
 //    void Start()
 //    {
 //        StartCoroutine(SearchPlayers());
-        
+
 
 //        if (player1.hasAuthority)
 //        {
@@ -59,7 +59,6 @@
 //                playerWaitingBlind.SetActive(true);
 //            }
 //            yield return new WaitForSeconds(waitTime);
-
 //        }
 //    }
 

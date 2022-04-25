@@ -27,15 +27,10 @@ public class EconomyScript : NetworkBehaviour
     void Start()
     {
         _camScript = FindObjectOfType<CameraMotor>();
-        setupMode = PlayerPrefs.GetInt("mode") == 1;
+        setupMode = PlayerPrefs.GetInt("mode") == 1 || PlayerPrefs.GetInt("mode") == 2;
         if (!setupMode)
         {
             gainRoutine = StartCoroutine(GainMoney());
-        }
-
-        if (_player1ID.hasAuthority)
-        {
-            gameObject.SetActive(false);
         }
     }
 
@@ -44,6 +39,10 @@ public class EconomyScript : NetworkBehaviour
         setupMode = false;
         //canvScript.setPlayerOneBlind(false);
         gainRoutine = StartCoroutine(GainMoney());
+        if (_player1ID.hasAuthority)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame

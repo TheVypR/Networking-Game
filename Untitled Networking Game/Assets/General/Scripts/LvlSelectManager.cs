@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Mirror;
 
-public class LvlSelectManager : MonoBehaviour
+public class LvlSelectManager : NetworkBehaviour
 {
     string scenename = "";
-    public Canvas lvlSelect;
-    public Canvas startLevel;
+    public GameObject lvlSelect;
+    public GameObject startLevel;
 
     // Start is called before the first frame update
     void Start()
@@ -18,10 +19,17 @@ public class LvlSelectManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //used to check local multiplayer button press
         if (!scenename.Equals("") && MyInput.GetPS4X(1))
         {
             SceneManager.LoadScene(scenename);
         }
+    }
+
+    [ClientRpc]
+    void RpcLoadScene(string scene)
+    {
+        SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive);
     }
 
     public void LevelOne()
@@ -40,14 +48,16 @@ public class LvlSelectManager : MonoBehaviour
 
 
             scenename = "Level1";
-            lvlSelect.enabled = false;
-            startLevel.enabled = true;
+            lvlSelect.SetActive(false);
+            startLevel.SetActive(true);
         }
         else
         {
-            
-            
-            
+            if (isServer)
+            {
+                SceneManager.LoadSceneAsync("Level1", LoadSceneMode.Additive);
+                RpcLoadScene("Level1");
+            }
         }
 
 
@@ -59,23 +69,13 @@ public class LvlSelectManager : MonoBehaviour
         if (PlayerPrefs.GetInt("mode") == 1)
         {
             scenename = "Level2";
-            lvlSelect.enabled = false;
-            startLevel.enabled = true;
+            lvlSelect.SetActive(false);
+            startLevel.SetActive(true);
         }
         else
         {
-            SceneManager.LoadScene("Level2");
-            /*
-            //check if the players have been selected, if not then send to select scene
-            if (PlayerPrefs.GetInt("runner") == 1 && PlayerPrefs.GetInt("trapper") == 2)
-            {
-                SceneManager.LoadScene("Level2");
-            }
-            else
-            {
-                SceneManager.LoadScene("PlayerSelect");
-            }
-            */
+            SceneManager.LoadSceneAsync("Level2", LoadSceneMode.Additive);
+            RpcLoadScene("Level2");
         }
 
 
@@ -87,23 +87,13 @@ public class LvlSelectManager : MonoBehaviour
         if (PlayerPrefs.GetInt("mode") == 1)
         {
             scenename = "Level3";
-            lvlSelect.enabled = false;
-            startLevel.enabled = true;
+            lvlSelect.SetActive(false);
+            startLevel.SetActive(true);
         }
         else
         {
-            SceneManager.LoadScene("Level3");
-            /*
-            //check if the players have been selected, if not then send to select scene
-            if (PlayerPrefs.GetInt("runner") == 1 && PlayerPrefs.GetInt("trapper") == 2)
-            {
-                SceneManager.LoadScene("Level3");
-            }
-            else
-            {
-                SceneManager.LoadScene("PlayerSelect");
-            }
-            */
+            SceneManager.LoadSceneAsync("Level3", LoadSceneMode.Additive);
+            RpcLoadScene("Level3");
         }
 
 
@@ -115,23 +105,9 @@ public class LvlSelectManager : MonoBehaviour
         SceneManager.LoadScene("Main Menu");
     }
 
+    //used on Main Menu
     public void LevelSelect(int mode)
     {
-        //if (isMultiplayer)
-        //{
-        //    PlayerPrefs.SetInt("mode", 1);
-        //    if (isOnline)
-        //    {
-        //        PlayerPrefs.SetInt("online", 1);
-        //    } else
-        //    {
-        //        PlayerPrefs.SetInt("online", 0);
-        //    }
-        //} else
-        //{
-        //    PlayerPrefs.SetInt("mode", 0);
-        //    PlayerPrefs.SetInt("online", 0);
-        //}
         PlayerPrefs.SetInt("mode", mode);
         SceneManager.LoadScene("LevelSelect");
     }

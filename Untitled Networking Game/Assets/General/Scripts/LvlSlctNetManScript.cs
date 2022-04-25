@@ -23,12 +23,14 @@ public class LvlSlctNetManScript : NetworkBehaviour
         netMan.StartHost();
         hostSelctCanvas.SetActive(false);
         EventSystem.current.SetSelectedGameObject(level1Button);
+        PlayerPrefs.SetInt("player", 1);
     }
     public void ClientButtonClick()
     {
         netMan.StartClient();
         hostSelctCanvas.SetActive(false);
         EventSystem.current.SetSelectedGameObject(level1Button);
+        PlayerPrefs.SetInt("player", 2);
     }
 
 

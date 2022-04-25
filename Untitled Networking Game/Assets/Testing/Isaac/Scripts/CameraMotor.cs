@@ -115,11 +115,12 @@ public class CameraMotor : NetworkBehaviour
     public void setMode(bool setup)
     {
         isSetup = setup;
-        if (!isSetup)
+        if (!setup)
         {
+            transform.position = new Vector3(0, 0, -10);
             Camera.main.orthographicSize = 8;
             background.transform.localScale = new Vector3(1.5f, 1.5f, 1);
-            transform.position = new Vector3(0, 0, -10);
         }
     }
+
 }

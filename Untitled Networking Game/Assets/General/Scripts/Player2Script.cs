@@ -70,8 +70,10 @@ public class Player2Script : PlayerBaseScript
     void Update()
     {
         //navigate the trap locations
+        print("p2");
         if (hasAuthority)
         {
+            print("p2auth");
             if (isSetup)
             {
                 PlaceProxTrap();
