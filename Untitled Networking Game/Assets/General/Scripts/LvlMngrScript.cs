@@ -54,16 +54,14 @@ public class LvlMngrScript : NetworkBehaviour
     bool _dead = false;
     int _countDeaths;
     float _textRise;
-
+    
     // Start is called before the first frame update
     void Start()
     {
-        //SceneManager.UnloadSceneAsync("LevelSelect");
         //check if multiplayer
         if (PlayerPrefs.HasKey("mode"))
         {
-            PlayerPrefs.SetInt("mode", 2);
-            isMultiplayer = 2;//PlayerPrefs.GetInt("mode");
+            isMultiplayer = PlayerPrefs.GetInt("mode");
             if(isMultiplayer == 2)
             {
                 singleplayerAI.SetActive(false);

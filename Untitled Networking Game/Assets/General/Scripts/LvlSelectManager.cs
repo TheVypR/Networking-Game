@@ -4,16 +4,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Mirror;
 
-public class LvlSelectManager : NetworkBehaviour
+public class LvlSelectManager : MonoBehaviour
 {
     string scenename = "";
     public GameObject lvlSelect;
     public GameObject startLevel;
+    public GameObject onlineHUD;
 
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -26,12 +26,6 @@ public class LvlSelectManager : NetworkBehaviour
         }
     }
 
-    [ClientRpc]
-    void RpcLoadScene(string scene)
-    {
-        SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive);
-    }
-
     public void LevelOne()
     {
         if (PlayerPrefs.GetInt("mode") == 1)
@@ -42,11 +36,7 @@ public class LvlSelectManager : NetworkBehaviour
         }
         else
         {
-            if (isServer)
-            {
-                SceneManager.LoadSceneAsync("Level1", LoadSceneMode.Additive);
-                RpcLoadScene("Level1");
-            }
+            SceneManager.LoadScene("Level1");
         }
     }
 
@@ -60,8 +50,7 @@ public class LvlSelectManager : NetworkBehaviour
         }
         else
         {
-            SceneManager.LoadSceneAsync("Level2", LoadSceneMode.Additive);
-            RpcLoadScene("Level2");
+            SceneManager.LoadScene("Level2");
         }
     }
 
@@ -75,8 +64,7 @@ public class LvlSelectManager : NetworkBehaviour
         }
         else
         {
-            SceneManager.LoadSceneAsync("Level3", LoadSceneMode.Additive);
-            RpcLoadScene("Level3");
+            SceneManager.LoadScene("Level3");
         }
     }
 
@@ -89,7 +77,13 @@ public class LvlSelectManager : NetworkBehaviour
     public void LevelSelect(int mode)
     {
         PlayerPrefs.SetInt("mode", mode);
-        SceneManager.LoadScene("LevelSelect");
+        if(mode == 2)
+        {
+            onlineHUD.SetActive(true);
+        } else
+        {
+            SceneManager.LoadScene("LevelSelect");
+        }
     }
 
     public void Quit()
