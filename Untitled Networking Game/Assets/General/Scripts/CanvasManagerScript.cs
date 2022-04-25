@@ -13,6 +13,7 @@ public class CanvasManagerScript : NetworkBehaviour
 
     float waitTime = 0.5f;
     public GameObject playerWaitingBlind;
+    public LvlMngrScript levelmanager;
 
     void Start()
     {
@@ -44,6 +45,7 @@ public class CanvasManagerScript : NetworkBehaviour
     {
         StopCoroutine(SearchPlayers());
         playerWaitingBlind.SetActive(false);
+        levelmanager.StartSetup();
     }
 
     private IEnumerator SearchPlayers()

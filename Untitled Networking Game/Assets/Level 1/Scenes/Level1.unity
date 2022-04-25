@@ -1223,6 +1223,7 @@ MonoBehaviour:
   setupText: {fileID: 1875699633076213730}
   setupPanel: {fileID: 1875699633076213729}
   playerWaitingBlind: {fileID: 121185589}
+  levelmanager: {fileID: 1519317154}
 --- !u!114 &522507500
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -103,11 +103,11 @@ public class LvlMngrScript : NetworkBehaviour
         _countDeaths = 0;
         _textRise = 0;
 
-        if (isMultiplayer == 1 || isMultiplayer == 2)
-        {
-            isSetup = true;
-            setupStart = Time.time;
-        }
+        //if (isMultiplayer == 1 || isMultiplayer == 2)
+        //{
+        //    isSetup = true;
+        //    setupStart = Time.time;
+        //}
 
         //respawn canvas children
         _respawnText = _respawnCanvas.transform.Find("RespawnCountdownText").gameObject.GetComponent<Text>();
@@ -117,6 +117,12 @@ public class LvlMngrScript : NetworkBehaviour
         _addPlusOne = _respawnCanvas.transform.Find("AddOneDeathText").gameObject.GetComponent<Text>();
         _respawnCanvas.SetActive(false);
         transitionCanvas.SetActive(false);
+    }
+
+    public void StartSetup()
+    {
+        isSetup = true;
+        setupStart = Time.time;
     }
 
     void StartSinglePlayer()
