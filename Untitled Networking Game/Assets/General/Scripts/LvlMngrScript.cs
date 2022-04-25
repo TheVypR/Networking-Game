@@ -135,7 +135,7 @@ public class LvlMngrScript : NetworkBehaviour
         _camMotor.setMode(false);
     }
 
-    void StartLocalMultiplayer()
+    public void StartLocalMultiplayer()
     {
         //start in setup mode
         isSetup = true;

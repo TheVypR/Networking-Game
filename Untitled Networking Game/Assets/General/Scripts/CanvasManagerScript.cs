@@ -17,6 +17,7 @@ public class CanvasManagerScript : NetworkBehaviour
 
     void Start()
     {
+        Time.timeScale = 0;
         StartCoroutine(LateStart(0.1f));
     }
 
@@ -45,7 +46,9 @@ public class CanvasManagerScript : NetworkBehaviour
     {
         StopCoroutine(SearchPlayers());
         playerWaitingBlind.SetActive(false);
-        levelmanager.StartSetup();
+        //levelmanager.StartSetup();
+        //levelmanager.StartLocalMultiplayer();
+        Time.timeScale = 1;
     }
 
     private IEnumerator SearchPlayers()
