@@ -11,13 +11,13 @@ public class CanvasManagerScript : NetworkBehaviour
     public GameObject setupText;
     public GameObject setupPanel;
 
-    float waitTime = 0.5f;
+    float waitTime = 0.1f;
     public GameObject playerWaitingBlind;
     public LvlMngrScript levelmanager;
 
     void Start()
     {
-        StartCoroutine(LateStart(1.0f));
+        StartCoroutine(LateStart(0.1f));
     }
 
 
@@ -71,10 +71,8 @@ public class CanvasManagerScript : NetworkBehaviour
 
         StartCoroutine(SearchPlayers());
 
-
         if (player1.hasAuthority)
         {
-            print("Have Authority");
             setPlayerOneBlind(true);
         }
     }

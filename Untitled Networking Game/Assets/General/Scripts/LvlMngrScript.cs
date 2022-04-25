@@ -64,21 +64,24 @@ public class LvlMngrScript : NetworkBehaviour
             isMultiplayer = PlayerPrefs.GetInt("mode");
             if(isMultiplayer == 2)
             {
-                singleplayerAI.SetActive(false);
-                _player.GetComponent<PlayerMovementScript>().enabled = false;
-                player2.SetActive(true);
-                _camMotor.setMode(true);
+                StartOnlineMultiplayer();
+                //singleplayerAI.SetActive(false);
+                //_player.GetComponent<PlayerMovementScript>().enabled = false;
+                //player2.SetActive(true);
+                //_camMotor.setMode(true);
             } else if (isMultiplayer == 1)
             {
-                singleplayerAI.SetActive(false);
-                _player.GetComponent<PlayerMovementScript>().enabled = false;
-                player2.SetActive(true);
-                _camMotor.setMode(true);
+                StartLocalMultiplayer();
+                //singleplayerAI.SetActive(false);
+                //_player.GetComponent<PlayerMovementScript>().enabled = false;
+                //player2.SetActive(true);
+                //_camMotor.setMode(true);
             } else
             {
-                player2.SetActive(false);
-                singleplayerAI.SetActive(true);
-                _camMotor.setMode(false);
+                StartSinglePlayer();
+                //player2.SetActive(false);
+                //singleplayerAI.SetActive(true);
+                //_camMotor.setMode(false);
             }
         } else
         {
@@ -129,7 +132,7 @@ public class LvlMngrScript : NetworkBehaviour
         startTime = Time.time;
         //disable trap AI
         player2.SetActive(false);
-
+        _camMotor.setMode(false);
     }
 
     void StartLocalMultiplayer()
@@ -146,6 +149,8 @@ public class LvlMngrScript : NetworkBehaviour
 
         //disable p1 script for setup phase
         _player.GetComponent<PlayerMovementScript>().enabled = false;
+
+        _camMotor.setMode(true);
     }
 
     void StartOnlineMultiplayer()
@@ -162,6 +167,8 @@ public class LvlMngrScript : NetworkBehaviour
 
         //disable p1 script for setup phase
         _player.GetComponent<PlayerMovementScript>().enabled = false;
+
+        _camMotor.setMode(true);
     }
 
     // Update is called once per frame
