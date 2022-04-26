@@ -133,7 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7517983}
   - component: {fileID: 7517984}
-  - component: {fileID: 7517985}
   - component: {fileID: 7517986}
   m_Layer: 0
   m_Name: LoadSceneManger
@@ -169,28 +168,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb803a0272b5d0f48933d1e82a88ec67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
   lvlSelect: {fileID: 0}
   startLevel: {fileID: 0}
   onlineHUD: {fileID: 8469236903088872500}
---- !u!114 &7517985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7517981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneId: 2772046927
-  serverOnly: 0
-  visible: 0
-  m_AssetId: 
-  hasSpawned: 0
 --- !u!114 &7517986
 MonoBehaviour:
   m_ObjectHideFlags: 0

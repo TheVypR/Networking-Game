@@ -17,24 +17,8 @@ public class CanvasManagerScript : NetworkBehaviour
 
     void Start()
     {
-        Time.timeScale = 0;
         StartCoroutine(LateStart(0.1f));
     }
-
-
-    //void Start()
-    //{
-    //    StartCoroutine(SearchPlayers());
-
-
-    //    if (player1.hasAuthority)
-    //    {
-    //        print("Have Authority");
-    //        setPlayerOneBlind(true);
-    //    }
-
-    //}
-
 
     public void setPlayerOneBlind(bool set)
     {
@@ -62,15 +46,16 @@ public class CanvasManagerScript : NetworkBehaviour
             else
             {
                 playerWaitingBlind.SetActive(true);
+                Time.timeScale = 0;
             }
-            yield return new WaitForSeconds(waitTime);
+            yield return new WaitForSecondsRealtime(waitTime);
 
         }
     }
 
     IEnumerator LateStart(float waitTime)
     {
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSecondsRealtime(waitTime);
 
         StartCoroutine(SearchPlayers());
 

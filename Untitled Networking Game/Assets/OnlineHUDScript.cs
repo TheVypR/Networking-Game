@@ -25,6 +25,6 @@ public class OnlineHUDScript : MonoBehaviour
     public void OnJoin()
     {
         PlayerPrefs.SetInt("isHost", 0);
-        SceneManager.LoadScene("LevelSelect");
+        SceneManager.LoadScene("Level1");
     }
 }
