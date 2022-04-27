@@ -36,7 +36,8 @@ public class LvlSelectManager : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("Level1");
+            PlayerPrefs.SetString("level", "Level1");
+            SceneManager.LoadScene("MatchWaitScene");
         }
     }
 
@@ -50,7 +51,8 @@ public class LvlSelectManager : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("Level2");
+            PlayerPrefs.SetString("level", "Level2");
+            SceneManager.LoadScene("MatchWaitScene");
         }
     }
 
@@ -64,7 +66,8 @@ public class LvlSelectManager : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("Level3");
+            PlayerPrefs.SetString("level", "Level3");
+            SceneManager.LoadScene("MatchWaitScene");
         }
     }
 

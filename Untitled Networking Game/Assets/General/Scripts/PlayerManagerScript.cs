@@ -5,9 +5,10 @@ using Mirror;
 
 public class PlayerManagerScript : NetworkBehaviour
 {
+    //authority management
     bool gaveAuth = false;
+    //scene management
     int role;
-
 
     // Start is called before the first frame update
     void Start()
@@ -15,7 +16,7 @@ public class PlayerManagerScript : NetworkBehaviour
         DontDestroyOnLoad(gameObject);
 
         //for testing
-        if(isServer && isLocalPlayer)
+        if (isServer && isLocalPlayer)
         {
             PlayerPrefs.SetInt("player", 1);
             CmdGivePrefs();
@@ -35,14 +36,12 @@ public class PlayerManagerScript : NetworkBehaviour
                 if (PlayerPrefs.GetInt("player") == 1)
                 {
                     PlayerMovementScript p1 = FindObjectOfType<PlayerMovementScript>();
-                    print("testp1");
                     if (p1)
                     {
                         print("auth");
                         gaveAuth = true;
                         NetworkIdentity p1ID = p1.gameObject.GetComponent<NetworkIdentity>();
                         p1ID.AssignClientAuthority(connectionToClient);
-                        NetworkServer.AddPlayerForConnection(connectionToClient, gameObject);
                     }
                 }
                 else
@@ -52,14 +51,12 @@ public class PlayerManagerScript : NetworkBehaviour
             } else if(isServer && !isLocalPlayer)
             {
                 Player2Script p2 = FindObjectOfType<Player2Script>();
-                print("testp2");
                 if (p2)
                 {
                     print("2auth");
                     gaveAuth = true;
                     NetworkIdentity p2ID = p2.gameObject.GetComponent<NetworkIdentity>();
                     p2ID.AssignClientAuthority(connectionToClient);
-                    NetworkServer.AddPlayerForConnection(connectionToClient, gameObject);
                 }
             }
         }

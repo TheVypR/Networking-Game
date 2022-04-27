@@ -4,26 +4,20 @@ using UnityEngine;
 using Mirror;
 public class ServerScript : MonoBehaviour
 {
-    NetworkManager netMan;
 
     // Start is called before the first frame update
     void Start()
     {
-        netMan = gameObject.GetComponent<NetworkManager>();
         if (PlayerPrefs.HasKey("isHost"))
         {
-            if (PlayerPrefs.GetInt("isHost") == 1)
+            if(PlayerPrefs.GetInt("isHost") == 1)
             {
-                netMan.StartHost();
+                NetworkManager.singleton.StartHost();
             } else
             {
-                netMan.StartClient();
-                //set the IP
-                netMan.networkAddress = "localhost";
+                NetworkManager.singleton.StartClient();
+                NetworkManager.singleton.networkAddress = "localhost";
             }
-        } else
-        {
-            //not online mode
         }
     }
 

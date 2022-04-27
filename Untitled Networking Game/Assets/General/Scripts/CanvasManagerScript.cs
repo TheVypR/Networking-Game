@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class CanvasManagerScript : NetworkBehaviour
 {
-
+    string level = "";
     public NetworkIdentity player1;
     public GameObject setupText;
     public GameObject setupPanel;
@@ -22,17 +22,37 @@ public class CanvasManagerScript : NetworkBehaviour
 
     public void setPlayerOneBlind(bool set)
     {
-        setupText.SetActive(set);
-        setupPanel.SetActive(set);
+        if (setupText && setupPanel)
+        {
+            setupText.SetActive(set);
+            setupPanel.SetActive(set);
+        }
     }
 
     private void bothPlayersFound()
     {
         StopCoroutine(SearchPlayers());
         playerWaitingBlind.SetActive(false);
-        //levelmanager.StartSetup();
-        //levelmanager.StartLocalMultiplayer();
-        Time.timeScale = 1;
+        StartCoroutine(LoadLevel());
+    }
+
+    IEnumerator LoadLevel()
+    {
+        if (isServer && isLocalPlayer)
+        {
+            if (PlayerPrefs.HasKey("level"))
+            {
+                RpcSetLevel(PlayerPrefs.GetString("level"));
+            }
+        }
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadSceneAsync(level, LoadSceneMode.Additive);
+    }
+
+    [ClientRpc]
+    void RpcSetLevel(string lvl)
+    {
+        level = lvl;
     }
 
     private IEnumerator SearchPlayers()
@@ -45,17 +65,17 @@ public class CanvasManagerScript : NetworkBehaviour
             }
             else
             {
+                
                 playerWaitingBlind.SetActive(true);
-                Time.timeScale = 0;
             }
-            yield return new WaitForSecondsRealtime(waitTime);
+            yield return new WaitForSeconds(waitTime);
 
         }
     }
 
     IEnumerator LateStart(float waitTime)
     {
-        yield return new WaitForSecondsRealtime(waitTime);
+        yield return new WaitForSeconds(waitTime);
 
         StartCoroutine(SearchPlayers());
 
