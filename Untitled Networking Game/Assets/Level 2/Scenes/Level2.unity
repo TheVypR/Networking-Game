@@ -8398,6 +8398,7 @@ MonoBehaviour:
   setupText: {fileID: 672706178}
   setupPanel: {fileID: 672706177}
   playerWaitingBlind: {fileID: 1097673705}
+  levelmanager: {fileID: 166103066}
 --- !u!114 &1265167628
 MonoBehaviour:
   m_ObjectHideFlags: 0

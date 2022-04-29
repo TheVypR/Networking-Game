@@ -54,33 +54,34 @@ public class LvlMngrScript : NetworkBehaviour
     bool _dead = false;
     int _countDeaths;
     float _textRise;
-
+    
     // Start is called before the first frame update
     void Start()
     {
-        //SceneManager.UnloadSceneAsync("LevelSelect");
         //check if multiplayer
         if (PlayerPrefs.HasKey("mode"))
         {
-            PlayerPrefs.SetInt("mode", 2);
-            isMultiplayer = 2;//PlayerPrefs.GetInt("mode");
+            isMultiplayer = PlayerPrefs.GetInt("mode");
             if(isMultiplayer == 2)
             {
-                singleplayerAI.SetActive(false);
-                _player.GetComponent<PlayerMovementScript>().enabled = false;
-                player2.SetActive(true);
-                _camMotor.setMode(true);
+                StartOnlineMultiplayer();
+                //singleplayerAI.SetActive(false);
+                //_player.GetComponent<PlayerMovementScript>().enabled = false;
+                //player2.SetActive(true);
+                //_camMotor.setMode(true);
             } else if (isMultiplayer == 1)
             {
-                singleplayerAI.SetActive(false);
-                _player.GetComponent<PlayerMovementScript>().enabled = false;
-                player2.SetActive(true);
-                _camMotor.setMode(true);
+                StartLocalMultiplayer();
+                //singleplayerAI.SetActive(false);
+                //_player.GetComponent<PlayerMovementScript>().enabled = false;
+                //player2.SetActive(true);
+                //_camMotor.setMode(true);
             } else
             {
-                player2.SetActive(false);
-                singleplayerAI.SetActive(true);
-                _camMotor.setMode(false);
+                StartSinglePlayer();
+                //player2.SetActive(false);
+                //singleplayerAI.SetActive(true);
+                //_camMotor.setMode(false);
             }
         } else
         {
@@ -103,11 +104,11 @@ public class LvlMngrScript : NetworkBehaviour
         _countDeaths = 0;
         _textRise = 0;
 
-        if (isMultiplayer == 1 || isMultiplayer == 2)
-        {
-            isSetup = true;
-            setupStart = Time.time;
-        }
+        //if (isMultiplayer == 1 || isMultiplayer == 2)
+        //{
+        //    isSetup = true;
+        //    setupStart = Time.time;
+        //}
 
         //respawn canvas children
         _respawnText = _respawnCanvas.transform.Find("RespawnCountdownText").gameObject.GetComponent<Text>();
@@ -119,16 +120,22 @@ public class LvlMngrScript : NetworkBehaviour
         transitionCanvas.SetActive(false);
     }
 
+    public void StartSetup()
+    {
+        isSetup = true;
+        setupStart = Time.time;
+    }
+
     void StartSinglePlayer()
     {
         //start in play mode
         startTime = Time.time;
         //disable trap AI
         player2.SetActive(false);
-
+        _camMotor.setMode(false);
     }
 
-    void StartLocalMultiplayer()
+    public void StartLocalMultiplayer()
     {
         //start in setup mode
         isSetup = true;
@@ -142,6 +149,8 @@ public class LvlMngrScript : NetworkBehaviour
 
         //disable p1 script for setup phase
         _player.GetComponent<PlayerMovementScript>().enabled = false;
+
+        _camMotor.setMode(true);
     }
 
     void StartOnlineMultiplayer()
@@ -158,6 +167,8 @@ public class LvlMngrScript : NetworkBehaviour
 
         //disable p1 script for setup phase
         _player.GetComponent<PlayerMovementScript>().enabled = false;
+
+        _camMotor.setMode(true);
     }
 
     // Update is called once per frame

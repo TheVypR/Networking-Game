@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ModeManagerScript : MonoBehaviour
 {
-    public GameObject onlineCanvas;
     public GameObject localCanvas;
 
     // Start is called before the first frame update
@@ -13,18 +12,12 @@ public class ModeManagerScript : MonoBehaviour
         if (PlayerPrefs.HasKey("mode"))
         {
             int mode = PlayerPrefs.GetInt("mode");
-            if(mode == 2)
-            {
-                localCanvas.SetActive(false);
-                onlineCanvas.SetActive(true);
-            } else if (mode == 1)
+            if(mode == 1)
             {
                 localCanvas.SetActive(true);
-                onlineCanvas.SetActive(false);
             } else
             {
                 localCanvas.SetActive(false);
-                onlineCanvas.SetActive(false);
             }
         }
     }

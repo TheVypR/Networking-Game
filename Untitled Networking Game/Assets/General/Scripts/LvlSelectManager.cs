@@ -4,16 +4,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Mirror;
 
-public class LvlSelectManager : NetworkBehaviour
+public class LvlSelectManager : MonoBehaviour
 {
     string scenename = "";
     public GameObject lvlSelect;
     public GameObject startLevel;
+    public GameObject onlineHUD;
 
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -24,12 +24,6 @@ public class LvlSelectManager : NetworkBehaviour
         {
             SceneManager.LoadScene(scenename);
         }
-    }
-
-    [ClientRpc]
-    void RpcLoadScene(string scene)
-    {
-        SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive);
     }
 
     public void LevelOne()
@@ -53,11 +47,8 @@ public class LvlSelectManager : NetworkBehaviour
         }
         else
         {
-            if (isServer)
-            {
-                SceneManager.LoadSceneAsync("Level1", LoadSceneMode.Additive);
-                RpcLoadScene("Level1");
-            }
+            PlayerPrefs.SetString("level", "Level1");
+            SceneManager.LoadScene("MatchWaitScene");
         }
 
 
@@ -74,8 +65,8 @@ public class LvlSelectManager : NetworkBehaviour
         }
         else
         {
-            SceneManager.LoadSceneAsync("Level2", LoadSceneMode.Additive);
-            RpcLoadScene("Level2");
+            PlayerPrefs.SetString("level", "Level2");
+            SceneManager.LoadScene("MatchWaitScene");
         }
 
 
@@ -92,8 +83,8 @@ public class LvlSelectManager : NetworkBehaviour
         }
         else
         {
-            SceneManager.LoadSceneAsync("Level3", LoadSceneMode.Additive);
-            RpcLoadScene("Level3");
+            PlayerPrefs.SetString("level", "Level3");
+            SceneManager.LoadScene("MatchWaitScene");
         }
 
 
@@ -109,7 +100,13 @@ public class LvlSelectManager : NetworkBehaviour
     public void LevelSelect(int mode)
     {
         PlayerPrefs.SetInt("mode", mode);
-        SceneManager.LoadScene("LevelSelect");
+        if(mode == 2)
+        {
+            onlineHUD.SetActive(true);
+        } else
+        {
+            SceneManager.LoadScene("LevelSelect");
+        }
     }
 
     public void Quit()

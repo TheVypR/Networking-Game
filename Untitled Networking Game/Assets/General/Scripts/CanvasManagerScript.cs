@@ -3,47 +3,56 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class CanvasManagerScript : NetworkBehaviour
 {
-
+    string level = "";
     public NetworkIdentity player1;
     public GameObject setupText;
     public GameObject setupPanel;
 
-    float waitTime = 0.5f;
+    float waitTime = 0.1f;
     public GameObject playerWaitingBlind;
+    public LvlMngrScript levelmanager;
 
     void Start()
     {
-        StartCoroutine(LateStart(1.0f));
+        StartCoroutine(LateStart(0.1f));
     }
-
-
-    //void Start()
-    //{
-    //    StartCoroutine(SearchPlayers());
-
-
-    //    if (player1.hasAuthority)
-    //    {
-    //        print("Have Authority");
-    //        setPlayerOneBlind(true);
-    //    }
-
-    //}
-
 
     public void setPlayerOneBlind(bool set)
     {
-        setupText.SetActive(set);
-        setupPanel.SetActive(set);
+        if (setupText && setupPanel)
+        {
+            setupText.SetActive(set);
+            setupPanel.SetActive(set);
+        }
     }
 
     private void bothPlayersFound()
     {
         StopCoroutine(SearchPlayers());
         playerWaitingBlind.SetActive(false);
+        StartCoroutine(LoadLevel());
+    }
+
+    IEnumerator LoadLevel()
+    {
+        if (isServer && isLocalPlayer)
+        {
+            if (PlayerPrefs.HasKey("level"))
+            {
+                RpcSetLevel(PlayerPrefs.GetString("level"));
+            }
+        }
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadSceneAsync(level, LoadSceneMode.Additive);
+    }
+
+    [ClientRpc]
+    void RpcSetLevel(string lvl)
+    {
+        level = lvl;
     }
 
     private IEnumerator SearchPlayers()
@@ -56,6 +65,7 @@ public class CanvasManagerScript : NetworkBehaviour
             }
             else
             {
+                
                 playerWaitingBlind.SetActive(true);
             }
             yield return new WaitForSeconds(waitTime);
@@ -69,10 +79,8 @@ public class CanvasManagerScript : NetworkBehaviour
 
         StartCoroutine(SearchPlayers());
 
-
         if (player1.hasAuthority)
         {
-            print("Have Authority");
             setPlayerOneBlind(true);
         }
     }

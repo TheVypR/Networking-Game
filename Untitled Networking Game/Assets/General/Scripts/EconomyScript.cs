@@ -27,7 +27,7 @@ public class EconomyScript : NetworkBehaviour
     void Start()
     {
         _camScript = FindObjectOfType<CameraMotor>();
-        setupMode = PlayerPrefs.GetInt("mode") == 1 || PlayerPrefs.GetInt("mode") == 2;
+        setupMode = (PlayerPrefs.GetInt("mode") == 1 || PlayerPrefs.GetInt("mode") == 2);
         if (!setupMode)
         {
             gainRoutine = StartCoroutine(GainMoney());
