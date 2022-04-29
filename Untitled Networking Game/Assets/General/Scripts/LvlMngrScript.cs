@@ -104,6 +104,9 @@ public class LvlMngrScript : NetworkBehaviour
         _countDeaths = 0;
         _textRise = 0;
 
+
+        StartCoroutine(SearchPlayers());
+
         //if (isMultiplayer == 1 || isMultiplayer == 2)
         //{
         //    isSetup = true;
@@ -118,6 +121,16 @@ public class LvlMngrScript : NetworkBehaviour
         _addPlusOne = _respawnCanvas.transform.Find("AddOneDeathText").gameObject.GetComponent<Text>();
         _respawnCanvas.SetActive(false);
         transitionCanvas.SetActive(false);
+    }
+
+
+    private IEnumerator SearchPlayers()
+    {
+        while (FindObjectsOfType<PlayerManagerScript>().Length > 1)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+        NetworkManager.singleton.StopHost();
     }
 
     public void StartSetup()

@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Mirror;
 
-public class PSelectButtonManager : NetworkBehaviour
+public class PSelectButtonManager : MonoBehaviour
 {
     public NetworkManager netMan;
 
@@ -30,69 +31,51 @@ public class PSelectButtonManager : NetworkBehaviour
     {
         //player prefs set for player to be runner
         runner = 1;
+        trapper = 0;
 
-        if (isLocalPlayer)
+        PlayerPrefs.SetInt("player", runner);
+
+        if (PlayerPrefs.GetInt("player") == runner)
         {
-            PlayerPrefs.SetInt("player", runner);
+            print("You are the runner!");
 
-            if (PlayerPrefs.GetInt("player") == runner)
-            {
-                print("Player 1 is now the runner!");
-
-                isRunner = true;
-                isTrapper = false;
-            }
-        }
-        else
-        {
-            PlayerPrefs.SetInt("player", runner);
-
-            if (PlayerPrefs.GetInt("player") == runner)
-            {
-                print("Player 2 is now the runner!");
-
-                isRunner = true;
-                isTrapper = false;
-            }
+            isRunner = true;
+            isTrapper = false;
         }
         
         
 
         //TODO: Don't allow player to select anything else after selecting
+
+        if (isRunner == true && isTrapper == false)
+        {
+            SceneManager.LoadScene("MatchWaitScene");
+        }
     }
 
     public void TrapperSelect()
     {
         //player prefs set for player to be trapper
         trapper = 2;
+        runner = 0;
 
-        if (isLocalPlayer)
+        PlayerPrefs.SetInt("player", trapper);
+
+        if (PlayerPrefs.GetInt("player") == trapper)
         {
-            PlayerPrefs.SetInt("player", trapper);
+            print("You are the trapper!");
 
-            if (PlayerPrefs.GetInt("player") == trapper)
-            {
-                print("Player 1 is now the trapper!");
-
-                isRunner = false;
-                isTrapper = true;
-            }
+            isRunner = false;
+            isTrapper = true;
         }
-        else
-        {
-            PlayerPrefs.SetInt("player", trapper);
 
-            if (PlayerPrefs.GetInt("player") == trapper)
-            {
-                print("Player 2 is now the trapper!");
 
-                isRunner = false;
-                isTrapper = true;
-            }
-        }
-        
-        
 
         //TODO: Don't allow player to select anything else after selecting
+
+        if (isRunner == false && isTrapper == true)
+        {
+            SceneManager.LoadScene("MatchWaitScene");
+        }
     }
 }

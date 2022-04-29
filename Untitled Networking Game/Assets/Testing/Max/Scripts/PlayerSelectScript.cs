@@ -15,6 +15,15 @@ public class PlayerSelectScript : MonoBehaviour
     public GameObject _highlightedP1_P1Btn;
     public GameObject _highlightedP2_P1Btn;
 
+    public GameObject _runnerImage;
+    public GameObject _trapperImage1;
+    public GameObject _trapperImage2;
+    public GameObject _trapperImage3;
+    public GameObject _trapperImage4;
+
+    public Image _runnerPanel;
+    public Image _trapperPanel;
+
     //PlayerPrefs here
     int isMultiplayer;
 
@@ -130,6 +139,32 @@ public class PlayerSelectScript : MonoBehaviour
         {
             //cb_btn1.selectedColor = Color.yellow;
 
+            //_runnerPanel.SetActive(false);
+            var tempColRun = _runnerPanel.color;
+            var tempColTrap = _trapperPanel.color;
+
+            if (tempColRun.a > 0.01f)
+            {
+                tempColRun.a -= 0.05f;
+                if (tempColRun.a <= 0.01f)
+                {
+                    tempColRun.a = 0f;
+                }
+                _runnerPanel.color = tempColRun;
+            }
+
+            if (tempColTrap.a < 0.5f)
+            {
+                tempColTrap.a += 0.05f;
+                if (tempColTrap.a >= 0.49f)
+                {
+                    tempColTrap.a = 0.5f;
+                }
+                _trapperPanel.color = tempColTrap;
+            }
+
+            //_trapperPanel.SetActive(true);
+
             //Check if the posn is correctly in its place
             if (a.transform.position != a1.transform.position)
             {
@@ -139,20 +174,30 @@ public class PlayerSelectScript : MonoBehaviour
 
             if (_runner.transform.localScale.x < 2 && _runner.transform.localScale.y < 2)
             {
-                _runner.transform.localScale = new Vector3(_runnerSize += 0.1f, _runnerSize += 0.1f, 0);
+                _runner.transform.localScale = new Vector3(_runnerSize += 0.05f, _runnerSize += 0.05f, 0);
+                _runnerImage.transform.localScale = new Vector3(_runnerSize += 0.05f, _runnerSize += 0.05f, 0);
 
                 if (_runner.transform.localScale.x >= 1.99 && _runner.transform.localScale.y >= 1.99)
                 {
                     _runner.transform.localScale = new Vector3(2, 2, 0);
+                    _runnerImage.transform.localScale = new Vector3(2, 2, 0);
                 }
             }
             if (_trapper.transform.localScale.x > 1 && _trapper.transform.localScale.y > 1)
             {
-                _trapper.transform.localScale = new Vector3(_trapperSize -= 0.1f, _trapperSize -= 0.1f, 0);
+                _trapper.transform.localScale = new Vector3(_trapperSize -= 0.05f, _trapperSize -= 0.05f, 0);
+                _trapperImage1.transform.localScale = new Vector3(_trapperSize -= 0.05f, _trapperSize -= 0.05f, 0);
+                _trapperImage2.transform.localScale = new Vector3(_trapperSize -= 0.05f, _trapperSize -= 0.05f, 0);
+                _trapperImage3.transform.localScale = new Vector3(_trapperSize -= 0.05f, _trapperSize -= 0.05f, 0);
+                _trapperImage4.transform.localScale = new Vector3(_trapperSize -= 0.05f, _trapperSize -= 0.05f, 0);
 
                 if (_trapper.transform.localScale.x <= 1.01 && _trapper.transform.localScale.y <= 1.01)
                 {
-                    _runner.transform.localScale = new Vector3(1, 1, 0);
+                    _trapper.transform.localScale = new Vector3(1, 1, 0);
+                    _trapperImage1.transform.localScale = new Vector3(1, 1, 0);
+                    _trapperImage2.transform.localScale = new Vector3(1, 1, 0);
+                    _trapperImage3.transform.localScale = new Vector3(1, 1, 0);
+                    _trapperImage4.transform.localScale = new Vector3(1, 1, 0);
                 }
             }
 
@@ -183,6 +228,32 @@ public class PlayerSelectScript : MonoBehaviour
         {
             //cb_btn2.selectedColor = Color.yellow;
 
+            //_runnerPanel.SetActive(true);
+            var tempColRun = _runnerPanel.color;
+            var tempColTrap = _trapperPanel.color;
+
+            if (tempColTrap.a > 0.01f)
+            {
+                tempColTrap.a -= 0.05f;
+                if (tempColTrap.a <= 0.01f)
+                {
+                    tempColTrap.a = 0f;
+                }
+                _trapperPanel.color = tempColTrap;
+            }
+
+            if (tempColRun.a < 0.49f)
+            {
+                tempColRun.a += 0.05f;
+                if (tempColRun.a >= 0.49f)
+                {
+                    tempColRun.a = 0.5f;
+                }
+                _runnerPanel.color = tempColRun;
+            }
+
+            //_trapperPanel.SetActive(false);
+
 
             //Check if the posn is correctly in its place
             if (a.transform.position != b1.transform.position)
@@ -193,20 +264,30 @@ public class PlayerSelectScript : MonoBehaviour
 
             if (_trapper.transform.localScale.x < 2 && _trapper.transform.localScale.y < 2)
             {
-                _trapper.transform.localScale = new Vector3(_trapperSize += 0.1f, _trapperSize += 0.1f, 0);
+                _trapper.transform.localScale = new Vector3(_trapperSize += 0.05f, _trapperSize += 0.05f, 0);
+                _trapperImage1.transform.localScale = new Vector3(_trapperSize += 0.05f, _trapperSize += 0.05f, 0);
+                _trapperImage2.transform.localScale = new Vector3(_trapperSize += 0.05f, _trapperSize += 0.05f, 0);
+                _trapperImage3.transform.localScale = new Vector3(_trapperSize += 0.05f, _trapperSize += 0.05f, 0);
+                _trapperImage4.transform.localScale = new Vector3(_trapperSize += 0.05f, _trapperSize += 0.05f, 0);
 
                 if (_trapper.transform.localScale.x >= 1.99 && _trapper.transform.localScale.y >= 1.99)
                 {
-                    _runner.transform.localScale = new Vector3(2, 2, 0);
+                    _trapper.transform.localScale = new Vector3(2, 2, 0);
+                    _trapperImage1.transform.localScale = new Vector3(2, 2, 0);
+                    _trapperImage2.transform.localScale = new Vector3(2, 2, 0);
+                    _trapperImage3.transform.localScale = new Vector3(2, 2, 0);
+                    _trapperImage4.transform.localScale = new Vector3(2, 2, 0);
                 }
             }
             if (_runner.transform.localScale.x > 1 && _runner.transform.localScale.y > 1)
             {
-                _runner.transform.localScale = new Vector3(_runnerSize -= 0.1f, _runnerSize -= 0.1f, 0);
+                _runner.transform.localScale = new Vector3(_runnerSize -= 0.05f, _runnerSize -= 0.05f, 0);
+                _runnerImage.transform.localScale = new Vector3(_runnerSize -= 0.05f, _runnerSize -= 0.05f, 0);
 
                 if (_runner.transform.localScale.x <= 1.01 && _runner.transform.localScale.y <= 1.01)
                 {
                     _runner.transform.localScale = new Vector3(1, 1, 0);
+                    _runnerImage.transform.localScale = new Vector3(1, 1, 0);
                 }
             }
 

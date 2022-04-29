@@ -1306,6 +1306,7 @@ namespace Mirror
             if (mode == NetworkManagerMode.Offline)
                 return;
 
+
             StopClient();
         }
 
