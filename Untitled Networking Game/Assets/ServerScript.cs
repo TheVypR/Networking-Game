@@ -23,7 +23,8 @@ public class ServerScript : MonoBehaviour
                     else
                     {
                         NetworkManager.singleton.StartClient();
-                        NetworkManager.singleton.networkAddress = "localhost";
+                        //NetworkManager.singleton.networkAddress = "localhost";
+                        NetworkManager.singleton.networkAddress = PlayerPrefs.GetString("IP");
                     }
                 }
             } else
