@@ -42,6 +42,7 @@ public class LvlMngrScript : NetworkBehaviour
     bool isSetup = false;
     public float setupTimer = 30;
     float setupStart;
+    public AudioSource audioS;
 
     //Respawn Screen
     public GameObject _respawnCanvas;
@@ -64,12 +65,15 @@ public class LvlMngrScript : NetworkBehaviour
             isMultiplayer = PlayerPrefs.GetInt("mode");
             if(isMultiplayer == 2)
             {
+                audioS.Play();
                 StartOnlineMultiplayer();
             } else if (isMultiplayer == 1)
             {
+                audioS.Play();
                 StartLocalMultiplayer();
             } else
             {
+                audioS.Play();
                 StartSinglePlayer();
             }
         } else
