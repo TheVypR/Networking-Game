@@ -5,6 +5,9 @@ using Mirror;
 
 public class CameraMotor : NetworkBehaviour
 {
+    //make a singleton
+    public static CameraMotor singleton;
+
     public Transform _playerTrans;
     public Transform _player2Trans;
     private bool isSetup = false;
@@ -20,10 +23,14 @@ public class CameraMotor : NetworkBehaviour
     Vector3 Yoffset = new Vector3(0, 5, 0);
     Vector3 Xoffset = new Vector3(5, 0, 0);
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        singleton = this;
+    }
 
+    private void OnEnable()
+    {
+        singleton = this;
     }
 
     // Update is called once per frame
@@ -118,7 +125,7 @@ public class CameraMotor : NetworkBehaviour
         if (!setup)
         {
             transform.position = new Vector3(0, 0, -10);
-            Camera.main.orthographicSize = 8;
+            gameObject.GetComponent<Camera>().orthographicSize = 8;
             background.transform.localScale = new Vector3(1.5f, 1.5f, 1);
         }
     }

@@ -8,10 +8,8 @@ public class ServerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        print("start");
         if (PlayerPrefs.HasKey("mode"))
         { 
-            print("mode");
             if (PlayerPrefs.GetInt("mode") == 2)
             {
                 if (PlayerPrefs.HasKey("isHost"))
@@ -35,7 +33,6 @@ public class ServerScript : MonoBehaviour
                 }
             } else
             {
-                print("not online");
                 StartCoroutine(EnableIDs());
             }
         } else
@@ -48,13 +45,18 @@ public class ServerScript : MonoBehaviour
 
     IEnumerator EnableIDs()
     {
-        print("started");
         NetworkIdentity[] ids = Resources.FindObjectsOfTypeAll<NetworkIdentity>();
         foreach (NetworkIdentity id in ids)
         {
-            print("id");
-            id.gameObject.SetActive(true);
-            yield return new WaitForSeconds(0.01f);
+            if (id.name.Equals("RespawnCanvas") || id.name.Equals("TransitionCanvas"))
+            {
+                yield return new WaitForSeconds(0.01f);
+            }
+            else
+            {
+                id.gameObject.SetActive(true);
+                yield return new WaitForSeconds(0.01f);
+            }
         }
     }
 }

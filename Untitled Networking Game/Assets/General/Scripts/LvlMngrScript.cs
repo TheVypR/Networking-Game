@@ -37,7 +37,6 @@ public class LvlMngrScript : NetworkBehaviour
 
     //setup or gameplay
     public GameObject transitionCanvas;
-    public CameraMotor _camMotor;
     Transform _camTrans;
     bool isSetup = false;
     public float setupTimer = 30;
@@ -57,7 +56,7 @@ public class LvlMngrScript : NetworkBehaviour
     float _textRise;
     
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         //check if multiplayer
         if (PlayerPrefs.HasKey("mode"))
@@ -80,31 +79,21 @@ public class LvlMngrScript : NetworkBehaviour
         {
             PlayerPrefs.SetInt("mode", 0);
             isMultiplayer = 0;
-            _camMotor.setMode(false);
+            CameraMotor.singleton.setMode(false);
             singleplayerAI.SetActive(true);
         }
 
         //store components
-        _camTrans = Camera.main.transform;
+        _camTrans = CameraMotor.singleton.transform;
         _playerRbody = _player.GetComponent<Rigidbody2D>();
         _playerTrans = _player.GetComponent<Transform>();
         _playerSprite = _player.GetComponent<SpriteRenderer>();
         _playerMove = _player.GetComponent<PlayerMovementScript>();
 
-        //only start round immediately if singleplayer
-
+        //set up respawn screen
         _timeRespawn = 4f;
         _countDeaths = 0;
         _textRise = 0;
-
-
-        StartCoroutine(SearchPlayers());
-
-        //if (isMultiplayer == 1 || isMultiplayer == 2)
-        //{
-        //    isSetup = true;
-        //    setupStart = Time.time;
-        //}
 
         //respawn canvas children
         _respawnText = _respawnCanvas.transform.Find("RespawnCountdownText").gameObject.GetComponent<Text>();
@@ -115,6 +104,7 @@ public class LvlMngrScript : NetworkBehaviour
         _respawnCanvas.SetActive(false);
         transitionCanvas.SetActive(false);
     }
+
 
 
     private IEnumerator SearchPlayers()
@@ -142,7 +132,11 @@ public class LvlMngrScript : NetworkBehaviour
         player2.SetActive(false);
 
         //start camera in game mode
-        _camMotor.setMode(false);
+        CameraMotor.singleton.setMode(false);
+
+        //disable the respawn screen
+        _respawnCanvas.SetActive(false);
+        transitionCanvas.SetActive(false);
     }
 
     public void StartLocalMultiplayer()
@@ -160,7 +154,7 @@ public class LvlMngrScript : NetworkBehaviour
         //disable p1 script for setup phase
         _player.GetComponent<PlayerMovementScript>().enabled = false;
 
-        _camMotor.setMode(true);
+        CameraMotor.singleton.setMode(true);
     }
 
     void StartOnlineMultiplayer()
@@ -178,7 +172,10 @@ public class LvlMngrScript : NetworkBehaviour
         //disable p1 script for setup phase
         _player.GetComponent<PlayerMovementScript>().enabled = false;
 
-        _camMotor.setMode(true);
+        CameraMotor.singleton.setMode(true);
+
+        //keep an eye on the number of players to check for disconnection
+        StartCoroutine(SearchPlayers());
     }
 
     // Update is called once per frame
@@ -216,6 +213,7 @@ public class LvlMngrScript : NetworkBehaviour
 
         if (_dead)
         {
+            print("dead");
             _respawnCanvas.SetActive(true);
             _deathText.text = "Death Count: " + _countDeaths;
 
@@ -328,7 +326,7 @@ public class LvlMngrScript : NetworkBehaviour
         //reset camera on server
         economyScript.StartRound();
         isSetup = false;
-        _camMotor.setMode(false);
+        CameraMotor.singleton.setMode(false);
         _player.GetComponent<PlayerMovementScript>().enabled = true;
         Time.timeScale = 1;
         startTime = Time.time;
@@ -344,7 +342,7 @@ public class LvlMngrScript : NetworkBehaviour
     {
         economyScript.StartRound();
         isSetup = false;
-        _camMotor.setMode(false);
+        CameraMotor.singleton.setMode(false);
         _player.GetComponent<PlayerMovementScript>().enabled = true;
         Time.timeScale = 1;
         startTime = Time.time;

@@ -26,7 +26,7 @@ public class EconomyScript : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _camScript = FindObjectOfType<CameraMotor>();
+        _camScript = Resources.FindObjectsOfTypeAll<CameraMotor>()[0];
         setupMode = (PlayerPrefs.GetInt("mode") == 1 || PlayerPrefs.GetInt("mode") == 2);
         if (!setupMode)
         {
@@ -60,7 +60,7 @@ public class EconomyScript : NetworkBehaviour
     void NoMoney()
     {
         money = 0;
-        _camScript.autoSpeed = 0.035f;
+        CameraMotor.singleton.autoSpeed = 0.035f;
         StopAllCoroutines();
         gainRoutine = StartCoroutine(GainMoney());
     }
@@ -69,7 +69,7 @@ public class EconomyScript : NetworkBehaviour
     public void stopCamSpeed()
     {
 
-        _camScript.autoSpeed = 0.035f;
+        CameraMotor.singleton.autoSpeed = 0.035f;
         StopAllCoroutines();
         gainRoutine = StartCoroutine(GainMoney());
     }
@@ -78,8 +78,8 @@ public class EconomyScript : NetworkBehaviour
     {
         if (fastSlow)
         {
-            _camScript.autoSpeed += 0.02f;
-            drainAmt = (int)(Mathf.Abs((_camScript.autoSpeed - 0.035f) * 500));
+            CameraMotor.singleton.autoSpeed += 0.02f;
+            drainAmt = (int)(Mathf.Abs((CameraMotor.singleton.autoSpeed - 0.035f) * 500));
             if (drainAmt == 0 && drainRoutine != null)
             {
                 gainRoutine = StartCoroutine(GainMoney());
@@ -93,7 +93,7 @@ public class EconomyScript : NetworkBehaviour
         }
         else
         {
-            _camScript.autoSpeed -= 0.02f;
+            CameraMotor.singleton.autoSpeed -= 0.02f;
             drainAmt = (int)(Mathf.Abs((_camScript.autoSpeed - 0.035f + 0.01f) * 100));
             if (drainAmt == 0 && drainRoutine != null)
             {
