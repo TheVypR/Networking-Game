@@ -10,11 +10,20 @@ public class IPSaveScript : MonoBehaviour
     private void Start()
     {
         ip = ipTextField.GetComponent<TMP_Text>();
+        PlayerPrefs.SetInt("haveIP", 0);
     }
 
 
     public void saveToPrefs()
     {
-        PlayerPrefs.SetString("IP", ip.text);
+        if (ip.text.Length > 6)
+        {
+            PlayerPrefs.SetInt("haveIP", 1);
+            PlayerPrefs.SetString("IP", ip.text);
+        }
+        else
+        {
+            print("Not an IP, must be longer than 6 characters.");
+        }
     }
 }
