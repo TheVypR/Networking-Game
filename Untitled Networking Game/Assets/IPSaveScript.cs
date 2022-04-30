@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class IPSaveScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject ipTextField;
+    private TMP_Text ip;
+    private void Start()
     {
-        
+        ip = ipTextField.GetComponent<TMP_Text>();
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void saveToPrefs()
     {
-        
+        PlayerPrefs.SetString("IP", ip.text);
     }
 }
