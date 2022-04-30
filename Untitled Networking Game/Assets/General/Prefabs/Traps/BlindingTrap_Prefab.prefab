@@ -117,6 +117,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 920947d03a0431a4e9a040acbebc2a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   _blindPrefab: {fileID: 4788606568754076873, guid: 95f07c0246103aa43aad0b6167ff9e7e,
     type: 3}
 --- !u!95 &1910252386359017399

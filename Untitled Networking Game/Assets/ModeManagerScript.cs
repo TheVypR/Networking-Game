@@ -6,7 +6,6 @@ public class ModeManagerScript : MonoBehaviour
 {
     public GameObject localCanvas;
 
-    // Start is called before the first frame update
     void Start()
     {
         if (PlayerPrefs.HasKey("mode"))
@@ -20,11 +19,5 @@ public class ModeManagerScript : MonoBehaviour
                 localCanvas.SetActive(false);
             }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

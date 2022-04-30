@@ -99,6 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 723ba7c12d52b804186946a613c53192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   _bombPrefab: {fileID: 3867747911620145815, guid: c0d0264c50aa8484cbd599c51cee9886,
     type: 3}
   _bombSpwn: {fileID: 3572305994000769261}

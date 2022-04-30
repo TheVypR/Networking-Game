@@ -2,13 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Mirror;
 
 public class PSelectButtonManager : MonoBehaviour
 {
-    public NetworkManager netMan;
-
-
     int runner = 0;
     int trapper = 0;
 

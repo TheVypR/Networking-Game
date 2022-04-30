@@ -9,7 +9,7 @@ using Mirror;
 
 public class LvlMngrScript : NetworkBehaviour
 {
-    //check multiplier
+    //check mode
     int isMultiplayer;
     public GameObject player2;
     public GameObject singleplayerAI;
@@ -65,23 +65,12 @@ public class LvlMngrScript : NetworkBehaviour
             if(isMultiplayer == 2)
             {
                 StartOnlineMultiplayer();
-                //singleplayerAI.SetActive(false);
-                //_player.GetComponent<PlayerMovementScript>().enabled = false;
-                //player2.SetActive(true);
-                //_camMotor.setMode(true);
             } else if (isMultiplayer == 1)
             {
                 StartLocalMultiplayer();
-                //singleplayerAI.SetActive(false);
-                //_player.GetComponent<PlayerMovementScript>().enabled = false;
-                //player2.SetActive(true);
-                //_camMotor.setMode(true);
             } else
             {
                 StartSinglePlayer();
-                //player2.SetActive(false);
-                //singleplayerAI.SetActive(true);
-                //_camMotor.setMode(false);
             }
         } else
         {
@@ -91,14 +80,14 @@ public class LvlMngrScript : NetworkBehaviour
             singleplayerAI.SetActive(true);
         }
 
+        //store components
         _camTrans = Camera.main.transform;
         _playerRbody = _player.GetComponent<Rigidbody2D>();
         _playerTrans = _player.GetComponent<Transform>();
         _playerSprite = _player.GetComponent<SpriteRenderer>();
         _playerMove = _player.GetComponent<PlayerMovementScript>();
 
-        //only start round if singleplayer
-        if (isMultiplayer == 0) { startTime = Time.time; }
+        //only start round immediately if singleplayer
 
         _timeRespawn = 4f;
         _countDeaths = 0;
@@ -142,9 +131,13 @@ public class LvlMngrScript : NetworkBehaviour
     void StartSinglePlayer()
     {
         //start in play mode
+        isSetup = false;
         startTime = Time.time;
-        //disable trap AI
+
+        //disable player 2
         player2.SetActive(false);
+
+        //start camera in game mode
         _camMotor.setMode(false);
     }
 

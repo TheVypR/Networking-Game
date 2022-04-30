@@ -17,7 +17,19 @@ public class CanvasManagerScript : NetworkBehaviour
 
     void Start()
     {
-        StartCoroutine(LateStart(0.1f));
+        if (PlayerPrefs.HasKey("mode"))
+        {
+            if (PlayerPrefs.GetInt("mode") == 2)
+            {
+                StartCoroutine(LateStart(0.1f));
+            } else
+            {
+                return;
+            }
+        } else
+        {
+            return;
+        }
     }
 
     public void setPlayerOneBlind(bool set)

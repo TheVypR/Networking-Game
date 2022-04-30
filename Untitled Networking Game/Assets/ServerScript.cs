@@ -8,22 +8,46 @@ public class ServerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (PlayerPrefs.HasKey("isHost"))
-        {
-            if(PlayerPrefs.GetInt("isHost") == 1)
+        print("start");
+        if (PlayerPrefs.HasKey("mode"))
+        { 
+            print("mode");
+            if (PlayerPrefs.GetInt("mode") == 2)
             {
-                NetworkManager.singleton.StartHost();
+                if (PlayerPrefs.HasKey("isHost"))
+                {
+                    if (PlayerPrefs.GetInt("isHost") == 1)
+                    {
+                        NetworkManager.singleton.StartHost();
+                    }
+                    else
+                    {
+                        NetworkManager.singleton.StartClient();
+                        NetworkManager.singleton.networkAddress = "localhost";
+                    }
+                }
             } else
             {
-                NetworkManager.singleton.StartClient();
-                NetworkManager.singleton.networkAddress = "localhost";
+                print("not online");
+                StartCoroutine(EnableIDs());
             }
+        } else
+        {
+            //set it to singleplayer
+            PlayerPrefs.SetInt("mode", 0);
+            StartCoroutine(EnableIDs());
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator EnableIDs()
     {
-        
+        print("started");
+        NetworkIdentity[] ids = Resources.FindObjectsOfTypeAll<NetworkIdentity>();
+        foreach (NetworkIdentity id in ids)
+        {
+            print("id");
+            id.gameObject.SetActive(true);
+            yield return new WaitForSeconds(0.01f);
+        }
     }
 }

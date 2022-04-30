@@ -147,6 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc8f5bb35f7acce40b2429668a51b24f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   _gluePrefab: {fileID: 6685019983165559364, guid: dc82337f86e750c4e97bfc1559bf96a3,
     type: 3}
   _glueSpwn: {fileID: 6842084689852851768}

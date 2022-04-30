@@ -28,67 +28,68 @@ public class LvlSelectManager : MonoBehaviour
 
     public void LevelOne()
     {
+        //singleplayer
+        if(PlayerPrefs.GetInt("mode") == 0)
+        {
+            SceneManager.LoadScene("Level1");
+        }
+        //local multiplayer
         if (PlayerPrefs.GetInt("mode") == 1)
         {
-            //check if the players have been selected, if not then send to select scene
-            if (PlayerPrefs.GetInt("runner") == 1 && PlayerPrefs.GetInt("trapper") == 2)
-            {
-                SceneManager.LoadScene("Level1");
-            }
-            else
-            {
-                SceneManager.LoadScene("Player Select");
-            }
-
-
             scenename = "Level1";
             lvlSelect.SetActive(false);
             startLevel.SetActive(true);
         }
-        else
+        //online multiplayer
+        if (PlayerPrefs.GetInt("mode") == 2)
         {
             PlayerPrefs.SetString("level", "Level1");
-            SceneManager.LoadScene("MatchWaitScene");
+            SceneManager.LoadScene("Player Select");
         }
-
-
-        
     }
 
     public void LevelTwo()
     {
+        //singleplayer
+        if (PlayerPrefs.GetInt("mode") == 0)
+        {
+            SceneManager.LoadScene("Level2");
+        }
+        //local multiplayer
         if (PlayerPrefs.GetInt("mode") == 1)
         {
             scenename = "Level2";
             lvlSelect.SetActive(false);
             startLevel.SetActive(true);
         }
-        else
+        //online multiplayer
+        if (PlayerPrefs.GetInt("mode") == 2)
         {
             PlayerPrefs.SetString("level", "Level2");
-            SceneManager.LoadScene("MatchWaitScene");
+            SceneManager.LoadScene("Player Select");
         }
-
-
-        
     }
 
     public void LevelThree()
     {
+        //singleplayer
+        if (PlayerPrefs.GetInt("mode") == 0)
+        {
+            SceneManager.LoadScene("Level3");
+        }
+        //local multiplayer
         if (PlayerPrefs.GetInt("mode") == 1)
         {
             scenename = "Level3";
             lvlSelect.SetActive(false);
             startLevel.SetActive(true);
         }
-        else
+        //online multiplayer
+        if (PlayerPrefs.GetInt("mode") == 2)
         {
             PlayerPrefs.SetString("level", "Level3");
-            SceneManager.LoadScene("MatchWaitScene");
+            SceneManager.LoadScene("Player Select");
         }
-
-
-        
     }
 
     public void Back()
@@ -99,6 +100,9 @@ public class LvlSelectManager : MonoBehaviour
     //used on Main Menu
     public void LevelSelect(int mode)
     {
+        //0 = singleplayer
+        //1 = local MP
+        //2 = online MP
         PlayerPrefs.SetInt("mode", mode);
         if(mode == 2)
         {

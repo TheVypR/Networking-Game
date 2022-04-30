@@ -138,6 +138,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a1934dd76cbabf408b79bde9f8a12a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   explode: {fileID: 8300000, guid: dcace805823c7a948b60e330bca7fdef, type: 3}
   charge: 125
 --- !u!82 &3895535965097205424
