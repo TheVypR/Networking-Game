@@ -21,7 +21,7 @@ public class BombStrikeScript : TrapScript
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         transform.position += new Vector3(_moveSpeed, 0, 0);
         if (transform.position.x > Camera.main.transform.position.x + 15)
@@ -35,6 +35,7 @@ public class BombStrikeScript : TrapScript
     {
         while(true)
         {
+            //only do network spawn if online game
             if (PlayerPrefs.HasKey("mode"))
             {
                 if (PlayerPrefs.GetInt("mode") == 2)

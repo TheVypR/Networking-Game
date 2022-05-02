@@ -129,7 +129,8 @@ public class LvlMngrScript : NetworkBehaviour
         startTime = Time.time;
 
         //disable player 2
-        player2.SetActive(false);
+        player2.GetComponent<Player2Script>().enabled = false;
+        player2.GetComponentInChildren<SpriteRenderer>().enabled = false;
 
         //start camera in game mode
         CameraMotor.singleton.setMode(false);
