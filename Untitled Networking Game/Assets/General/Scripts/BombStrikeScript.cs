@@ -35,10 +35,19 @@ public class BombStrikeScript : TrapScript
     {
         while(true)
         {
-            if (isServer)
+            if (PlayerPrefs.HasKey("mode"))
             {
-                GameObject trap = Instantiate(_bombPrefab, _bombSpwn.position, Quaternion.identity);
-                NetworkServer.Spawn(trap);
+                if (PlayerPrefs.GetInt("mode") == 2)
+                {
+                    if (isServer)
+                    {
+                        GameObject trap = Instantiate(_bombPrefab, _bombSpwn.position, Quaternion.identity);
+                        NetworkServer.Spawn(trap);
+                    }
+                } else
+                {
+                    Instantiate(_bombPrefab, _bombSpwn.position, Quaternion.identity);
+                }
             }
             yield return new WaitForSeconds(0.5f);
         }

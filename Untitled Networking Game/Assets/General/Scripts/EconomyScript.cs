@@ -60,7 +60,7 @@ public class EconomyScript : NetworkBehaviour
     void NoMoney()
     {
         money = 0;
-        CameraMotor.singleton.autoSpeed = 0.035f;
+        CameraMotor.singleton.autoSpeed = 5f;
         StopAllCoroutines();
         gainRoutine = StartCoroutine(GainMoney());
     }
@@ -68,8 +68,8 @@ public class EconomyScript : NetworkBehaviour
 
     public void stopCamSpeed()
     {
-
-        CameraMotor.singleton.autoSpeed = 0.035f;
+        print("stop");
+        CameraMotor.singleton.autoSpeed = 5f;
         StopAllCoroutines();
         gainRoutine = StartCoroutine(GainMoney());
     }
@@ -94,7 +94,7 @@ public class EconomyScript : NetworkBehaviour
         else
         {
             CameraMotor.singleton.autoSpeed -= 0.02f;
-            drainAmt = (int)(Mathf.Abs((_camScript.autoSpeed - 0.035f + 0.01f) * 100));
+            drainAmt = (int)(Mathf.Abs((_camScript.autoSpeed - 5f + 0.01f) * 100));
             if (drainAmt == 0 && drainRoutine != null)
             {
                 gainRoutine = StartCoroutine(GainMoney());

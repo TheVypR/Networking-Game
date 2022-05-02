@@ -18,7 +18,7 @@ public class CameraMotor : NetworkBehaviour
 
     //control vars
     private float moveSpeed = 1.5f;
-    public float autoSpeed = 35f;
+    public float autoSpeed = 5f;
     public float followDistance = 3f;
     Vector3 Yoffset = new Vector3(0, 5, 0);
     Vector3 Xoffset = new Vector3(5, 0, 0);
@@ -36,6 +36,26 @@ public class CameraMotor : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+        //choose camera by mode
+        if (PlayerPrefs.HasKey("mode"))
+        {
+            if (PlayerPrefs.GetInt("mode") == 2)
+            {
+                OnlineCamera();
+            }
+            else if (PlayerPrefs.GetInt("mode") == 1)
+            {
+                LocalCamera();
+            }
+            else
+            {
+                SingleCamera();
+            }
+        }             
+    }
+
+    private void OnlineCamera()
+    {
         //have the server update the position
         if (isServer)
         {
@@ -51,7 +71,33 @@ public class CameraMotor : NetworkBehaviour
         {
             Camera.main.orthographicSize = 16;
             background.transform.localScale = new Vector3(3f, 3f, 1);
-        }      
+        }
+    }
+
+    private void LocalCamera()
+    {
+        if (!debug && !isSetup)
+        {
+            AutoMove();
+        }
+        Follow();
+
+        //set the size for all machine
+        if (isSetup)
+        {
+            Camera.main.orthographicSize = 16;
+            background.transform.localScale = new Vector3(3f, 3f, 1);
+        }
+    }
+
+    private void SingleCamera()
+    {
+        isSetup = false;
+        if (!debug && !isSetup)
+        {
+            AutoMove();
+        }
+        Follow();
     }
 
     void Follow()
@@ -96,7 +142,13 @@ public class CameraMotor : NetworkBehaviour
                 targetPos = new Vector3(_player2Trans.position.x, _player2Trans.position.y, -10);
             }
             transform.position = Vector3.Lerp(transform.position, targetPos, moveSpeed*Time.deltaTime);
-            RpcUpdateY(transform.position);
+            if (PlayerPrefs.HasKey("mode"))
+            {
+                if (PlayerPrefs.GetInt("mode") == 2)
+                {
+                    RpcUpdateY(transform.position);
+                }
+            }
         }
     }
 
@@ -109,7 +161,18 @@ public class CameraMotor : NetworkBehaviour
     void AutoMove()
     {
         transform.position += new Vector3(autoSpeed*Time.deltaTime, 0, 0);
-        RpcUpdateCamera(autoSpeed, transform.position);
+
+        print("Speed: " + autoSpeed);
+        print("Pos: " + transform.position);
+        print("Delta: " + Time.deltaTime); 
+
+        if (PlayerPrefs.HasKey("mode"))
+        {
+            if (PlayerPrefs.GetInt("mode") == 2)
+            {
+                RpcUpdateCamera(autoSpeed, transform.position);
+            }
+        }
     }
 
     [ClientRpc]

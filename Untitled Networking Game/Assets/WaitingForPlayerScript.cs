@@ -19,7 +19,6 @@ public class WaitingForPlayerScript : NetworkBehaviour
 
     private void bothPlayersFound()
     {
-        waiting.enabled = false;
         if (isServer)
         {
             if (PlayerPrefs.HasKey("level"))
@@ -32,7 +31,8 @@ public class WaitingForPlayerScript : NetworkBehaviour
 
     IEnumerator LoadLevel()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
+        waiting.enabled = false;
         SceneManager.LoadSceneAsync(level, LoadSceneMode.Additive);
         StopCoroutine(LoadLevel());
     }

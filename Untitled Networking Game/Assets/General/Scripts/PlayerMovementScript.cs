@@ -49,6 +49,8 @@ public class PlayerMovementScript : PlayerBaseScript
         {
             StartCoroutine(UpdateServer());
         }
+
+        //make sure the clients are up to date
         if (isServer)
         {
             StartCoroutine(UpdateClients());
@@ -70,28 +72,22 @@ public class PlayerMovementScript : PlayerBaseScript
 
     private void FixedUpdate()
     {
-        if (hasAuthority)//only triggered by the localPlayer that is Player 1
+        //check mode
+        if (PlayerPrefs.HasKey("mode"))
         {
-            x = MyInput.GetXAxis(2) * moveSpeed;
-
-            ////jump
-            if (MyInput.GetKeyInteract(2) && OnGround())
+            if (PlayerPrefs.GetInt("mode") == 2)
             {
-                y = jumpSpeed;
-                _audioS.PlayOneShot(jump, 0.25f);
+                OnlineControl();
             }
-            else if (!MyInput.GetKeyInteract(2) && _rBody.velocity.y > 0)
+            else if (PlayerPrefs.GetInt("mode") == 1)
             {
-                y = 0;
+                LocalControl();
             }
             else
             {
-                y = _rBody.velocity.y;
-            }//end if/elseif/else
-
-            StepMovement(x, y);
+                SingleControl();
+            }
         }
-
         //flip sprite
         if (_spriteRenderer.flipX && x > 0)
         {
@@ -113,6 +109,77 @@ public class PlayerMovementScript : PlayerBaseScript
             _mngr.PlayerDeath(spwn);
         }
     }//end FixedUpdate
+
+    //mode updates
+    private void OnlineControl()
+    {
+        //only use authority if online mode
+        if (hasAuthority)//only triggered by the localPlayer that is Player 1
+        {
+            x = MyInput.GetXAxis(2) * moveSpeed;
+
+            ////jump
+            if (MyInput.GetKeyInteract(2) && OnGround())
+            {
+                y = jumpSpeed;
+                _audioS.PlayOneShot(jump, 0.25f);
+            }
+            else if (!MyInput.GetKeyInteract(2) && _rBody.velocity.y > 0)
+            {
+                y = 0;
+            }
+            else
+            {
+                y = _rBody.velocity.y;
+            }//end if/elseif/else
+
+            StepMovement(x, y);
+        }
+    }
+
+    private void LocalControl()
+    {
+        x = MyInput.GetXAxis(2) * moveSpeed;
+
+        ////jump
+        if (MyInput.GetKeyInteract(2) && OnGround())
+        {
+            y = jumpSpeed;
+            _audioS.PlayOneShot(jump, 0.25f);
+        }
+        else if (!MyInput.GetKeyInteract(2) && _rBody.velocity.y > 0)
+        {
+            y = 0;
+        }
+        else
+        {
+            y = _rBody.velocity.y;
+        }//end if/elseif/else
+
+        StepMovement(x, y);
+    }
+
+    private void SingleControl()
+    {
+        x = MyInput.GetXAxis(2) * moveSpeed;
+
+        ////jump
+        if (MyInput.GetKeyInteract(2) && OnGround())
+        {
+            y = jumpSpeed;
+            _audioS.PlayOneShot(jump, 0.25f);
+        }
+        else if (!MyInput.GetKeyInteract(2) && _rBody.velocity.y > 0)
+        {
+            y = 0;
+        }
+        else
+        {
+            y = _rBody.velocity.y;
+        }//end if/elseif/else
+
+        StepMovement(x, y);
+    }
 
     //update the server
     IEnumerator UpdateServer()
