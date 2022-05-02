@@ -268,6 +268,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6058287160162197093}
   - component: {fileID: 6058287160162197090}
+  - component: {fileID: 2983348914883767311}
   m_Layer: 0
   m_Name: Economy Manager
   m_TagString: Untagged
@@ -303,5 +304,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a7d6c5dacbc04249b5005c7042d8875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  _player1ID: {fileID: 0}
   _moneyCountTxt: {fileID: 6058287160026901797}
   money: 1000
+--- !u!114 &2983348914883767311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058287160162197091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  visible: 0
+  m_AssetId: 30d7296bf3333e8499e32cfd96e6be48
+  hasSpawned: 0

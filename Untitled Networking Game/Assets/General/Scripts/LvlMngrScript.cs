@@ -148,6 +148,7 @@ public class LvlMngrScript : NetworkBehaviour
 
         //disable trap AI
         singleplayerAI.SetActive(false);
+        singleplayerAI.GetComponent<TrapAIScript>().enabled = false;
 
         //guarantee p2 is active
         player2.SetActive(true);
@@ -166,6 +167,7 @@ public class LvlMngrScript : NetworkBehaviour
 
         //disable trap AI
         singleplayerAI.SetActive(false);
+        singleplayerAI.GetComponent<TrapAIScript>().enabled = false;
 
         //guarantee p2 is active
         player2.SetActive(true);
@@ -318,7 +320,21 @@ public class LvlMngrScript : NetworkBehaviour
 
     public void StartRound()
     {
-        CmdStartRound();
+        if (isMultiplayer == 2)
+        {
+            CmdStartRound();
+        } else
+        {
+            //reset camera
+            economyScript.StartRound();
+            isSetup = false;
+            CameraMotor.singleton.setMode(false);
+            _player.GetComponent<PlayerMovementScript>().enabled = true;
+            Time.timeScale = 1;
+            startTime = Time.time;
+            transitionCanvas.SetActive(false);
+            player2.GetComponent<Player2Script>().setMode(false);
+        }
     }
 
     [Command (requiresAuthority=false)]
