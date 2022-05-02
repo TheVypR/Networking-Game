@@ -216,7 +216,6 @@ public class LvlMngrScript : NetworkBehaviour
 
         if (_dead)
         {
-            print("dead");
             _respawnCanvas.SetActive(true);
             _deathText.text = "Death Count: " + _countDeaths;
 

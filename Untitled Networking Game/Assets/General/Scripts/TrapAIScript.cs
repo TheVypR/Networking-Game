@@ -62,8 +62,6 @@ public class TrapAIScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
-        
         if (econScript.money > spendAt)
         {
             int rand = Random.Range(1, 250);
