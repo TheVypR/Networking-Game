@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.SceneManagement;
 public class CanvasManagerScript : NetworkBehaviour
 {
     string level = "";
     public NetworkIdentity player1;
-    public GameObject setupText;
-    public GameObject setupPanel;
+    public TMP_Text setupText;
+    public Image setupPanel;
 
     float waitTime = 0.1f;
     public LvlMngrScript levelmanager;
@@ -33,11 +34,8 @@ public class CanvasManagerScript : NetworkBehaviour
 
     public void setPlayerOneBlind(bool set)
     {
-        if (setupText && setupPanel)
-        {
-            setupText.SetActive(set);
-            setupPanel.SetActive(set);
-        }
+        setupText.enabled = set;
+        setupPanel.enabled = set;
     }
 
     [ClientRpc]

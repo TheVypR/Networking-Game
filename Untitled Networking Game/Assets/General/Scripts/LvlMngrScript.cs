@@ -58,6 +58,20 @@ public class LvlMngrScript : NetworkBehaviour
     // Start is called before the first frame update
     void OnEnable()
     {
+        //set up respawn screen
+        _timeRespawn = 4f;
+        _countDeaths = 0;
+        _textRise = 0;
+
+        //respawn canvas children
+        _respawnText = _respawnCanvas.transform.Find("RespawnCountdownText").gameObject.GetComponent<Text>();
+        _respawnTextBack = _respawnCanvas.transform.Find("RespawnCountdownText (1)").gameObject.GetComponent<Text>();
+        _respawning = _respawnCanvas.transform.Find("RespawningText").gameObject.GetComponent<TMP_Text>();
+        _deathText = _respawnCanvas.transform.Find("Death Count").gameObject.GetComponent<TMP_Text>();
+        _addPlusOne = _respawnCanvas.transform.Find("AddOneDeathText").gameObject.GetComponent<Text>();
+        _respawnCanvas.GetComponent<Canvas>().enabled = false;
+        transitionCanvas.GetComponent<Canvas>().enabled = false;
+
         //check if multiplayer
         if (PlayerPrefs.HasKey("mode"))
         {
@@ -89,20 +103,6 @@ public class LvlMngrScript : NetworkBehaviour
         _playerTrans = _player.GetComponent<Transform>();
         _playerSprite = _player.GetComponent<SpriteRenderer>();
         _playerMove = _player.GetComponent<PlayerMovementScript>();
-
-        //set up respawn screen
-        _timeRespawn = 4f;
-        _countDeaths = 0;
-        _textRise = 0;
-
-        //respawn canvas children
-        _respawnText = _respawnCanvas.transform.Find("RespawnCountdownText").gameObject.GetComponent<Text>();
-        _respawnTextBack = _respawnCanvas.transform.Find("RespawnCountdownText (1)").gameObject.GetComponent<Text>();
-        _respawning = _respawnCanvas.transform.Find("RespawningText").gameObject.GetComponent<TMP_Text>();
-        _deathText = _respawnCanvas.transform.Find("Death Count").gameObject.GetComponent<TMP_Text>();
-        _addPlusOne = _respawnCanvas.transform.Find("AddOneDeathText").gameObject.GetComponent<Text>();
-        _respawnCanvas.SetActive(false);
-        transitionCanvas.SetActive(false);
     }
 
 
@@ -175,6 +175,7 @@ public class LvlMngrScript : NetworkBehaviour
         //disable p1 script for setup phase
         _player.GetComponent<PlayerMovementScript>().enabled = false;
 
+        //turn the camera on the right mode
         CameraMotor.singleton.setMode(true);
 
         //keep an eye on the number of players to check for disconnection
