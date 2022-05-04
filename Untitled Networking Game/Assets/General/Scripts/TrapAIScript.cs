@@ -35,7 +35,14 @@ public class TrapAIScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        StartCoroutine(WaitToStart());
+    }
 
+    IEnumerator WaitToStart()
+    {
+        yield return new WaitForSeconds(1f);
+
+        //start trapping
         for (int i = 0; i < openingTrapNum; i++)
         {
             int r = rando.Next(0, spawners.transform.childCount - 1);
@@ -46,51 +53,59 @@ public class TrapAIScript : MonoBehaviour
             if (trap <= 5)
             {
                 Instantiate(mine, spawn);
-            } else if(trap <= 7)
+            }
+            else if (trap <= 7)
             {
                 Instantiate(glue, spawn);
-            } else
+            }
+            else
             {
                 Instantiate(blind, spawn);
             }
             spawn.parent = null;
         }
-        
+
         spendAt = Random.Range(40, 120);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (econScript.money > spendAt)
+        if (PlayerPrefs.HasKey("mode"))
         {
-            int rand = Random.Range(1, 250);
-            if (rand < 25)
+            if (PlayerPrefs.GetInt("mode") == 0)
             {
-                if (econManager.GetComponent<EconomyScript>().money > _costLava)
+                if (econScript.money > spendAt)
                 {
-                    Instantiate(lavaPrefab, new Vector2(_cam.transform.position.x, _cam.transform.position.y - 20), Quaternion.identity);
-                    econManager.GetComponent<EconomyScript>().SpendCoin(_costLava);
-                    spendAt = Random.Range(40, 120);
-                }
-            }
-            else if (rand < 85)
-            {
-                if (econManager.GetComponent<EconomyScript>().money > _costBombStrike)
-                {
-                    Instantiate(bombSPrefab);
-                    econManager.GetComponent<EconomyScript>().SpendCoin(_costBombStrike);
-                    spendAt = Random.Range(40, 120);
-                }
-            }
-            else
-            {
-                if (econScript.money > 75)
-                {
-                    econScript.CameraSpeed(Random.Range(0, 2) == 1);
-                    camSlowTime = Random.Range(10, 30);
-                    StartCoroutine(camSlowEnum());
-                    spendAt = Random.Range(40, 120);
+                    int rand = Random.Range(1, 250);
+                    if (rand < 25)
+                    {
+                        if (econManager.GetComponent<EconomyScript>().money > _costLava)
+                        {
+                            Instantiate(lavaPrefab, new Vector2(_cam.transform.position.x, _cam.transform.position.y - 20), Quaternion.identity);
+                            econManager.GetComponent<EconomyScript>().SpendCoin(_costLava);
+                            spendAt = Random.Range(40, 120);
+                        }
+                    }
+                    else if (rand < 85)
+                    {
+                        if (econManager.GetComponent<EconomyScript>().money > _costBombStrike)
+                        {
+                            Instantiate(bombSPrefab);
+                            econManager.GetComponent<EconomyScript>().SpendCoin(_costBombStrike);
+                            spendAt = Random.Range(40, 120);
+                        }
+                    }
+                    else
+                    {
+                        if (econScript.money > 75)
+                        {
+                            econScript.CameraSpeed(Random.Range(0, 2) == 1);
+                            camSlowTime = Random.Range(10, 30);
+                            StartCoroutine(camSlowEnum());
+                            spendAt = Random.Range(40, 120);
+                        }
+                    }
                 }
             }
         }
