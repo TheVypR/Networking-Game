@@ -32,8 +32,8 @@ public class LvlMngrScript : NetworkBehaviour
     public Text _timer;
 
     //Win Screen
-    public Text _winScreen;
-    public Text _loseScreen;
+    public TMP_Text _winScreen;
+    public TMP_Text _loseScreen;
 
     //setup or gameplay
     public GameObject transitionCanvas;

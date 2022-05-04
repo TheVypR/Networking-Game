@@ -21,6 +21,12 @@ public class EconomyScript : NetworkBehaviour
     Coroutine gainRoutine;
     Coroutine drainRoutine;
 
+
+
+
+    //Increase Gains if not spent variables
+    float _timeNotSpent;
+
     //public CanvasManagerScript canvScript;
 
     // Start is called before the first frame update
@@ -31,6 +37,7 @@ public class EconomyScript : NetworkBehaviour
         if (!setupMode)
         {
             gainRoutine = StartCoroutine(GainMoney());
+            _timeNotSpent = Time.time;
         }
     }
 
@@ -51,7 +58,7 @@ public class EconomyScript : NetworkBehaviour
         _moneyCountTxt.text = money.ToString();
         
         //check if the player has money to spend
-        if(money <= 0)
+        if(money <= 0 && !setupMode)
         {
             NoMoney();
         }
@@ -117,6 +124,7 @@ public class EconomyScript : NetworkBehaviour
         else
         {
             money -= amt;
+            _timeNotSpent = Time.time;
             return true;
         }
     }
@@ -125,6 +133,14 @@ public class EconomyScript : NetworkBehaviour
     {
         while (true)
         {
+            if (Time.time - _timeNotSpent > 7f)
+            {
+                money += 2;
+            }
+            if (Time.time - _timeNotSpent > 14f)
+            {
+                money += 5;
+            }
             money++;
             yield return new WaitForSeconds(0.25f);
         }
