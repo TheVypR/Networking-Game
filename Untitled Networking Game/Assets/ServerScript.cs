@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Mirror;
 public class ServerScript : MonoBehaviour
 {
@@ -31,32 +32,11 @@ public class ServerScript : MonoBehaviour
                         }
                     }
                 }
-            } else
-            {
-                StartCoroutine(EnableIDs());
             }
         } else
         {
             //set it to singleplayer
             PlayerPrefs.SetInt("mode", 0);
-            StartCoroutine(EnableIDs());
-        }
-    }
-
-    IEnumerator EnableIDs()
-    {
-        NetworkIdentity[] ids = Resources.FindObjectsOfTypeAll<NetworkIdentity>();
-        foreach (NetworkIdentity id in ids)
-        {
-            if (id.name.Equals("RespawnCanvas") || id.name.Equals("TransitionCanvas"))
-            {
-                yield return new WaitForSeconds(0.01f);
-            }
-            else
-            {
-                id.gameObject.SetActive(true);
-                yield return new WaitForSeconds(0.01f);
-            }
         }
     }
 }

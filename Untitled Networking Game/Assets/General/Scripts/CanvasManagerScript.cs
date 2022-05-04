@@ -12,7 +12,6 @@ public class CanvasManagerScript : NetworkBehaviour
     public GameObject setupPanel;
 
     float waitTime = 0.1f;
-    public GameObject playerWaitingBlind;
     public LvlMngrScript levelmanager;
 
     void Start()
@@ -41,55 +40,15 @@ public class CanvasManagerScript : NetworkBehaviour
         }
     }
 
-    private void bothPlayersFound()
-    {
-        StopCoroutine(SearchPlayers());
-        playerWaitingBlind.SetActive(false);
-        StartCoroutine(LoadLevel());
-    }
-
-    IEnumerator LoadLevel()
-    {
-        if (isServer && isLocalPlayer)
-        {
-            if (PlayerPrefs.HasKey("level"))
-            {
-                RpcSetLevel(PlayerPrefs.GetString("level"));
-            }
-        }
-        yield return new WaitForSeconds(3f);
-        SceneManager.LoadSceneAsync(level, LoadSceneMode.Additive);
-    }
-
     [ClientRpc]
     void RpcSetLevel(string lvl)
     {
         level = lvl;
     }
 
-    private IEnumerator SearchPlayers()
-    {
-        while (true)
-        {
-            if (FindObjectsOfType<PlayerManagerScript>().Length > 1)
-            {
-                bothPlayersFound();
-            }
-            else
-            {
-                
-                playerWaitingBlind.SetActive(true);
-            }
-            yield return new WaitForSeconds(waitTime);
-
-        }
-    }
-
     IEnumerator LateStart(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
-
-        StartCoroutine(SearchPlayers());
 
         if (player1.hasAuthority)
         {

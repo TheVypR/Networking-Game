@@ -354,7 +354,13 @@ public class Player2Script : PlayerBaseScript
             if (isSetup)
             {
                 gameObject.transform.position = target.position;
-                CmdMoveTrapSpawn(target.position);
+                if (PlayerPrefs.HasKey("mode"))
+                {
+                    if (PlayerPrefs.GetInt("mode") == 2)
+                    {
+                        CmdMoveTrapSpawn(target.position);
+                    }
+                }
             }
         }        
     }
