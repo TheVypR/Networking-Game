@@ -22,13 +22,13 @@ public class ServerScript : MonoBehaviour
                     else
                     {
                         NetworkManager.singleton.StartClient();
-                        if (PlayerPrefs.GetInt("haveIP") == 0)
+                        if (PlayerPrefs.HasKey("IP"))
                         {
-                            NetworkManager.singleton.networkAddress = "localhost";
+                            NetworkManager.singleton.networkAddress = PlayerPrefs.GetString("IP");
                         }
                         else
                         {
-                            NetworkManager.singleton.networkAddress = PlayerPrefs.GetString("IP");
+                            NetworkManager.singleton.networkAddress = "localhost";
                         }
                     }
                 }
