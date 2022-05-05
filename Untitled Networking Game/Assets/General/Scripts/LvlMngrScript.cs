@@ -93,8 +93,7 @@ public class LvlMngrScript : NetworkBehaviour
         {
             PlayerPrefs.SetInt("mode", 0);
             isMultiplayer = 0;
-            CameraMotor.singleton.setMode(false);
-            singleplayerAI.SetActive(true);
+            StartSinglePlayer();
         }
 
         //store components
@@ -128,6 +127,9 @@ public class LvlMngrScript : NetworkBehaviour
         isSetup = false;
         startTime = Time.time;
 
+        //enable trap AI
+        singleplayerAI.GetComponent<TrapAIScript>().enabled = true;
+
         //disable player 2
         player2.GetComponent<Player2Script>().enabled = false;
         player2.GetComponentInChildren<SpriteRenderer>().enabled = false;
@@ -137,7 +139,7 @@ public class LvlMngrScript : NetworkBehaviour
 
         //disable the respawn screen
         _respawnCanvas.SetActive(false);
-        transitionCanvas.SetActive(false);
+        transitionCanvas.GetComponent<Canvas>().enabled = false;
     }
 
     public void StartLocalMultiplayer()
@@ -147,7 +149,6 @@ public class LvlMngrScript : NetworkBehaviour
         setupStart = Time.time;
 
         //disable trap AI
-        singleplayerAI.SetActive(false);
         singleplayerAI.GetComponent<TrapAIScript>().enabled = false;
 
         //guarantee p2 is active
@@ -159,14 +160,28 @@ public class LvlMngrScript : NetworkBehaviour
         CameraMotor.singleton.setMode(true);
     }
 
+    [Command (requiresAuthority = false)]
+    private void CmdSendTime(float startTime)
+    {
+        setupStart = startTime;
+    }
+
     void StartOnlineMultiplayer()
     {
         //start in setup mode
         isSetup = true;
-        setupStart = Time.time;
+        if (!isServer)
+        {
+            setupStart = Time.time;
+            CmdSendTime(setupStart);
+        }
+        else
+        {
+            setupStart = Time.time;
+        }
+        _setupCanvas.SetActive(true);
 
         //disable trap AI
-        singleplayerAI.SetActive(false);
         singleplayerAI.GetComponent<TrapAIScript>().enabled = false;
 
         //guarantee p2 is active
@@ -206,7 +221,7 @@ public class LvlMngrScript : NetworkBehaviour
             {
                 //load intermediary canvas and pause time
                 Time.timeScale = 0;
-                transitionCanvas.SetActive(true);
+                transitionCanvas.GetComponent<Canvas>().enabled = true;
                 _setupCanvas.SetActive(false);
             }
         }
@@ -224,7 +239,7 @@ public class LvlMngrScript : NetworkBehaviour
 
         if (_dead)
         {
-            _respawnCanvas.SetActive(true);
+            _respawnCanvas.GetComponent<Canvas>().enabled = true;
             _deathText.text = "Death Count: " + _countDeaths;
 
             if (_timeRespawn > 0)
@@ -245,16 +260,16 @@ public class LvlMngrScript : NetworkBehaviour
     void Respawn()
     {
         //Handle all respawn timer and texts
-        _respawnCanvas.SetActive(false);
+        _respawnCanvas.GetComponent<Canvas>().enabled = false;
         _timeRespawn = 4f;
         _dead = false;
         _textRise = 0;
 
-        //_player.SetActive(true);
         _playerSprite.enabled = true;
         _playerMove.enabled = true;
-
+        _playerRbody.velocity = Vector3.zero;
         _playerTrans.position = spwn;
+
         Vector3 camPos = new Vector3(spwn.x, spwn.y, -10);
         _camTrans.position = camPos;
         if (isServer)
@@ -265,7 +280,6 @@ public class LvlMngrScript : NetworkBehaviour
         {
             RpcPlayerReset(spwn);
         }
-        _playerRbody.velocity = Vector3.zero;
         _player.GetComponent<PlayerMovementScript>().moveSpeed = 10;
     }
 
@@ -339,7 +353,7 @@ public class LvlMngrScript : NetworkBehaviour
             _player.GetComponent<PlayerMovementScript>().enabled = true;
             Time.timeScale = 1;
             startTime = Time.time;
-            transitionCanvas.SetActive(false);
+            transitionCanvas.GetComponent<Canvas>().enabled = false;
             player2.GetComponent<Player2Script>().setMode(false);
         }
     }
@@ -354,7 +368,7 @@ public class LvlMngrScript : NetworkBehaviour
         _player.GetComponent<PlayerMovementScript>().enabled = true;
         Time.timeScale = 1;
         startTime = Time.time;
-        transitionCanvas.SetActive(false);
+        transitionCanvas.GetComponent<Canvas>().enabled = false;
         player2.GetComponent<Player2Script>().setMode(false);
 
         //reset camera on all clients
@@ -370,8 +384,8 @@ public class LvlMngrScript : NetworkBehaviour
         _player.GetComponent<PlayerMovementScript>().enabled = true;
         Time.timeScale = 1;
         startTime = Time.time;
-        transitionCanvas.SetActive(false);
-        
+        transitionCanvas.GetComponent<Canvas>().enabled = false;
+
         player2.GetComponent<Player2Script>().setMode(false);
     }
 }
