@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Mirror;
+using UnityEngine.EventSystems;
 
 public class LvlSelectManager : MonoBehaviour
 {
@@ -11,9 +12,14 @@ public class LvlSelectManager : MonoBehaviour
     public GameObject startLevel;
     public GameObject onlineHUD;
 
+    public GameObject _hostButton;
+
+    
+
     // Start is called before the first frame update
     void Start()
     {
+        
     }
 
     // Update is called once per frame
@@ -107,6 +113,8 @@ public class LvlSelectManager : MonoBehaviour
         if(mode == 2)
         {
             onlineHUD.SetActive(true);
+            EventSystem.current.GetComponent<EventSystem>().SetSelectedGameObject(_hostButton);
+
         } else
         {
             SceneManager.LoadScene("LevelSelect");

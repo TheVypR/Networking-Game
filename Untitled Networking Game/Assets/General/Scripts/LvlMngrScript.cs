@@ -187,7 +187,14 @@ public class LvlMngrScript : NetworkBehaviour
     {
         if (Input.GetKey(KeyCode.Escape))
         {
-            SceneManager.LoadScene("Main Menu");
+            if (isServer)
+            {
+                NetworkManager.singleton.StopHost();
+            }
+            else
+            {
+                NetworkManager.singleton.StopClient();
+            }
         }
 
         //update timer text
