@@ -116,15 +116,15 @@ public class PlayerMovementScript : PlayerBaseScript
         //only use authority if online mode
         if (hasAuthority)//only triggered by the localPlayer that is Player 1
         {
-            x = MyInput.GetXAxis(2) * moveSpeed;
+            x = MyInput.GetXAxis(0) * moveSpeed;
 
             ////jump
-            if (MyInput.GetKeyInteract(2) && OnGround())
+            if (MyInput.GetPS4X(0) && OnGround())
             {
                 y = jumpSpeed;
                 _audioS.PlayOneShot(jump, 0.25f);
             }
-            else if (!MyInput.GetKeyInteract(2) && _rBody.velocity.y > 0)
+            else if (!MyInput.GetPS4X(0) && _rBody.velocity.y > 0)
             {
                 y = 0;
             }
@@ -139,15 +139,15 @@ public class PlayerMovementScript : PlayerBaseScript
 
     private void LocalControl()
     {
-        x = MyInput.GetXAxis(2) * moveSpeed;
+        x = MyInput.GetXAxis(1) * moveSpeed;
 
         ////jump
-        if (MyInput.GetKeyInteract(2) && OnGround())
+        if (MyInput.GetPS4X(1) && OnGround())
         {
             y = jumpSpeed;
             _audioS.PlayOneShot(jump, 0.25f);
         }
-        else if (!MyInput.GetKeyInteract(2) && _rBody.velocity.y > 0)
+        else if (!MyInput.GetPS4X(1) && _rBody.velocity.y > 0)
         {
             y = 0;
         }
@@ -161,15 +161,15 @@ public class PlayerMovementScript : PlayerBaseScript
 
     private void SingleControl()
     {
-        x = MyInput.GetXAxis(2) * moveSpeed;
+        x = MyInput.GetXAxis(0) * moveSpeed;
 
         ////jump
-        if (MyInput.GetKeyInteract(2) && OnGround())
+        if (MyInput.GetPS4X(0) && OnGround())
         {
             y = jumpSpeed;
             _audioS.PlayOneShot(jump, 0.25f);
         }
-        else if (!MyInput.GetKeyInteract(2) && _rBody.velocity.y > 0)
+        else if (!MyInput.GetPS4X(0) && _rBody.velocity.y > 0)
         {
             y = 0;
         }
