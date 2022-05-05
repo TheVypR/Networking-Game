@@ -16,12 +16,9 @@ public class PlayerManagerScript : NetworkBehaviour
         DontDestroyOnLoad(gameObject);
 
         //for testing
-        if (isServer && isLocalPlayer)
+        if (isServer)
         {
-            CmdGivePrefs();
-        } else if(!isServer && !isLocalPlayer)
-        {
-            CmdGivePrefs();
+            role = PlayerPrefs.GetInt("player");
         }
     }
 
@@ -31,35 +28,63 @@ public class PlayerManagerScript : NetworkBehaviour
         {
             if (isServer && isLocalPlayer)
             {
-                PlayerMovementScript p1 = FindObjectOfType<PlayerMovementScript>();
-                if (p1)
+                if (role == 1)
                 {
-                    gaveAuth = true;
-                    NetworkIdentity p1ID = p1.gameObject.GetComponent<NetworkIdentity>();
-                    p1ID.AssignClientAuthority(connectionToClient);
+                    PlayerMovementScript p1 = FindObjectOfType<PlayerMovementScript>();
+                    if (p1)
+                    {
+                        gaveAuth = true;
+                        NetworkIdentity p1ID = p1.gameObject.GetComponent<NetworkIdentity>();
+                        p1ID.AssignClientAuthority(connectionToClient);
+                    }
                 }
-            } else if(isServer && !isLocalPlayer)
-            {
-                Player2Script p2 = FindObjectOfType<Player2Script>();
-                if (p2)
+                else if (role == 2)
                 {
-                    gaveAuth = true;
-                    NetworkIdentity p2ID = p2.gameObject.GetComponent<NetworkIdentity>();
-                    p2ID.AssignClientAuthority(connectionToClient);
+                    Player2Script p2 = FindObjectOfType<Player2Script>();
+                    if (p2)
+                    {
+                        gaveAuth = true;
+                        NetworkIdentity p2ID = p2.gameObject.GetComponent<NetworkIdentity>();
+                        p2ID.AssignClientAuthority(connectionToClient);
+                    }
+                }
+                else
+                {
+
                 }
             }
-        }
-    }
+            else if (isServer && !isLocalPlayer)
+            {
+                print("client");
+                if (role == 2)
+                {
+                    print("roling");
+                    PlayerMovementScript p1 = FindObjectOfType<PlayerMovementScript>();
+                    if (p1)
+                    {
+                        print("roling2");
+                        gaveAuth = true;
+                        NetworkIdentity p1ID = p1.gameObject.GetComponent<NetworkIdentity>();
+                        p1ID.AssignClientAuthority(connectionToClient);
+                    }
+                }
+                else if (role == 1)
+                {
+                    print("roling");
+                    Player2Script p2 = FindObjectOfType<Player2Script>();
+                    if (p2)
+                    {
+                        print("roling2");
+                        gaveAuth = true;
+                        NetworkIdentity p2ID = p2.gameObject.GetComponent<NetworkIdentity>();
+                        p2ID.AssignClientAuthority(connectionToClient);
+                    }
+                }
+                else
+                {
 
-    [Command (requiresAuthority = false)]
-    void CmdGivePrefs()
-    {
-        if (PlayerPrefs.HasKey("player"))
-        {
-            role = PlayerPrefs.GetInt("player");
-        } else
-        {
-            role = 0;
+                }
+            }
         }
     }
 }
