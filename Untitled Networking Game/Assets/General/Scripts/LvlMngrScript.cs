@@ -127,6 +127,9 @@ public class LvlMngrScript : NetworkBehaviour
         isSetup = false;
         startTime = Time.time;
 
+        //enable trap AI
+        singleplayerAI.GetComponent<TrapAIScript>().enabled = true;
+
         //disable player 2
         player2.GetComponent<Player2Script>().enabled = false;
         player2.GetComponentInChildren<SpriteRenderer>().enabled = false;
@@ -146,7 +149,6 @@ public class LvlMngrScript : NetworkBehaviour
         setupStart = Time.time;
 
         //disable trap AI
-        singleplayerAI.SetActive(false);
         singleplayerAI.GetComponent<TrapAIScript>().enabled = false;
 
         //guarantee p2 is active
@@ -158,15 +160,28 @@ public class LvlMngrScript : NetworkBehaviour
         CameraMotor.singleton.setMode(true);
     }
 
+    [Command (requiresAuthority = false)]
+    private void CmdSendTime(float startTime)
+    {
+        setupStart = startTime;
+    }
+
     void StartOnlineMultiplayer()
     {
         //start in setup mode
         isSetup = true;
-        setupStart = Time.time;
+        if (!isServer)
+        {
+            setupStart = Time.time;
+            CmdSendTime(setupStart);
+        }
+        else
+        {
+            setupStart = Time.time;
+        }
         _setupCanvas.SetActive(true);
 
         //disable trap AI
-        singleplayerAI.SetActive(false);
         singleplayerAI.GetComponent<TrapAIScript>().enabled = false;
 
         //guarantee p2 is active
@@ -245,8 +260,9 @@ public class LvlMngrScript : NetworkBehaviour
 
         _playerSprite.enabled = true;
         _playerMove.enabled = true;
-
+        _playerRbody.velocity = Vector3.zero;
         _playerTrans.position = spwn;
+
         Vector3 camPos = new Vector3(spwn.x, spwn.y, -10);
         _camTrans.position = camPos;
         if (isServer)
@@ -257,7 +273,6 @@ public class LvlMngrScript : NetworkBehaviour
         {
             RpcPlayerReset(spwn);
         }
-        _playerRbody.velocity = Vector3.zero;
         _player.GetComponent<PlayerMovementScript>().moveSpeed = 10;
     }
 
