@@ -29862,6 +29862,18 @@ PrefabInstance:
       propertyPath: m_ApplyRootMotion
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1502618886, guid: 60c7afbf89a385d4fb79550a7a9e4204, type: 3}
+      propertyPath: m_Color.b
+      value: 0.33962262
+      objectReference: {fileID: 0}
+    - target: {fileID: 1502618886, guid: 60c7afbf89a385d4fb79550a7a9e4204, type: 3}
+      propertyPath: m_Color.g
+      value: 0.19103771
+      objectReference: {fileID: 0}
+    - target: {fileID: 1502618886, guid: 60c7afbf89a385d4fb79550a7a9e4204, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2197986701129282032, guid: 60c7afbf89a385d4fb79550a7a9e4204,
         type: 3}
       propertyPath: m_Name
