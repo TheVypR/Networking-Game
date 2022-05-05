@@ -115,7 +115,7 @@ public class Player2Script : PlayerBaseScript
     {
         if ((Time.time - lastSwitch) >= SWITCH_RATE)
         {
-            if (MyInput.GetRawXAxis(0) == 1)
+            if (MyInput.GetRawXAxis(3) == 1)
             {
                 if (place >= TRAP_MAX)
                 {
@@ -129,7 +129,7 @@ public class Player2Script : PlayerBaseScript
                 lastSwitch = Time.time;
             }
 
-            if (MyInput.GetRawXAxis(0) == -1)
+            if (MyInput.GetRawXAxis(3) == -1)
             {
                 if (place < 0)
                 {
@@ -144,7 +144,7 @@ public class Player2Script : PlayerBaseScript
             }
 
             //trap placing
-            if (MyInput.GetPS4X(0))
+            if (MyInput.GetPS4X(1))
             {
                 if (proxTraps.Length > 0)
                 {
@@ -164,7 +164,7 @@ public class Player2Script : PlayerBaseScript
                     }
                 }
             }
-            else if (MyInput.GetPS4Square(0))
+            else if (MyInput.GetPS4Square(1))
             {
                 if (proxTraps.Length > 1)
                 {
@@ -184,7 +184,7 @@ public class Player2Script : PlayerBaseScript
                     }
                 }
             }
-            else if (MyInput.GetPS4Circle(0))
+            else if (MyInput.GetPS4Circle(1))
             {
                 if (proxTraps.Length > 2)
                 {
@@ -204,7 +204,7 @@ public class Player2Script : PlayerBaseScript
                     }
                 }
             }
-            else if (MyInput.GetPS4Triangle(0))
+            else if (MyInput.GetPS4Triangle(1))
             {
                 if (proxTraps.Length > 3)
                 {
@@ -233,13 +233,13 @@ public class Player2Script : PlayerBaseScript
         //control camera speed
         if ((Time.time - lastSwitch) >= SWITCH_RATE)
         {
-            if (MyInput.GetXAxis(0) > 0.05)
+            if (MyInput.GetXAxis(3) > 0.05)
             {
                 lastSwitch = Time.time;
                 _econ.CameraSpeed(true);
             }
 
-            if (MyInput.GetXAxis(0) < -0.05)
+            if (MyInput.GetXAxis(3) < -0.05)
             {
                 _econ.CameraSpeed(false);
                 lastSwitch = Time.time;
@@ -247,7 +247,7 @@ public class Player2Script : PlayerBaseScript
         }
 
         //trigger manual traps
-        if (MyInput.GetPS4Circle(0))
+        if (MyInput.GetPS4Circle(1))
         {
             if (manualTraps.Length > 0)
             {
@@ -267,7 +267,7 @@ public class Player2Script : PlayerBaseScript
                 }
             }
         }
-        else if (MyInput.GetPS4X(0))
+        else if (MyInput.GetPS4X(1))
         {
             print("trigger");
             if (manualTraps.Length > 1)
@@ -288,7 +288,7 @@ public class Player2Script : PlayerBaseScript
                 }
             }
         }
-        else if (MyInput.GetPS4Square(0))
+        else if (MyInput.GetPS4Square(1))
         {
             if (manualTraps.Length > 2)
             {
@@ -305,7 +305,7 @@ public class Player2Script : PlayerBaseScript
                 }
             }
         }
-        else if (MyInput.GetPS4Triangle(0))
+        else if (MyInput.GetPS4Triangle(1))
         {
             if (manualTraps.Length > 3)
             {
