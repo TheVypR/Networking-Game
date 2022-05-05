@@ -18,11 +18,9 @@ public class PlayerManagerScript : NetworkBehaviour
         //for testing
         if (isServer && isLocalPlayer)
         {
-            PlayerPrefs.SetInt("player", 1);
             CmdGivePrefs();
-        } else if(!isServer && isLocalPlayer)
+        } else if(!isServer && !isLocalPlayer)
         {
-            PlayerPrefs.SetInt("player", 2);
             CmdGivePrefs();
         }
     }
@@ -33,27 +31,18 @@ public class PlayerManagerScript : NetworkBehaviour
         {
             if (isServer && isLocalPlayer)
             {
-                if (PlayerPrefs.GetInt("player") == 1)
+                PlayerMovementScript p1 = FindObjectOfType<PlayerMovementScript>();
+                if (p1)
                 {
-                    PlayerMovementScript p1 = FindObjectOfType<PlayerMovementScript>();
-                    if (p1)
-                    {
-                        print("auth");
-                        gaveAuth = true;
-                        NetworkIdentity p1ID = p1.gameObject.GetComponent<NetworkIdentity>();
-                        p1ID.AssignClientAuthority(connectionToClient);
-                    }
-                }
-                else
-                {
-                    
+                    gaveAuth = true;
+                    NetworkIdentity p1ID = p1.gameObject.GetComponent<NetworkIdentity>();
+                    p1ID.AssignClientAuthority(connectionToClient);
                 }
             } else if(isServer && !isLocalPlayer)
             {
                 Player2Script p2 = FindObjectOfType<Player2Script>();
                 if (p2)
                 {
-                    print("2auth");
                     gaveAuth = true;
                     NetworkIdentity p2ID = p2.gameObject.GetComponent<NetworkIdentity>();
                     p2ID.AssignClientAuthority(connectionToClient);
@@ -62,7 +51,7 @@ public class PlayerManagerScript : NetworkBehaviour
         }
     }
 
-    [Command]
+    [Command (requiresAuthority = false)]
     void CmdGivePrefs()
     {
         if (PlayerPrefs.HasKey("player"))

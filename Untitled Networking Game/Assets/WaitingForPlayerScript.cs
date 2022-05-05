@@ -23,18 +23,16 @@ public class WaitingForPlayerScript : NetworkBehaviour
         {
             if (PlayerPrefs.HasKey("level"))
             {
-                RpcSetLevel(PlayerPrefs.GetString("level"));
+                NetworkManager.singleton.ServerChangeScene(PlayerPrefs.GetString("level"));
             }
         }
-        StartCoroutine(LoadLevel());
     }
 
     IEnumerator LoadLevel()
     {
         yield return new WaitForSeconds(1f);
         waiting.enabled = false;
-        SceneManager.LoadSceneAsync(level, LoadSceneMode.Additive);
-        StopCoroutine(LoadLevel());
+        NetworkManager.singleton.ServerChangeScene(level);
     }
 
     [ClientRpc]
