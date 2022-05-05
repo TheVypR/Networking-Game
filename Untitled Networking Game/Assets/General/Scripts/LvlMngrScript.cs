@@ -217,7 +217,7 @@ public class LvlMngrScript : NetworkBehaviour
 
         if (_dead)
         {
-            _respawnCanvas.SetActive(true);
+            _respawnCanvas.GetComponent<Canvas>().enabled = true;
             _deathText.text = "Death Count: " + _countDeaths;
 
             if (_timeRespawn > 0)
@@ -238,12 +238,11 @@ public class LvlMngrScript : NetworkBehaviour
     void Respawn()
     {
         //Handle all respawn timer and texts
-        _respawnCanvas.SetActive(false);
+        _respawnCanvas.GetComponent<Canvas>().enabled = false;
         _timeRespawn = 4f;
         _dead = false;
         _textRise = 0;
 
-        //_player.SetActive(true);
         _playerSprite.enabled = true;
         _playerMove.enabled = true;
 
