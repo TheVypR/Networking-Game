@@ -5,9 +5,11 @@ using TMPro;
 
 public class IPSaveScript : MonoBehaviour
 {
-    public TMP_InputField ip;
+    public GameObject ipTextField;
+    private TMP_Text ip;
     private void Start()
     {
+        ip = ipTextField.GetComponent<TMP_Text>();
         PlayerPrefs.SetInt("haveIP", 0);
     }
 
